@@ -3,6 +3,7 @@
     presentes no arquivo desafio-06/disouzam/python/words.txt (cópia local do arquivo disponível em
     https://osprogramadores.com/desafios/d06/words.txt)
 """
+import cProfile
 from ctypes import ArgumentError
 import os
 import string
@@ -23,6 +24,7 @@ def main(args):
     expressao = ""
 
     # Análise dos argumentos recebidos em args
+    # TODO: Adicionar variável para representar o len(args)
     if len(args) <= 1:
         raise ArgumentError("Nenhum argumento foi fornecido.")
 
@@ -466,4 +468,8 @@ def expressao_e_valida(expressao):
 
 
 if __name__ == "__main__":
+    pr = cProfile.Profile(builtins=False, subcalls=False)
+    pr.enable()
     main(sys.argv)
+    pr.disable()
+    pr.dump_stats("profiling-results.prof")
