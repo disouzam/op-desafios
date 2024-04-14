@@ -56,7 +56,7 @@ def main(args):
 
     digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
     digitos_parte_fracionaria = list(digitos_parte_fracionaria)
-    primos_na_parte_fracionaria = obtem_primos_da_parte_fracionaria(
+    primos_na_parte_fracionaria = obtem_primos_de_lista_de_inteiros(
         digitos_parte_fracionaria)
 
     # TODO: Remover antes da submissão
@@ -68,25 +68,24 @@ def main(args):
     print(caracteres_concatenados)
 
 
-def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
-    """obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
-    Obtém uma lista de primos a partir de uma lista ordenada de dígitos da parte fracionária do
-    número Pi
+def obtem_primos_de_lista_de_inteiros(digitos):
+    """obtem_primos_de_lista_de_inteiros(digitos_parte_fracionaria):
+    Obtém uma lista de primos a partir de uma lista ordenada de dígitos
 
     Parâmetro:
-    digitos_parte_fracionaria: lista de dígitos da parte fracionária do número Pi
+    digitos: lista de dígitos
     """
     lista_primos: List[int] = []
     posicao_caractere_atual = 0
 
-    while posicao_caractere_atual < len(digitos_parte_fracionaria):
+    while posicao_caractere_atual < len(digitos):
         comprimento = 1
         maior_primo = 0
         numero_digitos_primo = 0
 
         while comprimento < 5:
-            candidato = digitos_parte_fracionaria[posicao_caractere_atual:
-                                                  posicao_caractere_atual + comprimento]
+            candidato = digitos[posicao_caractere_atual:
+                                posicao_caractere_atual + comprimento]
             candidato = "".join(candidato)
             candidato = int(candidato)
 
