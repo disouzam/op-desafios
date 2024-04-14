@@ -24,5 +24,5 @@ o Python 3.11.8 (não foi checado contra essa versão).
 Executando dentro da pasta do desafio (desafio-11/disouzam/python), o comando é:
 
 ```python
-python -m primos_em_pi datafile
+python -m primos_em_pi pi-1M.txt
 ```
