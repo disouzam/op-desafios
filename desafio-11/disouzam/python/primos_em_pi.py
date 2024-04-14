@@ -141,6 +141,9 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         posicao_caractere_atual += 1
 
     # Processa as sobreposições
+    lista_primos_com_sobreposicao = []
+    lista_primos_sem_sobreposicao = []
+
     indice_candidato_analisado_na_lista = 0
     total_primos_candidatos_na_lista = len(lista_primos)
     while indice_candidato_analisado_na_lista < total_primos_candidatos_na_lista - 2:
@@ -151,14 +154,14 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         posicao_inicial_candidato = candidato[1]
         posicao_final_candidato = candidato[2]
 
+        sobreposicoes.append(candidato)
+
         indice_proximo_candidato = indice_candidato_analisado_na_lista + 1
         proximo_candidato = lista_primos[indice_proximo_candidato]
         posicao_inicial_ultimo_candidato = proximo_candidato[1]
         posicao_final_ultimo_candidato = proximo_candidato[2]
 
-        sobreposicoes.append(candidato)
-
-        while indice_proximo_candidato < total_primos_candidatos_na_lista - 1 \
+        while indice_proximo_candidato < total_primos_candidatos_na_lista - 2 \
                 and posicao_inicial_ultimo_candidato <= posicao_final_candidato:
             sobreposicoes.append(proximo_candidato)
 
@@ -173,6 +176,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         if len(sobreposicoes) > 1:
             indice_candidato_analisado_na_lista = indice_proximo_candidato
             for sobreposicao in sobreposicoes:
+                lista_primos_com_sobreposicao.append(sobreposicao)
                 # TODO: Remover antes da submissão
                 with open(arquivo_primos_candidatos_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
                     primo_candidato.write(f"{sobreposicao[0]}\n")
@@ -184,6 +188,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         else:
             indice_candidato_analisado_na_lista += 1
             sobreposicao = sobreposicoes[0]
+            lista_primos_sem_sobreposicao.append(sobreposicao)
             # TODO: Remover antes da submissão
             with open(arquivo_primos_candidatos_sem_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
                 primo_candidato.write(f"{sobreposicao[0]}\n")
