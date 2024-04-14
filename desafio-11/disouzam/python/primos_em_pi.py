@@ -77,6 +77,7 @@ def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
     while posicao_caractere_atual < len(digitos_parte_fracionaria):
         comprimento = 1
         maior_primo = 0
+        numero_digitos_primo = 0
 
         while comprimento < 5:
             candidato = digitos_parte_fracionaria[posicao_caractere_atual:
@@ -86,12 +87,17 @@ def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
 
             if e_primo(candidato) and candidato > maior_primo:
                 maior_primo = candidato
+                numero_digitos_primo = comprimento
+
             comprimento += 1
 
         if maior_primo != 0:
             lista_primos.append(maior_primo)
 
-        posicao_caractere_atual += 1
+        if numero_digitos_primo == 0:
+            posicao_caractere_atual += 1
+        else:
+            posicao_caractere_atual += numero_digitos_primo
 
     return lista_primos
 
