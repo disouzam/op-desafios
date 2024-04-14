@@ -101,6 +101,9 @@ def e_primo(numero):
     Determina se o número passado como argumento é primo ou não. Retorna True se o número for primo
     e False se não for.
     """
+    if numero <= 1:
+        return False
+
     divisor = 2
     while divisor <= numero / 2:
         if numero % divisor == 0:
