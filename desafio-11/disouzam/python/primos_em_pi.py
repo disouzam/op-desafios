@@ -3,6 +3,7 @@
 from ctypes import ArgumentError
 import os
 import sys
+from typing import List
 
 
 def main(args):
@@ -55,6 +56,20 @@ def main(args):
 
     digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
     digitos_parte_fracionaria = list(digitos_parte_fracionaria)
+    primos_na_parte_fracionaria = obtem_primos_da_parte_fracionaria(
+        digitos_parte_fracionaria)
+
+
+def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
+    """obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
+    Obtém uma lista de primos a partir de uma lista ordenada de dígitos da parte fracionária do
+    número Pi
+
+    Parâmetro:
+    digitos_parte_fracionaria: lista de dígitos da parte fracionária do número Pi
+    """
+    lista_primos: List[int] = []
+    return lista_primos
 
 
 def e_primo(numero):
