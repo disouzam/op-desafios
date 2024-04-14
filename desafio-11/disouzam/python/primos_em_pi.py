@@ -168,7 +168,9 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 sobreposicoes.append(proximo_candidato)
                 indice_proximo_candidato += 1
                 posicao_inicial_candidato = posicao_inicial_ultimo_candidato
-                posicao_final_candidato = posicao_final_ultimo_candidato
+
+                if posicao_final_ultimo_candidato > posicao_final_candidato:
+                    posicao_final_candidato = posicao_final_ultimo_candidato
             else:
                 break
 
