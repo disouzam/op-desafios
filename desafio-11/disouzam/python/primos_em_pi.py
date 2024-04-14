@@ -117,26 +117,26 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             candidato = "".join(candidato)
             candidato = int(candidato)
 
-            if e_primo(candidato) and candidato > maior_primo:
+            if e_primo(candidato):
                 maior_primo = candidato
                 numero_digitos_primo = comprimento
 
+                posicao_inicial = posicao_caractere_atual
+                posicao_final = posicao_caractere_atual + numero_digitos_primo - 1
+
+                lista_primos.append(
+                    (maior_primo, posicao_inicial, posicao_final))
+
+                # TODO: Remover antes da submissão
+                with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                    primo_candidato.write(str(maior_primo) + "\n")
+
+                # TODO: Remover antes da submissão
+                with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
+                    posicoes_candidato.write(
+                        f"{posicao_inicial}, {posicao_final}\n")
+
             comprimento += 1
-
-        if maior_primo != 0:
-            posicao_inicial = posicao_caractere_atual
-            posicao_final = posicao_caractere_atual + numero_digitos_primo - 1
-
-            lista_primos.append((maior_primo, posicao_inicial, posicao_final))
-
-            # TODO: Remover antes da submissão
-            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                primo_candidato.write(str(maior_primo) + "\n")
-
-            # TODO: Remover antes da submissão
-            with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
-                posicoes_candidato.write(
-                    f"{posicao_inicial}, {posicao_final}\n")
 
         posicao_caractere_atual += 1
 
@@ -158,7 +158,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
         sobreposicoes.append(candidato)
 
-        while posicao_inicial_ultimo_candidato <= posicao_final_candidato:
+        while indice_proximo_candidato < total_primos_candidatos_na_lista - 1 \
+                and posicao_inicial_ultimo_candidato <= posicao_final_candidato:
             sobreposicoes.append(proximo_candidato)
 
             posicao_inicial_candidato = posicao_inicial_ultimo_candidato
