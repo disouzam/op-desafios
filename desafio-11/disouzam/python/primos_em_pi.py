@@ -59,8 +59,8 @@ def main(args):
     primos_na_parte_fracionaria = obtem_primos_da_parte_fracionaria(
         digitos_parte_fracionaria)
 
-    for primo in primos_na_parte_fracionaria:
-        print(primo)
+    caracteres_concatenados = "".join(primos_na_parte_fracionaria)
+    print(caracteres_concatenados)
 
 
 def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
@@ -92,7 +92,7 @@ def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
             comprimento += 1
 
         if maior_primo != 0:
-            lista_primos.append(maior_primo)
+            lista_primos.append(str(maior_primo))
 
         if numero_digitos_primo == 0:
             posicao_caractere_atual += 1
