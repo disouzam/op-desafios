@@ -82,12 +82,20 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     # TODO: Remover antes da submissão
     arquivo_de_posicoes = "posicoes.txt"
     arquivo_primos_candidatos = "primos_candidatos.txt"
+    arquivo_de_posicoes_sobreposicoes = "posicoes_sobreposicoes.txt"
+    arquivo_primos_candidatos_sobreposicoes = "primos_candidatos_sobreposicoes.txt"
 
     if os.path.exists(arquivo_de_posicoes):
         os.remove(arquivo_de_posicoes)
 
     if os.path.exists(arquivo_primos_candidatos):
         os.remove(arquivo_primos_candidatos)
+
+    if os.path.exists(arquivo_de_posicoes_sobreposicoes):
+        os.remove(arquivo_de_posicoes_sobreposicoes)
+
+    if os.path.exists(arquivo_primos_candidatos_sobreposicoes):
+        os.remove(arquivo_primos_candidatos_sobreposicoes)
 
     # Levanta todos os primos existentes, não checando sobreposição
     while posicao_caractere_atual < len(digitos):
@@ -137,10 +145,21 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
         if len(sobreposicoes) > 1:
             for sobreposicao in sobreposicoes:
-                print(sobreposicao)
+                # TODO: Remover antes da submissão
+                with open(arquivo_primos_candidatos_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
+                    primo_candidato.write(f"{sobreposicao[0]}\n")
+
+                # TODO: Remover antes da submissão
+                with open(arquivo_de_posicoes_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
+                    posicoes_candidato.write(
+                        f"{sobreposicao[1]}, {sobreposicao[2]}\n")
         indice_candidato_analisado_na_lista += 1
 
-    return lista_primos
+    lista_primos_como_string = []
+    for primo in lista_primos:
+        lista_primos_como_string.append(f"{primo[0]}")
+
+    return lista_primos_como_string
 
 
 def e_primo(numero):
