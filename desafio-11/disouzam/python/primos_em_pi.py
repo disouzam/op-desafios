@@ -2,7 +2,6 @@
 """
 from ctypes import ArgumentError
 import os
-import pathlib
 import sys
 
 
@@ -19,23 +18,25 @@ def main(args):
     if nargs == 0:
         raise ArgumentError("Nenhum argumento foi fornecido.")
 
-    linhas_de_instrucao = []
     # Validação dos argumentos
     if nargs >= 1:
-        arquivo_de_dados = args[0]
+        arquivo_com_numero_pi = args[0]
 
-        if not os.path.isfile(arquivo_de_dados):
+        if not os.path.isfile(arquivo_com_numero_pi):
             mensagem1 = "Arquivo não encontrado. Caminho fornecido ou nome do arquivo incorreto."
             print(mensagem1)
             return
 
-        caminho_do_arquivo_de_dados = pathlib.Path(arquivo_de_dados)
-        pasta_raiz = caminho_do_arquivo_de_dados.parent
-        with open(arquivo_de_dados, "r", encoding='utf-8') as arquivo:
+        with open(arquivo_com_numero_pi, "r", encoding='utf-8') as arquivo:
             for linha in arquivo:
-                linha_processada = linha.split("\n")
-                arquivo_de_regras_e_dados = linha_processada[0].split(",")
-                linhas_de_instrucao.append(arquivo_de_regras_e_dados)
+                numero_pi_com_n_casas_decimais = linha.split("\n")
+                break
+
+        if len(numero_pi_com_n_casas_decimais) <= 2:
+            mensagem0 = "O número recebido não pode ser processado "
+            mensagem0 += "(comprimento menor ou igual a 2 caracteres)"
+            mensagem0 += " ou a primeira linha do arquivo estava vazio."
+            print(mensagem0)
 
     if nargs >= 2:
         mensagem1 = f"Você informou um número excessivo de argumentos ({nargs}). "
