@@ -1,21 +1,18 @@
 """Busca primos em Pi
 """
 from ctypes import ArgumentError
-import dataclasses
 import os
 import pathlib
 import sys
-from typing import List
 
 
 def main(args):
     """main(args):
 
     Parâmetros:
-    args: Lista de argumentos recebido da linha de comando e
-          pré-processado na chamada da função main. Deve conter 1 argumento apenas indicando
-          o caminho relativo ou absoluto do arquivo contendo o número Pi
-          de Turing
+    args: Lista de argumentos recebido da linha de comando e pré-processado na chamada da
+    função main. Deve conter 1 argumento apenas indicando o caminho relativo ou absoluto
+    do arquivo contendo o número Pi
     """
     # Análise dos argumentos recebidos em args
     nargs = len(args)
@@ -43,7 +40,8 @@ def main(args):
     if nargs >= 2:
         mensagem1 = f"Você informou um número excessivo de argumentos ({nargs}). "
         mensagem1 += "Apenas um argumento que aponte o caminho (relativo ou absoluto) "
-        mensagem1 += "do arquivo contendo as bases e o número a ser convertido é necessário."
+        mensagem1 += "do arquivo contendo o número Pi com algumas casas decimais especificadas"
+        mensagem1 += "e o número a ser convertido é necessário."
         print(mensagem1)
 
         mensagem2 = "Deseja prosseguir ignorando os demais argumentos? (S para Sim e N para não)"
