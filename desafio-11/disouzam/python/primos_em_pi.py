@@ -53,7 +53,8 @@ def main(args):
             print("Programa abortado.")
             return
 
-    print(numero_pi_com_n_casas_decimais)
+    digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
+    digitos_parte_fracionaria = list(digitos_parte_fracionaria)
 
 
 def e_primo(numero):
