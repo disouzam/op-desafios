@@ -133,41 +133,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
         posicao_caractere_atual += 1
 
-    # Primeiro passe de remoção de sobreposições
-    # Remove somente sobreposição total
-    quantidade_primos_sem_filtrar = len(lista_primos)
-    primo_analisado = 0
-    lista_primos_filtrada: List[int] = []
-    lista_posicoes_filtrada = []
-
-    while primo_analisado < quantidade_primos_sem_filtrar - 1:
-        posicoes_primo_atual = lista_posicoes[primo_analisado]
-        posicoes_proximo_primo = lista_posicoes[primo_analisado + 1]
-
-        # Sobreposição não existe ou é parcial
-        if posicoes_proximo_primo[0] > posicoes_primo_atual[1] or posicoes_proximo_primo[1] > posicoes_primo_atual[1]:
-            lista_primos_filtrada.append(lista_primos[primo_analisado])
-            lista_posicoes_filtrada.append(
-                lista_posicoes[primo_analisado])
-            continue
-
-        tamanho_primo_atual = posicoes_primo_atual[1] - \
-            posicoes_primo_atual[0] + 1
-        tamanho_proximo_primo = posicoes_proximo_primo[1] - \
-            posicoes_proximo_primo[0] + 1
-
-        if tamanho_proximo_primo <= tamanho_primo_atual:
-            lista_primos_filtrada.append(lista_primos[primo_analisado])
-            lista_posicoes_filtrada.append(
-                lista_posicoes[primo_analisado])
-        else:
-            lista_primos_filtrada.append(lista_primos[primo_analisado+1])
-            lista_posicoes_filtrada.append(
-                lista_posicoes[primo_analisado+1])
-
-        primo_analisado += 1
-
-    return lista_primos_filtrada
+    return lista_primos
 
 
 def e_primo(numero):
