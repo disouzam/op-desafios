@@ -76,7 +76,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     Parâmetro:
     digitos: lista de dígitos
     """
-    lista_primos: List[int] = []
+    lista_primos = []
     lista_posicoes = []
     posicao_caractere_atual = 0
 
