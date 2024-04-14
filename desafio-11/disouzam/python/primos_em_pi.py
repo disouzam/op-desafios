@@ -59,6 +59,9 @@ def main(args):
     primos_na_parte_fracionaria = obtem_primos_da_parte_fracionaria(
         digitos_parte_fracionaria)
 
+    for primo in primos_na_parte_fracionaria:
+        print(primo)
+
 
 def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
     """obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
@@ -69,6 +72,27 @@ def obtem_primos_da_parte_fracionaria(digitos_parte_fracionaria):
     digitos_parte_fracionaria: lista de dígitos da parte fracionária do número Pi
     """
     lista_primos: List[int] = []
+    posicao_caractere_atual = 0
+
+    while posicao_caractere_atual < len(digitos_parte_fracionaria):
+        comprimento = 1
+        maior_primo = 0
+
+        while comprimento < 5:
+            candidato = digitos_parte_fracionaria[posicao_caractere_atual:
+                                                  posicao_caractere_atual + comprimento]
+            candidato = "".join(candidato)
+            candidato = int(candidato)
+
+            if e_primo(candidato) and candidato > maior_primo:
+                maior_primo = candidato
+            comprimento += 1
+
+        if maior_primo != 0:
+            lista_primos.append(maior_primo)
+
+        posicao_caractere_atual += 1
+
     return lista_primos
 
 
