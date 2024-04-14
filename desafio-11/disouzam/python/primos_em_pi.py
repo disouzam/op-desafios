@@ -2,6 +2,7 @@
 """
 from ctypes import ArgumentError
 import os
+import string
 import sys
 from typing import List
 
@@ -76,8 +77,20 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     digitos: lista de dígitos
     """
     lista_primos: List[int] = []
+    lista_posicoes = []
     posicao_caractere_atual = 0
 
+    # TODO: Remover antes da submissão
+    arquivo_de_posicoes = "posicoes.txt"
+    arquivo_primos_candidatos = "primos_candidatos.txt"
+
+    if os.path.exists(arquivo_de_posicoes):
+        os.remove(arquivo_de_posicoes)
+
+    if os.path.exists(arquivo_primos_candidatos):
+        os.remove(arquivo_primos_candidatos)
+
+    # Levanta todos os primos existentes, não checando sobreposição
     while posicao_caractere_atual < len(digitos):
         comprimento = 1
         maior_primo = 0
@@ -96,12 +109,29 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             comprimento += 1
 
         if maior_primo != 0:
-            lista_primos.append(str(maior_primo))
+            posicao_inicial = posicao_caractere_atual
+            posicao_final = posicao_caractere_atual + numero_digitos_primo - 1
 
-        if numero_digitos_primo == 0:
-            posicao_caractere_atual += 1
-        else:
-            posicao_caractere_atual += numero_digitos_primo
+            lista_primos.append(str(maior_primo))
+            lista_posicoes.append((posicao_inicial, posicao_final))
+
+            # TODO: Remover antes da submissão
+            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                primo_candidato.write(str(maior_primo) + "\n")
+
+            indice = posicao_inicial
+            string_posicoes = ''
+            while indice <= posicao_final:
+                string_posicoes += str(indice) + " "
+                indice += 1
+
+            string_posicoes = string_posicoes.strip()
+
+            # TODO: Remover antes da submissão
+            with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
+                posicoes_candidato.write(string_posicoes + "\n")
+
+        posicao_caractere_atual += 1
 
     return lista_primos
 
