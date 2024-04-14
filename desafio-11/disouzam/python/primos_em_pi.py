@@ -30,6 +30,7 @@ def main(args):
         with open(arquivo_com_numero_pi, "r", encoding='utf-8') as arquivo:
             for linha in arquivo:
                 numero_pi_com_n_casas_decimais = linha.split("\n")
+                numero_pi_com_n_casas_decimais = numero_pi_com_n_casas_decimais[0]
                 break
 
         if len(numero_pi_com_n_casas_decimais) <= 2:
@@ -51,6 +52,8 @@ def main(args):
         if escolha_do_usuario.lower() != "s":
             print("Programa abortado.")
             return
+
+    print(numero_pi_com_n_casas_decimais)
 
 
 if __name__ == "__main__":
