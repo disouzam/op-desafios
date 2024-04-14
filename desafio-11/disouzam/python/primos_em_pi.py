@@ -84,6 +84,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     arquivo_primos_candidatos = "primos_candidatos.txt"
     arquivo_de_posicoes_sobreposicoes = "posicoes_sobreposicoes.txt"
     arquivo_primos_candidatos_sobreposicoes = "primos_candidatos_sobreposicoes.txt"
+    arquivo_de_posicoes_sem_sobreposicoes = "posicoes_sem_sobreposicoes.txt"
+    arquivo_primos_candidatos_sem_sobreposicoes = "primos_candidatos_sem_sobreposicoes.txt"
 
     if os.path.exists(arquivo_de_posicoes):
         os.remove(arquivo_de_posicoes)
@@ -96,6 +98,12 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
     if os.path.exists(arquivo_primos_candidatos_sobreposicoes):
         os.remove(arquivo_primos_candidatos_sobreposicoes)
+
+    if os.path.exists(arquivo_de_posicoes_sem_sobreposicoes):
+        os.remove(arquivo_de_posicoes_sem_sobreposicoes)
+
+    if os.path.exists(arquivo_primos_candidatos_sem_sobreposicoes):
+        os.remove(arquivo_primos_candidatos_sem_sobreposicoes)
 
     # Levanta todos os primos existentes, não checando sobreposição
     while posicao_caractere_atual < len(digitos):
@@ -136,14 +144,33 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     indice_candidato_analisado_na_lista = 0
     total_primos_candidatos_na_lista = len(lista_primos)
     while indice_candidato_analisado_na_lista < total_primos_candidatos_na_lista - 2:
+
+        sobreposicoes = []
+
         candidato = lista_primos[indice_candidato_analisado_na_lista]
         posicao_inicial_candidato = candidato[1]
         posicao_final_candidato = candidato[2]
 
-        sobreposicoes = [
-            p for p in lista_primos if p[1] <= posicao_final_candidato and lista_primos.index(p) >= indice_candidato_analisado_na_lista]
+        indice_proximo_candidato = indice_candidato_analisado_na_lista + 1
+        proximo_candidato = lista_primos[indice_proximo_candidato]
+        posicao_inicial_ultimo_candidato = proximo_candidato[1]
+        posicao_final_ultimo_candidato = proximo_candidato[2]
+
+        sobreposicoes.append(candidato)
+
+        while posicao_inicial_ultimo_candidato <= posicao_final_candidato:
+            sobreposicoes.append(proximo_candidato)
+
+            posicao_inicial_candidato = posicao_inicial_ultimo_candidato
+            posicao_final_candidato = posicao_final_ultimo_candidato
+
+            indice_proximo_candidato += 1
+            proximo_candidato = lista_primos[indice_proximo_candidato]
+            posicao_inicial_ultimo_candidato = proximo_candidato[1]
+            posicao_final_ultimo_candidato = proximo_candidato[2]
 
         if len(sobreposicoes) > 1:
+            indice_candidato_analisado_na_lista = indice_proximo_candidato
             for sobreposicao in sobreposicoes:
                 # TODO: Remover antes da submissão
                 with open(arquivo_primos_candidatos_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
@@ -153,7 +180,17 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 with open(arquivo_de_posicoes_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
                     posicoes_candidato.write(
                         f"{sobreposicao[1]}, {sobreposicao[2]}\n")
-        indice_candidato_analisado_na_lista += 1
+        else:
+            indice_candidato_analisado_na_lista += 1
+            sobreposicao = sobreposicoes[0]
+            # TODO: Remover antes da submissão
+            with open(arquivo_primos_candidatos_sem_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
+                primo_candidato.write(f"{sobreposicao[0]}\n")
+
+            # TODO: Remover antes da submissão
+            with open(arquivo_de_posicoes_sem_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
+                posicoes_candidato.write(
+                    f"{sobreposicao[1]}, {sobreposicao[2]}\n")
 
     lista_primos_como_string = []
     for primo in lista_primos:
