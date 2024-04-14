@@ -56,6 +56,18 @@ def main(args):
     print(numero_pi_com_n_casas_decimais)
 
 
+def e_primo(numero):
+    """
+        Determina se o número passado como argumento é primo ou não
+    """
+    divisor = 2
+    while divisor <= numero / 2:
+        if numero % divisor == 0:
+            return False
+        divisor += 1
+    return True
+
+
 if __name__ == "__main__":
     filtered_args = sys.argv[1:]
     main(filtered_args)
