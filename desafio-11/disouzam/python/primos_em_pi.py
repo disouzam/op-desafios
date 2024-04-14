@@ -119,17 +119,10 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                 primo_candidato.write(str(maior_primo) + "\n")
 
-            indice = posicao_inicial
-            string_posicoes = ''
-            while indice <= posicao_final:
-                string_posicoes += str(indice) + " "
-                indice += 1
-
-            string_posicoes = string_posicoes.strip()
-
             # TODO: Remover antes da submissão
             with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
-                posicoes_candidato.write(string_posicoes + "\n")
+                posicoes_candidato.write(
+                    f"{posicao_inicial}, {posicao_final}\n")
 
         posicao_caractere_atual += 1
 
