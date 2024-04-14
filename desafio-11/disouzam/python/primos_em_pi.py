@@ -59,6 +59,11 @@ def main(args):
     primos_na_parte_fracionaria = obtem_primos_da_parte_fracionaria(
         digitos_parte_fracionaria)
 
+    # TODO: Remover antes da submissão
+    for primo in primos_na_parte_fracionaria:
+        if not e_primo(int(primo)):
+            raise ArgumentError(f"Primo inválido: {primo}.")
+
     caracteres_concatenados = "".join(primos_na_parte_fracionaria)
     print(caracteres_concatenados)
 
