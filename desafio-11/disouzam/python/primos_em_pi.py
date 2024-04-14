@@ -57,8 +57,9 @@ def main(args):
 
 
 def e_primo(numero):
-    """
-        Determina se o número passado como argumento é primo ou não
+    """e_primo(numero):
+    Determina se o número passado como argumento é primo ou não. Retorna True se o número for primo
+    e False se não for.
     """
     divisor = 2
     while divisor <= numero / 2:
