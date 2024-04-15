@@ -189,7 +189,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             # processa as sobreposicoes
             lista_bits = combinacoes_bits(len(sobreposicoes))
             lista_filtrada = obter_lista_filtrada(
-                lista_primos_com_sobreposicao, lista_bits)
+                sobreposicoes, lista_bits)
 
         else:
             sobreposicao = sobreposicoes[0]
@@ -228,12 +228,49 @@ def obter_lista_filtrada(lista_primos_com_sobreposicao, lista_bits):
 
         for indice, bit in enumerate(combinacao):
             if bit == 1:
-                lista_temporaria.append(lista_filtrada.index(indice))
+                lista_temporaria.append(
+                    lista_primos_com_sobreposicao[indice])
 
-        if len(lista_temporaria) == 0:
+        comprimento_lista_temporaria = len(lista_temporaria)
+
+        if comprimento_lista_temporaria == 0:
             continue
 
+        indice_externo = 0
+        lista_valida = True
+        while indice_externo < comprimento_lista_temporaria:
+            indice_interno = indice_externo + 1
+            primo_referencia = lista_temporaria[indice_externo]
 
+            posicao_inicial_referencia = primo_referencia[1]
+            posicao_final_referencia = primo_referencia[2]
+
+            while indice_interno < comprimento_lista_temporaria:
+                primo_interno = lista_temporaria[indice_interno]
+                indice_interno += 1
+
+                posicao_inicial_interno = primo_interno[1]
+                posicao_final_interno = primo_interno[2]
+
+                if posicao_inicial_interno >= posicao_inicial_referencia and posicao_inicial_interno <= posicao_final_referencia:
+                    lista_valida = False
+                    break
+
+            indice_externo += 1
+
+        comprimento_caracteres_lista = 0
+        if lista_valida:
+            for item in lista_temporaria:
+                posicao_inicial_referencia = item[1]
+                posicao_final_referencia = item[2]
+                caracteres = posicao_final_referencia - posicao_inicial_referencia + 1
+                comprimento_caracteres_lista += caracteres
+
+            if comprimento_caracteres_lista > maior_comprimento:
+                maior_comprimento = comprimento_caracteres_lista
+                lista_filtrada = lista_temporaria.copy()
+
+    return lista_filtrada
 
 
 def combinacoes_bits(tamanho):
