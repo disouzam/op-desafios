@@ -142,6 +142,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
     # Processa as sobreposições
     lista_primos_com_sobreposicao = []
+    lista_primos_com_sobreposicao_filtrada = []
     lista_primos_sem_sobreposicao = []
 
     indice_candidato_analisado_na_lista = 0
@@ -190,7 +191,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             lista_bits = combinacoes_bits(len(sobreposicoes))
             lista_filtrada = obter_lista_filtrada(
                 sobreposicoes, lista_bits)
-
+            lista_primos_com_sobreposicao_filtrada = lista_primos_com_sobreposicao_filtrada + lista_filtrada
         else:
             sobreposicao = sobreposicoes[0]
             lista_primos_sem_sobreposicao.append(sobreposicao)
@@ -203,8 +204,43 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 posicoes_candidato.write(
                     f"{sobreposicao[1]}, {sobreposicao[2]}\n")
 
+    indice_lista_filtrada = 0
+    indice_lista_sem_sobreposicao = 0
+    itens_na_lista_filtrada = len(lista_primos_com_sobreposicao_filtrada)
+    itens_na_lista_sem_sobreposicao = len(lista_primos_sem_sobreposicao)
+
+    lista_final = []
+
+    while indice_lista_filtrada < itens_na_lista_filtrada \
+            or indice_lista_sem_sobreposicao < itens_na_lista_sem_sobreposicao:
+
+        item_filtrado = None
+        item_sem_sobreposicao = None
+
+        if indice_lista_filtrada < itens_na_lista_filtrada:
+            item_filtrado = lista_primos_com_sobreposicao_filtrada[indice_lista_filtrada]
+
+        if indice_lista_sem_sobreposicao < itens_na_lista_sem_sobreposicao:
+            item_sem_sobreposicao = lista_primos_sem_sobreposicao[indice_lista_sem_sobreposicao]
+
+        if item_filtrado == None and item_sem_sobreposicao != None:
+            lista_final.append(item_sem_sobreposicao)
+            indice_lista_sem_sobreposicao += 1
+
+        if item_filtrado != None and item_sem_sobreposicao == None:
+            lista_final.append(item_filtrado)
+            indice_lista_filtrada += 1
+
+        if item_filtrado != None and item_sem_sobreposicao != None:
+            if item_filtrado[1] < item_sem_sobreposicao[1]:
+                lista_final.append(item_filtrado)
+                indice_lista_filtrada += 1
+            else:
+                lista_final.append(item_sem_sobreposicao)
+                indice_lista_sem_sobreposicao += 1
+
     lista_primos_como_string = []
-    for primo in lista_primos:
+    for primo in lista_final:
         lista_primos_como_string.append(f"{primo[0]}")
 
     return lista_primos_como_string
@@ -221,7 +257,20 @@ def obter_lista_filtrada(lista_primos_com_sobreposicao, lista_bits):
     """
     lista_filtrada = []
     indice_da_melhor_combinacao = 0
+    posicao_inicial_da_melhor_combinacao = 0
+    posicao_mais_a_esquerda = sys.maxsize
+    posicao_mais_a_direita = 0
     maior_comprimento = 0
+
+    for primo in lista_primos_com_sobreposicao:
+        posicao_inicial_referencia = primo[1]
+        posicao_final_referencia = primo[2]
+
+        if posicao_inicial_referencia < posicao_mais_a_esquerda:
+            posicao_mais_a_esquerda = posicao_inicial_referencia
+
+        if posicao_final_referencia > posicao_mais_a_direita:
+            posicao_mais_a_direita = posicao_final_referencia
 
     for indice_combinacao, combinacao in enumerate(lista_bits):
         lista_temporaria = []
@@ -259,16 +308,21 @@ def obter_lista_filtrada(lista_primos_com_sobreposicao, lista_bits):
             indice_externo += 1
 
         comprimento_caracteres_lista = 0
+        posicao_inicial_da_melhor_combinacao = posicao_mais_a_direita
         if lista_valida:
             for item in lista_temporaria:
                 posicao_inicial_referencia = item[1]
                 posicao_final_referencia = item[2]
+
                 caracteres = posicao_final_referencia - posicao_inicial_referencia + 1
                 comprimento_caracteres_lista += caracteres
 
             if comprimento_caracteres_lista > maior_comprimento:
                 maior_comprimento = comprimento_caracteres_lista
                 lista_filtrada = lista_temporaria.copy()
+            elif comprimento_caracteres_lista == maior_comprimento:
+                if posicao_mais_a_esquerda < posicao_inicial_da_melhor_combinacao:
+                    lista_filtrada = lista_temporaria.copy()
 
     return lista_filtrada
 
