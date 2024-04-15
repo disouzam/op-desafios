@@ -188,6 +188,9 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                         f"{sobreposicao[1]}, {sobreposicao[2]}\n")
             # processa as sobreposicoes
             lista_bits = combinacoes_bits(len(sobreposicoes))
+            lista_filtrada = obter_lista_filtrada(
+                lista_primos_com_sobreposicao, lista_bits)
+
         else:
             sobreposicao = sobreposicoes[0]
             lista_primos_sem_sobreposicao.append(sobreposicao)
@@ -205,6 +208,32 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         lista_primos_como_string.append(f"{primo[0]}")
 
     return lista_primos_como_string
+
+
+def obter_lista_filtrada(lista_primos_com_sobreposicao, lista_bits):
+    """obter_lista_filtrada(lista_primos_com_sobreposicao, lista_bits):
+    Filtra a lista de primos, removendo a sobreposição
+
+    Parâmetros:
+    lista_primos_com_sobreposicao: Lista com os números primos, as posições de início e fim
+    lista_bits: Lista de bits (0s e 1s) que indicam as combinações possíveis
+                entre todos os números primos
+    """
+    lista_filtrada = []
+    indice_da_melhor_combinacao = 0
+    maior_comprimento = 0
+
+    for indice_combinacao, combinacao in enumerate(lista_bits):
+        lista_temporaria = []
+
+        for indice, bit in enumerate(combinacao):
+            if bit == 1:
+                lista_temporaria.append(lista_filtrada.index(indice))
+
+        if len(lista_temporaria) == 0:
+            continue
+
+
 
 
 def combinacoes_bits(tamanho):
