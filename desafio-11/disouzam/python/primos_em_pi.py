@@ -186,6 +186,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 with open(arquivo_de_posicoes_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
                     posicoes_candidato.write(
                         f"{sobreposicao[1]}, {sobreposicao[2]}\n")
+            # processa as sobreposicoes
+            lista_bits = combinacoes_bits(len(sobreposicoes))
         else:
             sobreposicao = sobreposicoes[0]
             lista_primos_sem_sobreposicao.append(sobreposicao)
@@ -203,6 +205,41 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         lista_primos_como_string.append(f"{primo[0]}")
 
     return lista_primos_como_string
+
+
+def combinacoes_bits(tamanho):
+    """combinacoes_bits(tamanho):
+    Gera lista de combinações de bits para avaliar a superposição entre primos
+
+    Parâmetro:
+    tamanho: Número de bits para gerar a combinação
+    """
+    lista_combinacoes = []
+
+    if tamanho == 1:
+        lista = []
+        lista.append(0)
+        lista_combinacoes.append(lista)
+
+        lista = []
+        lista.append(1)
+        lista_combinacoes.append(lista)
+        return lista_combinacoes
+
+    sub_combinacoes = combinacoes_bits(tamanho - 1)
+
+    for sub_combinacao in sub_combinacoes:
+        lista = []
+        lista.append(0)
+        lista = lista + sub_combinacao
+        lista_combinacoes.append(lista)
+
+        lista = []
+        lista.append(1)
+        lista = lista + sub_combinacao
+        lista_combinacoes.append(lista)
+
+    return lista_combinacoes
 
 
 def e_primo(numero):
