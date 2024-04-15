@@ -68,6 +68,15 @@ def main(args):
     caracteres_concatenados = "".join(primos_na_parte_fracionaria)
     print(caracteres_concatenados)
 
+    arquivo_de_resultado = "resultado.txt"
+    if not os.path.isfile(arquivo_de_resultado):
+        os.remove(arquivo_de_resultado)
+
+    with open(arquivo_de_resultado, "w", encoding='utf-8') as arquivo:
+        arquivo.write(caracteres_concatenados)
+
+    print("Primos obtidos com sucesso!")
+
 
 def obtem_primos_de_lista_de_inteiros(digitos):
     """obtem_primos_de_lista_de_inteiros(digitos_parte_fracionaria):
