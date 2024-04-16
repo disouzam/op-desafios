@@ -134,6 +134,12 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 posicao_inicial = posicao_caractere_atual
                 posicao_final = posicao_caractere_atual + numero_digitos_primo - 1
 
+                # registra a posicao do primo inserido anteriormente e interrompe temporariamente para processar as sobreposicoes antes de prosseguir
+
+                # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
+
+                # se não houver sobreposicao, adiciona na lista de primos abaixo
+
                 lista_primos.append(
                     (maior_primo, posicao_inicial, posicao_final))
 
