@@ -68,12 +68,12 @@ def main(args):
     caracteres_concatenados = "".join(primos_na_parte_fracionaria)
     print(caracteres_concatenados)
 
-    arquivo_de_resultado = "resultado.txt"
-    if not os.path.isfile(arquivo_de_resultado):
-        os.remove(arquivo_de_resultado)
+    # arquivo_de_resultado = "resultado.txt"
+    # if not os.path.isfile(arquivo_de_resultado):
+    #     os.remove(arquivo_de_resultado)
 
-    with open(arquivo_de_resultado, "w", encoding='utf-8') as arquivo:
-        arquivo.write(caracteres_concatenados)
+    # with open(arquivo_de_resultado, "w", encoding='utf-8') as arquivo:
+    #     arquivo.write(caracteres_concatenados)
 
     print("Primos obtidos com sucesso!")
 
@@ -87,6 +87,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     """
     lista_primos = []
     posicao_caractere_atual = 0
+    maximo_comprimento_sobreposicoes = 0
 
     # TODO: Remover antes da submissão
     arquivo_de_posicoes = "posicoes.txt"
@@ -136,14 +137,14 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 lista_primos.append(
                     (maior_primo, posicao_inicial, posicao_final))
 
-                # TODO: Remover antes da submissão
-                with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                    primo_candidato.write(str(maior_primo) + "\n")
+                # # TODO: Remover antes da submissão
+                # with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                #     primo_candidato.write(str(maior_primo) + "\n")
 
-                # TODO: Remover antes da submissão
-                with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
-                    posicoes_candidato.write(
-                        f"{posicao_inicial}, {posicao_final}\n")
+                # # TODO: Remover antes da submissão
+                # with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
+                #     posicoes_candidato.write(
+                #         f"{posicao_inicial}, {posicao_final}\n")
 
             comprimento += 1
 
@@ -188,15 +189,19 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         if len(sobreposicoes) > 1:
             for sobreposicao in sobreposicoes:
                 lista_primos_com_sobreposicao.append(sobreposicao)
-                # TODO: Remover antes da submissão
-                with open(arquivo_primos_candidatos_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
-                    primo_candidato.write(f"{sobreposicao[0]}\n")
+                # # TODO: Remover antes da submissão
+                # with open(arquivo_primos_candidatos_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
+                #     primo_candidato.write(f"{sobreposicao[0]}\n")
 
-                # TODO: Remover antes da submissão
-                with open(arquivo_de_posicoes_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
-                    posicoes_candidato.write(
-                        f"{sobreposicao[1]}, {sobreposicao[2]}\n")
+                # # TODO: Remover antes da submissão
+                # with open(arquivo_de_posicoes_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
+                #     posicoes_candidato.write(
+                #         f"{sobreposicao[1]}, {sobreposicao[2]}\n")
             # processa as sobreposicoes
+            if len(sobreposicoes) > maximo_comprimento_sobreposicoes:
+                maximo_comprimento_sobreposicoes = len(sobreposicoes)
+                print(
+                    f"Máximo comprimento das sobreposições: {len(sobreposicoes)}")
             lista_bits = combinacoes_bits(len(sobreposicoes))
             lista_filtrada = obter_lista_filtrada(
                 sobreposicoes, lista_bits)
@@ -204,14 +209,14 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         else:
             sobreposicao = sobreposicoes[0]
             lista_primos_sem_sobreposicao.append(sobreposicao)
-            # TODO: Remover antes da submissão
-            with open(arquivo_primos_candidatos_sem_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
-                primo_candidato.write(f"{sobreposicao[0]}\n")
+            # # TODO: Remover antes da submissão
+            # with open(arquivo_primos_candidatos_sem_sobreposicoes, "a", encoding='utf-8') as primo_candidato:
+            #     primo_candidato.write(f"{sobreposicao[0]}\n")
 
-            # TODO: Remover antes da submissão
-            with open(arquivo_de_posicoes_sem_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
-                posicoes_candidato.write(
-                    f"{sobreposicao[1]}, {sobreposicao[2]}\n")
+            # # TODO: Remover antes da submissão
+            # with open(arquivo_de_posicoes_sem_sobreposicoes, "a", encoding='utf-8') as posicoes_candidato:
+            #     posicoes_candidato.write(
+            #         f"{sobreposicao[1]}, {sobreposicao[2]}\n")
 
     indice_lista_filtrada = 0
     indice_lista_sem_sobreposicao = 0
