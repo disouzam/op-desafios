@@ -89,6 +89,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     posicao_caractere_atual = 0
     posicao_inicial_candidato_anterior = 0
     posicao_final_candidato_anterior = 0
+    ultima_posicao_sobreposicao = 0
 
     # TODO: Remover antes da submissão
     arquivo_de_posicoes = "posicoes.txt"
@@ -122,8 +123,13 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 sobreposicao_entre_vizinhos = False
 
                 # registra a posicao do primo inserido anteriormente e interrompe temporariamente para processar as sobreposicoes antes de prosseguir
-                if posicao_inicial > 0 and posicao_inicial <= posicao_final_candidato_anterior:
+                if posicao_inicial > 0 and \
+                    (posicao_inicial <= posicao_final_candidato_anterior or
+                        posicao_inicial <= ultima_posicao_sobreposicao):
                     sobreposicao_entre_vizinhos = True
+
+                    if posicao_final > ultima_posicao_sobreposicao:
+                        ultima_posicao_sobreposicao = posicao_final
 
                 # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
 
@@ -137,6 +143,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                     (maior_primo, posicao_inicial, posicao_final))
 
                 if not sobreposicao_entre_vizinhos:
+                    ultima_posicao_sobreposicao = posicao_final
+
                     # TODO: Remover antes da submissão
                     with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                         primo_candidato.write("\n")
