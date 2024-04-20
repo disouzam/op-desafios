@@ -87,6 +87,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     """
     lista_primos = []
     posicao_caractere_atual = 0
+    posicao_inicial_candidato_anterior = 0
+    posicao_final_candidato_anterior = 0
 
     # TODO: Remover antes da submissão
     arquivo_de_posicoes = "posicoes.txt"
@@ -117,14 +119,31 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                 posicao_inicial = posicao_caractere_atual
                 posicao_final = posicao_caractere_atual + numero_digitos_primo - 1
 
+                sobreposicao_entre_vizinhos = False
+
                 # registra a posicao do primo inserido anteriormente e interrompe temporariamente para processar as sobreposicoes antes de prosseguir
+                if posicao_inicial > 0 and posicao_inicial <= posicao_final_candidato_anterior:
+                    sobreposicao_entre_vizinhos = True
 
                 # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
 
                 # se não houver sobreposicao, adiciona na lista de primos abaixo
 
+                # Atualiza posicoes do candidato anterior:
+                posicao_inicial_candidato_anterior = posicao_inicial
+                posicao_final_candidato_anterior = posicao_final
+
                 lista_primos.append(
                     (maior_primo, posicao_inicial, posicao_final))
+
+                if not sobreposicao_entre_vizinhos:
+                    # TODO: Remover antes da submissão
+                    with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                        primo_candidato.write("\n")
+
+                    # TODO: Remover antes da submissão
+                    with open(arquivo_de_posicoes, "a", encoding='utf-8') as posicoes_candidato:
+                        posicoes_candidato.write("\n")
 
                 # TODO: Remover antes da submissão
                 with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
