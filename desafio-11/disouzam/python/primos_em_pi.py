@@ -397,11 +397,28 @@ def e_primo(numero):
         divisor += 1
     return True
 
+# TODO: Remover antes da submissão do PR
+
+
+def debugger_is_active() -> bool:
+    """Return if the debugger is currently active
+
+    # pylint: disable=line-too-long
+    Source: https://stackoverflow.com/questions/38634988/check-if-program-runs-in-debug-mode/67065084
+    """
+    return hasattr(sys, 'gettrace') and sys.gettrace() is not None
+
 
 if __name__ == "__main__":
-    pr = cProfile.Profile(builtins=False, subcalls=False)
-    pr.enable()
+    # TODO: Remover antes da submissão do PR
+    if debugger_is_active():
+        pr = cProfile.Profile(builtins=False, subcalls=False)
+        pr.enable()
+
     filtered_args = sys.argv[1:]
     main(filtered_args)
-    pr.disable()
-    pr.dump_stats("profiling-results.prof")
+
+    # TODO: Remover antes da submissão do PR
+    if debugger_is_active():
+        pr.disable()
+        pr.dump_stats("profiling-results.prof")
