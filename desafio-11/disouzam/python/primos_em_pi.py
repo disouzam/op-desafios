@@ -1,8 +1,8 @@
 """Busca primos em Pi
 """
+import cProfile
 from ctypes import ArgumentError
 import os
-import string
 import sys
 from typing import List
 
@@ -399,5 +399,9 @@ def e_primo(numero):
 
 
 if __name__ == "__main__":
+    pr = cProfile.Profile(builtins=False, subcalls=False)
+    pr.enable()
     filtered_args = sys.argv[1:]
     main(filtered_args)
+    pr.disable()
+    pr.dump_stats("profiling-results.prof")

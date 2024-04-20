@@ -7,3 +7,6 @@ create_python3.11_environment.sh
 setup.sh
 requirements.in
 *.txt
+
+# Arquivo binário de profiling
+profiling-results.prof
