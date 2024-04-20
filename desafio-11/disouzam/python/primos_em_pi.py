@@ -86,6 +86,7 @@ def obtem_primos_de_lista_de_inteiros(digitos):
     digitos: lista de dígitos
     """
     lista_primos = []
+    lista_primos_sobrepostos = []
     posicao_caractere_atual = 0
     posicao_inicial_candidato_anterior = 0
     posicao_final_candidato_anterior = 0
@@ -131,11 +132,17 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                     if posicao_final > ultima_posicao_sobreposicao:
                         ultima_posicao_sobreposicao = posicao_final
 
-                # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
+                if not sobreposicao_entre_vizinhos:
+                    lista_primos_sobrepostos = []
+                    lista_primos_sobrepostos.append(candidato)
+                else:
+                    lista_primos_sobrepostos.append(candidato)
 
-                # se não houver sobreposicao, adiciona na lista de primos abaixo
+                    # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
 
-                # Atualiza posicoes do candidato anterior:
+                    # se não houver sobreposicao, adiciona na lista de primos abaixo
+
+                    # Atualiza posicoes do candidato anterior:
                 posicao_inicial_candidato_anterior = posicao_inicial
                 posicao_final_candidato_anterior = posicao_final
 
