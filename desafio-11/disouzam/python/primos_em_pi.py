@@ -139,6 +139,10 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
         posicao_caractere_atual += 1
 
+    if len(lista_primos) > 1:
+        raise RuntimeError(
+            f"Foram encontrados {len(lista_primos)} primos para {len(digitos)} digitos.")
+
     lista_final = obtem_lista_sem_sobreposicoes(lista_primos)
 
     lista_primos_como_string = []
