@@ -134,9 +134,11 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
                 if not sobreposicao_entre_vizinhos:
                     lista_primos_sobrepostos = []
-                    lista_primos_sobrepostos.append(candidato)
+                    lista_primos_sobrepostos.append(
+                        (maior_primo, posicao_inicial, posicao_final))
                 else:
-                    lista_primos_sobrepostos.append(candidato)
+                    lista_primos_sobrepostos.append(
+                        (maior_primo, posicao_inicial, posicao_final))
 
                     # usa uma lista temporaria para ir enchendo até não encontrar mais sobreposicao
 
