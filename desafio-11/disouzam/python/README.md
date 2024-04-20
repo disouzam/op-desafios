@@ -32,7 +32,8 @@ o Python 3.11.8 (não foi checado contra essa versão).
 
 Executando dentro da pasta do desafio (desafio-11/disouzam/python), o comando é:
 
-```python
+```shell
+cd desafio-11/disouzam/python
 python -m primos_em_pi pi-1M.txt
 ```
 
@@ -41,6 +42,7 @@ python -m primos_em_pi pi-1M.txt
 Alguns experimentos foram feitos usando cProfile, tanto diretamente via linha de comando:
 
 ```shell
+cd desafio-11/disouzam/python
 python -m cProfile -o profiling-results.prof -m primos_em_pi pi-1M.txt
 ```
 
@@ -65,7 +67,15 @@ Tentei usar o RunSnakeRun (recomendado por esse vídeo antigo no YouTube: [Pytho
 O [SnakeViz](https://github.com/jiffyclub/snakeviz) no entanto funcionou de forma fácil e pode ser chamado dessa forma
 
 ```shell
+cd desafio-11/disouzam/python
 python -m snakeviz profiling-results.prof
+```
+
+# Testes
+
+```shell
+cd desafio-11/disouzam/python
+python -m pytest -v test_primos_em_pi.py
 ```
 
 # Referências
