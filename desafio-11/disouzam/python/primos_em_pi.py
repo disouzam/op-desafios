@@ -134,6 +134,8 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 
                 if not sobreposicao_entre_vizinhos:
 
+                    lista_primos_sobrepostos = filtra_lista_primos_sobrepostos(
+                        lista_primos_sobrepostos)
                     for primo in lista_primos_sobrepostos:
                         lista_primos.append(primo)
 
@@ -177,12 +179,14 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         posicao_caractere_atual += 1
 
     if posicao_caractere_atual == len(digitos):
+        lista_primos_sobrepostos = filtra_lista_primos_sobrepostos(
+            lista_primos_sobrepostos)
         for primo in lista_primos_sobrepostos:
             lista_primos.append(primo)
 
-    if len(lista_primos) > 1:
-        raise RuntimeError(
-            f"Foram encontrados {len(lista_primos)} primos para {len(digitos)} digitos.")
+    # if len(lista_primos) > 1:
+    #     raise RuntimeError(
+    #         f"Foram encontrados {len(lista_primos)} primos para {len(digitos)} digitos.")
 
     lista_final = obtem_lista_sem_sobreposicoes(lista_primos)
 
@@ -191,6 +195,166 @@ def obtem_primos_de_lista_de_inteiros(digitos):
         lista_primos_como_string.append(f"{primo[0]}")
 
     return lista_primos_como_string
+
+
+def verifica_se_sublista_e_disjunta(sub_lista_abaixo_pivo):
+
+    comprimento_sub_lista = len(sub_lista_abaixo_pivo)
+    sublista_e_disjunta = True
+    if comprimento_sub_lista > 1:
+        indice = 0
+        while indice < comprimento_sub_lista - 1:
+            atual = sub_lista_abaixo_pivo[indice]
+            proximo = sub_lista_abaixo_pivo[indice + 1]
+
+            if proximo[1] <= atual[2]:
+                sublista_e_disjunta = False
+                break
+
+            indice += 1
+
+    return sublista_e_disjunta
+
+
+def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
+
+    lista_primos_sobrepostos_filtrada = []
+
+    lista_pivos = []
+
+    if len(lista_primos_sobrepostos) == 0:
+        return lista_primos_sobrepostos_filtrada
+    elif len(lista_primos_sobrepostos) == 1:
+        return lista_primos_sobrepostos
+
+    # Primeiro passe: localiza os pivôs
+    numero_primos_sobrepostos = len(lista_primos_sobrepostos)
+    for indice, primo in enumerate(lista_primos_sobrepostos):
+        pivo = primo
+        contador = 0
+
+        indice_interno = indice + 1
+        while indice_interno < numero_primos_sobrepostos:
+            posicao_inicial_interno = lista_primos_sobrepostos[indice_interno][1]
+            posicao_final_interno = lista_primos_sobrepostos[indice_interno][2]
+
+            if pivo[1] >= posicao_inicial_interno and pivo[2] <= posicao_final_interno:
+                contador += 1
+                pivo = lista_primos_sobrepostos[indice_interno]
+
+            if posicao_inicial_interno >= pivo[1] and posicao_final_interno <= pivo[2]:
+                contador += 1
+
+            indice_interno += 1
+
+        if contador > 0:
+            lista_pivos.append(pivo)
+
+    # Segundo passe: Filtra os pivôs
+    num_pivos = len(lista_pivos)
+    indice_externo = 0
+    duplicatas = []
+    lista_pivos_filtrada = []
+
+    while indice_externo < num_pivos - 1:
+        pivo_externo = lista_pivos[indice_externo]
+
+        indice_interno = indice_externo + 1
+
+        duplicata_encontrada = False
+        while indice_interno < num_pivos:
+            pivo_interno = lista_pivos[indice_interno]
+            if pivo_interno == pivo_externo:
+                duplicata_encontrada = True
+                duplicatas.append(indice_interno)
+            indice_interno += 1
+
+        if indice_externo not in duplicatas:
+            lista_pivos_filtrada.append(pivo_externo)
+
+        if indice_externo == num_pivos - 2 and not duplicata_encontrada:
+            lista_pivos_filtrada.append(pivo_interno)
+        indice_externo += 1
+
+    lista_pivos = lista_pivos_filtrada
+
+    # Terceiro passe: processa os pivôs
+    for pivo in lista_pivos:
+        sub_lista_abaixo_pivo = []
+        for indice, primo in enumerate(lista_primos_sobrepostos):
+            if primo != pivo and primo[1] >= pivo[1] and primo[2] <= pivo[2]:
+                sub_lista_abaixo_pivo.append(primo)
+
+            sublista_e_disjunta = verifica_se_sublista_e_disjunta(
+                sub_lista_abaixo_pivo)
+
+            comprimento_pivo = pivo[2] - pivo[1] + 1
+
+            if sublista_e_disjunta:
+                total_caracteres = 0
+
+                for primo in sub_lista_abaixo_pivo:
+                    total_caracteres += primo[2] - primo[1] + 1
+
+                if total_caracteres == comprimento_pivo:
+                    for primo in sub_lista_abaixo_pivo:
+                        lista_primos_sobrepostos_filtrada.append(primo)
+            else:
+                # busca encontrar uma lista disjunta
+                lista_bits = combinacoes_bits(len(sub_lista_abaixo_pivo))
+                lista_disjunta_encontrada = False
+
+                for combinacao in lista_bits:
+                    lista_temporaria = []
+                    total_caracteres = 0
+
+                    for indice, primo in enumerate(sub_lista_abaixo_pivo):
+                        if combinacao[indice] == 1:
+                            lista_temporaria.append(primo)
+                            total_caracteres += primo[2] - primo[1] + 1
+
+                    lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
+                        lista_temporaria)
+
+                    if lista_temporaria_e_disjunta and total_caracteres == comprimento_pivo:
+                        lista_disjunta_encontrada = True
+                        break
+
+                if lista_disjunta_encontrada:
+                    for primo in lista_temporaria:
+                        lista_primos_sobrepostos_filtrada.append(primo)
+                else:
+                    lista_primos_sobrepostos_filtrada.append(pivo)
+
+    # Quarto passe: Filtra os primos
+    num_primos = len(lista_primos_sobrepostos_filtrada)
+    indice_externo = 0
+    duplicatas = []
+    lista_primos_filtrada = []
+
+    while indice_externo < num_primos - 1:
+        primo_externo = lista_primos_sobrepostos_filtrada[indice_externo]
+
+        indice_interno = indice_externo + 1
+
+        duplicata_encontrada = False
+        while indice_interno < num_primos:
+            primo_interno = lista_primos_sobrepostos_filtrada[indice_interno]
+            if primo_interno == primo_externo:
+                duplicata_encontrada = True
+                duplicatas.append(indice_interno)
+            indice_interno += 1
+
+        if indice_externo not in duplicatas:
+            lista_primos_filtrada.append(primo_externo)
+
+        if indice_externo == num_primos - 2 and not duplicata_encontrada:
+            lista_primos_filtrada.append(primo_interno)
+        indice_externo += 1
+
+    lista_primos_sobrepostos_filtrada = lista_primos_filtrada
+
+    return lista_primos_sobrepostos_filtrada
 
 
 def obtem_lista_sem_sobreposicoes(lista_primos):
