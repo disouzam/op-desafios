@@ -16,6 +16,15 @@ código através do Pylint é:
 pylint --rcfile=../../../ci/pylint3.rc primos_em_pi.py
 ```
 
+# Como gerar arquivos com número específico de casas decimais de Pi
+
+Para obter um arquivo com 20 decimais de Pi, o comando é apresentado abaixo
+
+```shell
+cd desafio-11/disouzam/python
+cut -c1-22 < pi-1M.txt > pi-20.txt
+```
+
 # Como executar o script
 
 Esse código foi testado com a versão 3.11.2 do Python e pode apresentar alguma instabilidade com
