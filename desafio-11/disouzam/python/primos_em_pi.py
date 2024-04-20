@@ -133,6 +133,10 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                         ultima_posicao_sobreposicao = posicao_final
 
                 if not sobreposicao_entre_vizinhos:
+
+                    for primo in lista_primos_sobrepostos:
+                        lista_primos.append(primo)
+
                     lista_primos_sobrepostos = []
                     lista_primos_sobrepostos.append(
                         (maior_primo, posicao_inicial, posicao_final))
@@ -147,9 +151,6 @@ def obtem_primos_de_lista_de_inteiros(digitos):
                     # Atualiza posicoes do candidato anterior:
                 posicao_inicial_candidato_anterior = posicao_inicial
                 posicao_final_candidato_anterior = posicao_final
-
-                lista_primos.append(
-                    (maior_primo, posicao_inicial, posicao_final))
 
                 if not sobreposicao_entre_vizinhos:
                     ultima_posicao_sobreposicao = posicao_final
@@ -174,6 +175,10 @@ def obtem_primos_de_lista_de_inteiros(digitos):
             comprimento += 1
 
         posicao_caractere_atual += 1
+
+    if posicao_caractere_atual == len(digitos):
+        for primo in lista_primos_sobrepostos:
+            lista_primos.append(primo)
 
     if len(lista_primos) > 1:
         raise RuntimeError(
