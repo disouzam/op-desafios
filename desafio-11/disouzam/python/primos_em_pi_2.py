@@ -27,11 +27,11 @@ def main(args) -> None:
             arquivo_com_numero_pi)
 
     if nargs >= 2:
-        mensagem1 = f"Você informou um número excessivo de argumentos ({nargs}). "
-        mensagem1 += "Apenas um argumento que aponte o caminho (relativo ou absoluto) "
-        mensagem1 += "do arquivo contendo o número Pi com algumas casas decimais especificadas"
-        mensagem1 += "e o número a ser convertido é necessário."
-        print(mensagem1)
+        mensagem = f"Você informou um número excessivo de argumentos ({nargs}). "
+        mensagem += "Apenas um argumento que aponte o caminho (relativo ou absoluto) "
+        mensagem += "do arquivo contendo o número Pi com algumas casas decimais especificadas"
+        mensagem += "e o número a ser convertido é necessário."
+        print(mensagem)
 
         mensagem2 = "Deseja prosseguir ignorando os demais argumentos? (S para Sim e N para não)"
         escolha_do_usuario = input(mensagem2)
