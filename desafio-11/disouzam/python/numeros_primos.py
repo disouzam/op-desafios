@@ -43,6 +43,9 @@ class primo(object):
         resultado += f"fim: {self.fim}, "
         return resultado
 
+    def __repr__(self) -> str:
+        return self.__str__()
+
     def numero_caracteres(self) -> int:
         return self.fim - self.inicio + 1
 
