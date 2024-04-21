@@ -96,8 +96,8 @@ def ler_primos_do_arquivo(arquivo_com_numero_pi: str) -> list[str]:
     arquivo_com_numero_pi: Caminho do arquivo com número pi
     """
     if not os.path.isfile(arquivo_com_numero_pi):
-        mensagem1 = "Arquivo não encontrado. Caminho fornecido ou nome do arquivo incorreto."
-        raise ArgumentError(f"{mensagem1}")
+        mensagem = "Arquivo não encontrado. Caminho fornecido ou nome do arquivo incorreto."
+        raise ArgumentError(f"{mensagem}")
 
     with open(arquivo_com_numero_pi, "r", encoding='utf-8') as arquivo:
         for linha in arquivo:
@@ -106,10 +106,10 @@ def ler_primos_do_arquivo(arquivo_com_numero_pi: str) -> list[str]:
             break
 
     if len(numero_pi_com_n_casas_decimais) <= 2:
-        mensagem0 = "O número recebido não pode ser processado "
-        mensagem0 += "(comprimento menor ou igual a 2 caracteres)"
-        mensagem0 += " ou a primeira linha do arquivo estava vazio."
-        raise ArgumentError(f"{mensagem0}")
+        mensagem = "O número recebido não pode ser processado "
+        mensagem += "(comprimento menor ou igual a 2 caracteres)"
+        mensagem += " ou a primeira linha do arquivo estava vazio."
+        raise ArgumentError(f"{mensagem}")
 
     digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
     digitos_parte_fracionaria = list(digitos_parte_fracionaria)
