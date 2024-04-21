@@ -1,4 +1,4 @@
-from primos_em_pi import filtra_lista_primos_sobrepostos
+from .primos_em_pi import filtra_lista_primos_sobrepostos
 
 
 def test_sobreposicao_lista_vazia():
