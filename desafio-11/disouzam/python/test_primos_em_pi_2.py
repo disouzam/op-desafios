@@ -7,4 +7,9 @@ def test_obtem_primos_de_lista_de_inteiros_20_digitos_de_pi():
     digitos = ['1', '4', '1', '5', '9', '2', '6', '5', '3',
                '5', '8', '9', '7', '9', '3', '2', '3', '8', '4', '6']
     lista_primos = obtem_primos_de_lista_de_inteiros(digitos)
-    assert len(lista_primos) == 0
+
+    resultado_esperado = ['41', '4159', '5', '59', '2', '653', '5', '53',
+                          '3', '5', '5897', '89', '97', '7', '79', '9323', '3', '2', '23', '3']
+
+    assert lista_primos == resultado_esperado
+    assert len(lista_primos) == len(resultado_esperado)
