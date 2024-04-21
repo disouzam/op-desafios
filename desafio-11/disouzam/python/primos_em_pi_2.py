@@ -1,10 +1,10 @@
 """Segunda implementação dos primos em Pi
 """
+from __future__ import annotations
 import cProfile
 from ctypes import ArgumentError
 import os
 import sys
-from typing import Any
 
 
 def main(args) -> None:
@@ -23,23 +23,8 @@ def main(args) -> None:
     # Validação dos argumentos
     if nargs >= 1:
         arquivo_com_numero_pi = args[0]
-
-        if not os.path.isfile(arquivo_com_numero_pi):
-            mensagem1 = "Arquivo não encontrado. Caminho fornecido ou nome do arquivo incorreto."
-            print(mensagem1)
-            return
-
-        with open(arquivo_com_numero_pi, "r", encoding='utf-8') as arquivo:
-            for linha in arquivo:
-                numero_pi_com_n_casas_decimais = linha.split("\n")
-                numero_pi_com_n_casas_decimais = numero_pi_com_n_casas_decimais[0]
-                break
-
-        if len(numero_pi_com_n_casas_decimais) <= 2:
-            mensagem0 = "O número recebido não pode ser processado "
-            mensagem0 += "(comprimento menor ou igual a 2 caracteres)"
-            mensagem0 += " ou a primeira linha do arquivo estava vazio."
-            print(mensagem0)
+        digitos_parte_fracionaria = ler_primos_do_arquivo(
+            arquivo_com_numero_pi)
 
     if nargs >= 2:
         mensagem1 = f"Você informou um número excessivo de argumentos ({nargs}). "
@@ -55,8 +40,6 @@ def main(args) -> None:
             print("Programa abortado.")
             return
 
-    digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
-    digitos_parte_fracionaria = list(digitos_parte_fracionaria)
     primos_na_parte_fracionaria = obtem_primos_de_lista_de_inteiros(
         digitos_parte_fracionaria)
 
@@ -102,6 +85,36 @@ def e_primo(numero) -> bool:
             return False
         divisor += 1
     return True
+
+
+def ler_primos_do_arquivo(arquivo_com_numero_pi: str) -> list[str]:
+    """ler_primos_do_arquivo(arquivo_com_numero_pi: str) -> list[str]:
+    Processa o arquivo fornecido como parâmetro e retorna uma lista de strings, onde
+    cada item é um dígito de pi
+
+    Parâmetro:
+    arquivo_com_numero_pi: Caminho do arquivo com número pi
+    """
+    if not os.path.isfile(arquivo_com_numero_pi):
+        mensagem1 = "Arquivo não encontrado. Caminho fornecido ou nome do arquivo incorreto."
+        raise ArgumentError(f"{mensagem1}")
+
+    with open(arquivo_com_numero_pi, "r", encoding='utf-8') as arquivo:
+        for linha in arquivo:
+            numero_pi_com_n_casas_decimais = linha.split("\n")
+            numero_pi_com_n_casas_decimais = numero_pi_com_n_casas_decimais[0]
+            break
+
+    if len(numero_pi_com_n_casas_decimais) <= 2:
+        mensagem0 = "O número recebido não pode ser processado "
+        mensagem0 += "(comprimento menor ou igual a 2 caracteres)"
+        mensagem0 += " ou a primeira linha do arquivo estava vazio."
+        raise ArgumentError(f"{mensagem0}")
+
+    digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
+    digitos_parte_fracionaria = list(digitos_parte_fracionaria)
+
+    return digitos_parte_fracionaria
 
 
 def debugger_is_active() -> bool:
