@@ -88,7 +88,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 lista_primos.append(numero_primo)
                 print(numero_primo)
 
-    return []
+    lista_primos_como_string = []
+    for numero_primo in lista_primos:
+        lista_primos_como_string.append(f"{numero_primo.numero_primo}")
+    return lista_primos_como_string
 
 
 def e_primo(numero) -> bool:
