@@ -216,18 +216,9 @@ def verifica_se_sublista_e_disjunta(sub_lista_abaixo_pivo):
     return sublista_e_disjunta
 
 
-def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
-
-    lista_primos_sobrepostos_filtrada = []
+def localiza_pivos(lista_primos_sobrepostos):
 
     lista_pivos = []
-
-    if len(lista_primos_sobrepostos) == 0:
-        return lista_primos_sobrepostos_filtrada
-    elif len(lista_primos_sobrepostos) == 1:
-        return lista_primos_sobrepostos
-
-    # Primeiro passe: localiza os pivôs
     numero_primos_sobrepostos = len(lista_primos_sobrepostos)
     for indice, primo in enumerate(lista_primos_sobrepostos):
         pivo = primo
@@ -250,7 +241,11 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
         if contador > 0:
             lista_pivos.append(pivo)
 
-    # Segundo passe: Filtra os pivôs
+    return lista_pivos
+
+
+def remove_duplicatas(lista_pivos):
+
     num_pivos = len(lista_pivos)
     indice_externo = 0
     duplicatas = []
@@ -278,6 +273,22 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
 
     if num_pivos > 1:
         lista_pivos = lista_pivos_filtrada
+
+    return lista_pivos
+
+
+def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
+
+    lista_primos_sobrepostos_filtrada = []
+    lista_pivos = []
+
+    if len(lista_primos_sobrepostos) == 0:
+        return lista_primos_sobrepostos_filtrada
+    elif len(lista_primos_sobrepostos) == 1:
+        return lista_primos_sobrepostos
+
+    lista_pivos = localiza_pivos(lista_primos_sobrepostos)
+    lista_pivos = remove_duplicatas(lista_pivos)
 
     # Terceiro passe: processa os pivôs
     for pivo in lista_pivos:
@@ -330,34 +341,10 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
                 lista_primos_sobrepostos_filtrada.append(pivo)
 
     # Quarto passe: Filtra os primos
-    num_primos = len(lista_primos_sobrepostos_filtrada)
-    indice_externo = 0
-    duplicatas = []
-    lista_primos_filtrada = []
+    lista_primos_filtrada = remove_duplicatas(
+        lista_primos_sobrepostos_filtrada)
 
-    while indice_externo < num_primos - 1:
-        primo_externo = lista_primos_sobrepostos_filtrada[indice_externo]
-
-        indice_interno = indice_externo + 1
-
-        duplicata_encontrada = False
-        while indice_interno < num_primos:
-            primo_interno = lista_primos_sobrepostos_filtrada[indice_interno]
-            if primo_interno == primo_externo:
-                duplicata_encontrada = True
-                duplicatas.append(indice_interno)
-            indice_interno += 1
-
-        if indice_externo not in duplicatas:
-            lista_primos_filtrada.append(primo_externo)
-
-        if indice_externo == num_primos - 2 and not duplicata_encontrada:
-            lista_primos_filtrada.append(primo_interno)
-        indice_externo += 1
-
-    if num_primos == 1:
-        lista_primos_filtrada = lista_primos_sobrepostos_filtrada
-
+    # Chamada recursiva
     if not verifica_se_sublista_e_disjunta(lista_primos_filtrada):
         lista_primos_filtrada = filtra_lista_primos_sobrepostos(
             lista_primos_filtrada)
