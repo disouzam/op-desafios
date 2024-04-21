@@ -73,7 +73,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
     # Levanta todos os primos existentes, não checando sobreposição
     for posicao_caractere_atual in range(0, len(digitos)):
-
+        lista_temporaria: list[primo] = []
         for comprimento in range(1, 5):
             inicio = posicao_caractere_atual
             fim = posicao_caractere_atual + comprimento - 1
@@ -81,8 +81,11 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
             if e_primo(candidato):
                 numero_primo = primo(candidato, inicio, fim)
-                lista_primos.append(numero_primo)
+                lista_temporaria.append(numero_primo)
                 print(numero_primo)
+
+        for numero_primo in lista_temporaria:
+            lista_primos.append(numero_primo)
 
     lista_primos_como_string = []
     for numero_primo in lista_primos:
