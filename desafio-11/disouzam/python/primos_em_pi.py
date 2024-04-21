@@ -200,6 +200,10 @@ def obtem_primos_de_lista_de_inteiros(digitos):
 def verifica_se_sublista_e_disjunta(sub_lista_abaixo_pivo):
 
     comprimento_sub_lista = len(sub_lista_abaixo_pivo)
+
+    if comprimento_sub_lista == 0:
+        return False
+
     sublista_e_disjunta = True
     if comprimento_sub_lista > 1:
         indice = 0
@@ -291,11 +295,20 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
     lista_pivos = remove_duplicatas(lista_pivos)
 
     # Terceiro passe: processa os pivôs
-    for pivo in lista_pivos:
+    sub_lista_abaixo_pivo = []
+
+    for indice_pivo, pivo in enumerate(lista_pivos):
+        posicao_pivo_lista_original = lista_primos_sobrepostos.index(pivo)
+        if pivo in sub_lista_abaixo_pivo:
+            continue
+
         sub_lista_abaixo_pivo = []
         for indice, primo in enumerate(lista_primos_sobrepostos):
             if primo != pivo and primo[1] >= pivo[1] and primo[2] <= pivo[2]:
                 sub_lista_abaixo_pivo.append(primo)
+            elif indice < posicao_pivo_lista_original and \
+                    primo not in lista_primos_sobrepostos_filtrada:
+                lista_primos_sobrepostos_filtrada.append(primo)
 
         sublista_e_disjunta = verifica_se_sublista_e_disjunta(
             sub_lista_abaixo_pivo)
@@ -338,7 +351,95 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
                 for primo in lista_temporaria:
                     lista_primos_sobrepostos_filtrada.append(primo)
             else:
-                lista_primos_sobrepostos_filtrada.append(pivo)
+                # avalia se há interseção com pivos adjacentes
+                # busca encontrar uma lista disjunta
+                lista_estendida = sub_lista_abaixo_pivo
+                maximo_caracteres = 0
+                indice_melhor_combinacao = 0
+
+                lista_com_anterior = []
+                if indice_pivo > 0:
+                    lista_com_anterior.append(lista_pivos[indice_pivo - 1])
+                    lista_com_anterior.append(pivo)
+
+                    if lista_pivos[indice_pivo - 1] not in lista_estendida and \
+                            not verifica_se_sublista_e_disjunta(lista_com_anterior):
+                        lista_estendida = [
+                            lista_pivos[indice_pivo - 1]] + lista_estendida
+
+                lista_com_seguinte = []
+                if indice_pivo < len(lista_pivos) - 1:
+                    lista_com_seguinte.append(pivo)
+                    lista_com_seguinte.append(lista_pivos[indice_pivo + 1])
+
+                    if lista_pivos[indice_pivo + 1] not in lista_estendida and \
+                            not verifica_se_sublista_e_disjunta(lista_com_seguinte):
+                        lista_estendida = lista_estendida + [
+                            lista_pivos[indice_pivo + 1]]
+
+                lista_bits = combinacoes_bits(len(lista_estendida))
+                lista_disjunta_encontrada = False
+
+                for indice_combinacao, combinacao in enumerate(lista_bits):
+                    lista_temporaria = []
+                    total_caracteres = 0
+
+                    for indice, primo in enumerate(lista_estendida):
+                        if combinacao[indice] == 1:
+                            lista_temporaria.append(primo)
+                            total_caracteres += primo[2] - primo[1] + 1
+
+                    lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
+                        lista_temporaria)
+
+                    if lista_temporaria_e_disjunta and total_caracteres > maximo_caracteres:
+                        lista_disjunta_encontrada = True
+                        maximo_caracteres = total_caracteres
+                        indice_melhor_combinacao = indice_combinacao
+
+                if lista_disjunta_encontrada and maximo_caracteres > comprimento_pivo:
+                    combinacao = lista_bits[indice_melhor_combinacao]
+                    for indice, primo in enumerate(lista_estendida):
+                        if combinacao[indice] == 1:
+                            lista_primos_sobrepostos_filtrada.append(primo)
+                else:
+                    lista_primos_sobrepostos_filtrada.append(pivo)
+
+    if len(lista_pivos) > 0:
+        for indice_pivo, pivo in enumerate(lista_pivos):
+            posicao_pivo_lista_original = lista_primos_sobrepostos.index(pivo)
+            for indice, primo in enumerate(lista_primos_sobrepostos):
+                if indice > posicao_pivo_lista_original and primo not in lista_primos_sobrepostos_filtrada \
+                        and primo not in lista_pivos:
+                    lista_primos_sobrepostos_filtrada.append(primo)
+    elif not verifica_se_sublista_e_disjunta(lista_primos_sobrepostos):
+        lista_bits = combinacoes_bits(len(lista_primos_sobrepostos))
+        lista_disjunta_encontrada = False
+        maximo_caracteres = 0
+        indice_melhor_combinacao = 0
+
+        for indice_combinacao, combinacao in enumerate(lista_bits):
+            lista_temporaria = []
+            total_caracteres = 0
+
+            for indice, primo in enumerate(lista_primos_sobrepostos):
+                if combinacao[indice] == 1:
+                    lista_temporaria.append(primo)
+                    total_caracteres += primo[2] - primo[1] + 1
+
+            lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
+                lista_temporaria)
+
+            if lista_temporaria_e_disjunta and total_caracteres > maximo_caracteres:
+                lista_disjunta_encontrada = True
+                maximo_caracteres = total_caracteres
+                indice_melhor_combinacao = indice_combinacao
+
+        if lista_disjunta_encontrada and maximo_caracteres > comprimento_pivo:
+            combinacao = lista_bits[indice_melhor_combinacao]
+            for indice, primo in enumerate(lista_primos_sobrepostos):
+                if combinacao[indice] == 1:
+                    lista_primos_sobrepostos_filtrada.append(primo)
 
     # Quarto passe: Filtra os primos
     lista_primos_filtrada = remove_duplicatas(

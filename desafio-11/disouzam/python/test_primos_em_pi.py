@@ -72,3 +72,47 @@ def test_sobreposicao_lista_com_11_elementos_terceira_sequencia():
         (2, 15, 15),
         (3, 16, 16)
     ]
+
+
+def test_sobreposicao_lista_com_6_elementos_terceira_sequencia():
+    lista_primos_sobrepostos = [
+        (5, 9, 9),
+        (89, 10, 11),
+        (7, 12, 12),
+        (79, 12, 13),
+        (3, 14, 14),
+        (23, 15, 16)
+    ]
+    lista_primos_sobrepostos = filtra_lista_primos_sobrepostos(
+        lista_primos_sobrepostos)
+    assert len(lista_primos_sobrepostos) == 5
+    assert lista_primos_sobrepostos == [
+        (5, 9, 9),
+        (89, 10, 11),
+        (79, 12, 13),
+        (3, 14, 14),
+        (23, 15, 16)
+    ]
+
+
+def test_sobreposicao_lista_com_7_elementos_terceira_sequencia():
+    lista_primos_sobrepostos = [
+        (5, 9, 9),
+        (89, 10, 11),
+        (7, 12, 12),
+        (79, 12, 13),
+        (3, 14, 14),
+        (2, 15, 15),
+        (3, 16, 16)
+    ]
+    lista_primos_sobrepostos = filtra_lista_primos_sobrepostos(
+        lista_primos_sobrepostos)
+    assert len(lista_primos_sobrepostos) == 6
+    assert lista_primos_sobrepostos == [
+        (5, 9, 9),
+        (89, 10, 11),
+        (79, 12, 13),
+        (3, 14, 14),
+        (2, 15, 15),
+        (3, 16, 16)
+    ]
