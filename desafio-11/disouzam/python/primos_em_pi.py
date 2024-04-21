@@ -276,7 +276,8 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
             lista_pivos_filtrada.append(pivo_interno)
         indice_externo += 1
 
-    lista_pivos = lista_pivos_filtrada
+    if num_pivos > 1:
+        lista_pivos = lista_pivos_filtrada
 
     # Terceiro passe: processa os pivôs
     for pivo in lista_pivos:
@@ -285,46 +286,48 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
             if primo != pivo and primo[1] >= pivo[1] and primo[2] <= pivo[2]:
                 sub_lista_abaixo_pivo.append(primo)
 
-            sublista_e_disjunta = verifica_se_sublista_e_disjunta(
-                sub_lista_abaixo_pivo)
+        sublista_e_disjunta = verifica_se_sublista_e_disjunta(
+            sub_lista_abaixo_pivo)
 
-            comprimento_pivo = pivo[2] - pivo[1] + 1
+        comprimento_pivo = pivo[2] - pivo[1] + 1
 
-            if sublista_e_disjunta:
+        if sublista_e_disjunta:
+            total_caracteres = 0
+
+            for primo in sub_lista_abaixo_pivo:
+                total_caracteres += primo[2] - primo[1] + 1
+
+            if total_caracteres == comprimento_pivo:
+                for primo in sub_lista_abaixo_pivo:
+                    lista_primos_sobrepostos_filtrada.append(primo)
+            else:
+                lista_primos_sobrepostos_filtrada.append(pivo)
+        else:
+            # busca encontrar uma lista disjunta
+            lista_bits = combinacoes_bits(len(sub_lista_abaixo_pivo))
+            lista_disjunta_encontrada = False
+
+            for combinacao in lista_bits:
+                lista_temporaria = []
                 total_caracteres = 0
 
-                for primo in sub_lista_abaixo_pivo:
-                    total_caracteres += primo[2] - primo[1] + 1
+                for indice, primo in enumerate(sub_lista_abaixo_pivo):
+                    if combinacao[indice] == 1:
+                        lista_temporaria.append(primo)
+                        total_caracteres += primo[2] - primo[1] + 1
 
-                if total_caracteres == comprimento_pivo:
-                    for primo in sub_lista_abaixo_pivo:
-                        lista_primos_sobrepostos_filtrada.append(primo)
+                lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
+                    lista_temporaria)
+
+                if lista_temporaria_e_disjunta and total_caracteres == comprimento_pivo:
+                    lista_disjunta_encontrada = True
+                    break
+
+            if lista_disjunta_encontrada:
+                for primo in lista_temporaria:
+                    lista_primos_sobrepostos_filtrada.append(primo)
             else:
-                # busca encontrar uma lista disjunta
-                lista_bits = combinacoes_bits(len(sub_lista_abaixo_pivo))
-                lista_disjunta_encontrada = False
-
-                for combinacao in lista_bits:
-                    lista_temporaria = []
-                    total_caracteres = 0
-
-                    for indice, primo in enumerate(sub_lista_abaixo_pivo):
-                        if combinacao[indice] == 1:
-                            lista_temporaria.append(primo)
-                            total_caracteres += primo[2] - primo[1] + 1
-
-                    lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
-                        lista_temporaria)
-
-                    if lista_temporaria_e_disjunta and total_caracteres == comprimento_pivo:
-                        lista_disjunta_encontrada = True
-                        break
-
-                if lista_disjunta_encontrada:
-                    for primo in lista_temporaria:
-                        lista_primos_sobrepostos_filtrada.append(primo)
-                else:
-                    lista_primos_sobrepostos_filtrada.append(pivo)
+                lista_primos_sobrepostos_filtrada.append(pivo)
 
     # Quarto passe: Filtra os primos
     num_primos = len(lista_primos_sobrepostos_filtrada)
@@ -351,6 +354,13 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
         if indice_externo == num_primos - 2 and not duplicata_encontrada:
             lista_primos_filtrada.append(primo_interno)
         indice_externo += 1
+
+    if num_primos == 1:
+        lista_primos_filtrada = lista_primos_sobrepostos_filtrada
+
+    if not verifica_se_sublista_e_disjunta(lista_primos_filtrada):
+        lista_primos_filtrada = filtra_lista_primos_sobrepostos(
+            lista_primos_filtrada)
 
     lista_primos_sobrepostos_filtrada = lista_primos_filtrada
 
