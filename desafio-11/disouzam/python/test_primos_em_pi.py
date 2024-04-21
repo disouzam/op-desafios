@@ -45,3 +45,30 @@ def test_sobreposicao_lista_com_4_elementos_segunda_sequencia():
     assert lista_primos_sobrepostos == [
         (653, 6, 8)
     ]
+
+
+def test_sobreposicao_lista_com_11_elementos_terceira_sequencia():
+    lista_primos_sobrepostos = [
+        (5, 9, 9),
+        (5897, 9, 12),
+        (89, 10, 11),
+        (97, 11, 12),
+        (7, 12, 12),
+        (79, 12, 13),
+        (9323, 13, 16),
+        (3, 14, 14),
+        (2, 15, 15),
+        (23, 15, 16),
+        (3, 16, 16)
+    ]
+    lista_primos_sobrepostos = filtra_lista_primos_sobrepostos(
+        lista_primos_sobrepostos)
+    assert len(lista_primos_sobrepostos) == 6
+    assert lista_primos_sobrepostos == [
+        (5, 9, 9),
+        (89, 10, 11),
+        (79, 12, 13),
+        (3, 14, 14),
+        (2, 15, 15),
+        (3, 16, 16)
+    ]
