@@ -5,7 +5,7 @@ import cProfile
 from ctypes import ArgumentError
 import os
 import sys
-from primo import primo
+from numeros_primos import primo
 
 
 def main(args) -> None:
