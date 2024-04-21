@@ -5,6 +5,7 @@ import cProfile
 from ctypes import ArgumentError
 import os
 import sys
+from primo import primo
 
 
 def main(args) -> None:
@@ -62,12 +63,31 @@ def main(args) -> None:
 
 
 def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
-    """obtem_primos_de_lista_de_inteiros(digitos_parte_fracionaria):
+    """obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     Obtém uma lista de primos a partir de uma lista ordenada de dígitos
 
     Parâmetro:
     digitos: lista de dígitos
     """
+    lista_primos: list[primo] = []
+
+    # Levanta todos os primos existentes, não checando sobreposição
+    for posicao_caractere_atual in range(0, len(digitos)):
+        maior_primo = 0
+        numero_digitos_primo = 0
+
+        for comprimento in range(1, 5):
+            inicio = posicao_caractere_atual
+            fim = posicao_caractere_atual + comprimento - 1
+            candidato = int("".join(digitos[inicio:fim + 1]))
+
+            if e_primo(candidato):
+                maior_primo = candidato
+                numero_digitos_primo = comprimento
+                numero_primo = primo(candidato, inicio, fim)
+                lista_primos.append(numero_primo)
+                print(numero_primo)
+
     return []
 
 
