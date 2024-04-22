@@ -60,8 +60,6 @@ def main(args) -> None:
     with open(arquivo_de_resultado, "w", encoding='utf-8') as arquivo:
         arquivo.write(caracteres_concatenados)
 
-    print("Primos obtidos com sucesso!")
-
 
 def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     """obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
@@ -128,9 +126,23 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     del lista_temporaria, candidato, comprimento, inicio, fim, posicao_caractere_atual
     del primo_anterior, primo_atual, sobreposicao_entre_vizinhos, numero_primo
 
+    # TODO: Remover antes da submissão do PR
+    arquivo_primos_candidatos = "primos_candidatos.txt"
+
+    # TODO: Remover antes da submissão do PR
+    if os.path.exists(arquivo_primos_candidatos):
+        os.remove(arquivo_primos_candidatos)
+
+    if not lista_e_disjunta(lista_primos):
+        raise ArgumentError(f"Lista de primos inválida.")
+
     lista_primos_como_string: list[str] = []
     for primo_atual in lista_primos:
         lista_primos_como_string.append(f"{primo_atual.numero_primo}")
+
+        # TODO: Remover antes da submissão
+        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+            primo_candidato.write(f"{primo_atual}\n")
     return lista_primos_como_string
 
 
