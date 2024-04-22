@@ -6,6 +6,8 @@ from ctypes import ArgumentError
 import os
 import sys
 from typing import cast
+
+import numpy
 from numeros_primos import primo
 
 
@@ -435,42 +437,44 @@ def lista_e_disjunta(lista: list[primo]) -> bool:
     return True
 
 
-def combinacoes_bits(tamanho) -> list[list[int]]:
+def combinacoes_bits(tamanho):
     """combinacoes_bits(tamanho)
     Gera lista de combinações de bits para avaliar a superposição entre primos
 
     Parâmetro:
     tamanho: Número de bits para gerar a combinação
     """
-    lista_combinacoes = []
+    lista_combinacoes_2 = []
 
     if tamanho == 0:
-        return lista_combinacoes
+        return lista_combinacoes_2
 
     if tamanho == 1:
-        lista: list[int] = []
-        lista.append(0)
-        lista_combinacoes.append(lista)
+        lista_2 = numpy.empty(1, dtype=numpy.int8)
+        lista_2[0] = 0
+        lista_combinacoes_2.append(lista_2)
 
-        lista: list[int] = []
-        lista.append(1)
-        lista_combinacoes.append(lista)
-        return lista_combinacoes
+        del lista_2
+        lista_2 = numpy.empty(1, dtype=numpy.int8)
+        lista_2[0] = 1
+        lista_combinacoes_2.append(lista_2)
+
+        return lista_combinacoes_2
 
     sub_combinacoes: list[list[int]] = combinacoes_bits(tamanho - 1)
 
     for sub_combinacao in sub_combinacoes:
-        lista: list[int] = []
-        lista.append(0)
-        lista.extend(sub_combinacao)
-        lista_combinacoes.append(lista)
+        lista_2 = numpy.empty(1, dtype=numpy.int8)
+        lista_2[0] = 0
+        lista_2 = numpy.concatenate((lista_2, sub_combinacao))
+        lista_combinacoes_2.append(lista_2)
 
-        lista: list[int] = []
-        lista.append(1)
-        lista.extend(sub_combinacao)
-        lista_combinacoes.append(lista)
+        lista_2 = numpy.empty(1, dtype=numpy.int8)
+        lista_2[0] = 1
+        lista_2 = numpy.concatenate((lista_2, sub_combinacao))
+        lista_combinacoes_2.append(lista_2)
 
-    return lista_combinacoes
+    return lista_combinacoes_2
 
 
 def e_primo(numero) -> bool:
