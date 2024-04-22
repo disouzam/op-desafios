@@ -405,41 +405,41 @@ def filtra_lista_primos_sobrepostos(lista_primos_sobrepostos):
                 else:
                     lista_primos_sobrepostos_filtrada.append(pivo)
 
-    if len(lista_pivos) > 0:
-        for indice_pivo, pivo in enumerate(lista_pivos):
-            posicao_pivo_lista_original = lista_primos_sobrepostos.index(pivo)
-            for indice, primo in enumerate(lista_primos_sobrepostos):
-                if indice > posicao_pivo_lista_original and primo not in lista_primos_sobrepostos_filtrada \
-                        and primo not in lista_pivos:
-                    lista_primos_sobrepostos_filtrada.append(primo)
-    elif not verifica_se_sublista_e_disjunta(lista_primos_sobrepostos):
-        lista_bits = combinacoes_bits(len(lista_primos_sobrepostos))
-        lista_disjunta_encontrada = False
-        maximo_caracteres = 0
-        indice_melhor_combinacao = 0
+    # if len(lista_pivos) > 0:
+    #     for indice_pivo, pivo in enumerate(lista_pivos):
+    #         posicao_pivo_lista_original = lista_primos_sobrepostos.index(pivo)
+    #         for indice, primo in enumerate(lista_primos_sobrepostos):
+    #             if indice > posicao_pivo_lista_original and primo not in lista_primos_sobrepostos_filtrada \
+    #                     and primo not in lista_pivos:
+    #                 lista_primos_sobrepostos_filtrada.append(primo)
+    # elif not verifica_se_sublista_e_disjunta(lista_primos_sobrepostos):
+    #     lista_bits = combinacoes_bits(len(lista_primos_sobrepostos))
+    #     lista_disjunta_encontrada = False
+    #     maximo_caracteres = 0
+    #     indice_melhor_combinacao = 0
 
-        for indice_combinacao, combinacao in enumerate(lista_bits):
-            lista_temporaria = []
-            total_caracteres = 0
+    #     for indice_combinacao, combinacao in enumerate(lista_bits):
+    #         lista_temporaria = []
+    #         total_caracteres = 0
 
-            for indice, primo in enumerate(lista_primos_sobrepostos):
-                if combinacao[indice] == 1:
-                    lista_temporaria.append(primo)
-                    total_caracteres += primo[2] - primo[1] + 1
+    #         for indice, primo in enumerate(lista_primos_sobrepostos):
+    #             if combinacao[indice] == 1:
+    #                 lista_temporaria.append(primo)
+    #                 total_caracteres += primo[2] - primo[1] + 1
 
-            lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
-                lista_temporaria)
+    #         lista_temporaria_e_disjunta = verifica_se_sublista_e_disjunta(
+    #             lista_temporaria)
 
-            if lista_temporaria_e_disjunta and total_caracteres > maximo_caracteres:
-                lista_disjunta_encontrada = True
-                maximo_caracteres = total_caracteres
-                indice_melhor_combinacao = indice_combinacao
+    #         if lista_temporaria_e_disjunta and total_caracteres > maximo_caracteres:
+    #             lista_disjunta_encontrada = True
+    #             maximo_caracteres = total_caracteres
+    #             indice_melhor_combinacao = indice_combinacao
 
-        if lista_disjunta_encontrada and maximo_caracteres > comprimento_pivo:
-            combinacao = lista_bits[indice_melhor_combinacao]
-            for indice, primo in enumerate(lista_primos_sobrepostos):
-                if combinacao[indice] == 1:
-                    lista_primos_sobrepostos_filtrada.append(primo)
+    #     if lista_disjunta_encontrada and maximo_caracteres > comprimento_pivo:
+    #         combinacao = lista_bits[indice_melhor_combinacao]
+    #         for indice, primo in enumerate(lista_primos_sobrepostos):
+    #             if combinacao[indice] == 1:
+    #                 lista_primos_sobrepostos_filtrada.append(primo)
 
     # Quarto passe: Filtra os primos
     lista_primos_filtrada = remove_duplicatas(

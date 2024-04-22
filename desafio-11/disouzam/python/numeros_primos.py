@@ -38,9 +38,9 @@ class primo(object):
 
     def __str__(self) -> str:
         """Representação como string para uso em print statements"""
-        resultado = f"primo: {self.numero_primo}, "
+        resultado = f"(primo: {self.numero_primo}, "
         resultado += f"inicio: {self.inicio}, "
-        resultado += f"fim: {self.fim}, "
+        resultado += f"fim: {self.fim})"
         return resultado
 
     def __repr__(self) -> str:
