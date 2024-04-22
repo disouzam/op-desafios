@@ -73,6 +73,13 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     primo_anterior: None | primo = None
     maximo_indice_final = 0
 
+    # TODO: Remover antes da submissão do PR
+    arquivo_primos_candidatos = "primos_candidatos.txt"
+
+    # TODO: Remover antes da submissão do PR
+    if os.path.exists(arquivo_primos_candidatos):
+        os.remove(arquivo_primos_candidatos)
+
     # Levanta todos os primos existentes, não checando sobreposição
     for posicao_caractere_atual in range(0, len(digitos)):
         for comprimento in range(1, 5):
@@ -109,9 +116,19 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 if not sobreposicao_entre_vizinhos:
                     lista_temporaria = filtrar_primos_disjuntos(
                         lista_temporaria)
+
+                    # # TODO: Remover antes da submissão
+                    # print(
+                    #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
+
                     for numero_primo in lista_temporaria:
-                        lista_primos.append(numero_primo)
-                    lista_temporaria: list[primo] = []
+                        # lista_primos.append(numero_primo)
+
+                        # TODO: Remover antes da submissão
+                        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                            primo_candidato.write(f"{numero_primo}\n")
+
+                    lista_temporaria.clear()
                     lista_temporaria.append(primo_atual)
                     maximo_indice_final = primo_atual.fim
                 else:
@@ -120,18 +137,20 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     if posicao_caractere_atual == len(digitos) - 1:
         lista_temporaria = filtrar_primos_disjuntos(
             lista_temporaria)
+
+        # # TODO: Remover antes da submissão
+        # print(
+        #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
+
         for numero_primo in lista_temporaria:
-            lista_primos.append(numero_primo)
+            # lista_primos.append(numero_primo)
+
+            # TODO: Remover antes da submissão
+            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                primo_candidato.write(f"{numero_primo}\n")
 
     del lista_temporaria, candidato, comprimento, inicio, fim, posicao_caractere_atual
     del primo_anterior, primo_atual, sobreposicao_entre_vizinhos, numero_primo
-
-    # TODO: Remover antes da submissão do PR
-    arquivo_primos_candidatos = "primos_candidatos.txt"
-
-    # TODO: Remover antes da submissão do PR
-    if os.path.exists(arquivo_primos_candidatos):
-        os.remove(arquivo_primos_candidatos)
 
     if not lista_e_disjunta(lista_primos):
         raise ArgumentError(f"Lista de primos inválida.")
@@ -140,9 +159,6 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     for primo_atual in lista_primos:
         lista_primos_como_string.append(f"{primo_atual.numero_primo}")
 
-        # TODO: Remover antes da submissão
-        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-            primo_candidato.write(f"{primo_atual}\n")
     return lista_primos_como_string
 
 
@@ -154,6 +170,10 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
     # Razões para não seguir com o processamento
     if len(primos) == 0:
         return primos
+
+    # TODO: Remover antes da submissão do PR
+    print(
+        f"{primos[0].inicio} - Tamanho da lista temporaria: {len(primos)}")
 
     sub_listas: list[list[primo]] = [[]]
     maiores_primos: list[list[primo]] = [[]]
@@ -201,8 +221,14 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
 
     numero_sublistas = len(sub_listas)
     indice_sublistas = 0
+    lista_temporaria: list[primo] = []
     while len(primos) > 0 and indice_sublistas < numero_sublistas:
+        del lista_temporaria
         lista_temporaria = sub_listas[indice_sublistas].copy()
+
+        # TODO: Remover antes da submissão do PR
+        print(
+            f"Chamada à filtra_primos_disjuntos_de_lista_com_sobreposicao_total: {len(lista_temporaria)} elementos")
         lista_temporaria = filtra_primos_disjuntos_de_lista_com_sobreposicao_total(
             lista_temporaria, maiores_primos[indice_sublistas][0])
 
@@ -229,6 +255,9 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
                 lista_temporaria[indice_externo] = primo_interno
                 lista_temporaria[indice_interno] = primo_externo
 
+    # TODO: Remover antes da submissão do PR
+    print(
+        f"Chamada à filtra_primos_sobrepostos: {len(lista_temporaria)} elementos")
     lista_temporaria = filtra_primos_sobrepostos(lista_temporaria)
 
     return lista_temporaria
@@ -238,19 +267,83 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     """filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     Usando permutação, obtém a maior lista possível sem sobreposicao
     """
+    # TODO: Remover antes da submissão do PR
+    print("Início do cálculo de combinacoes")
+    if len(primos) == 0:
+        return primos
+
     lista_bits = combinacoes_bits(len(primos))
+
+    # TODO: Remover antes da submissão do PR
+    print("Fim do cálculo de combinacoes")
+
     maior_comprimento_obtido = 0
     melhor_combinacao: list[primo] = []
     lista_disjunta_encontrada = False
+    lista_temporaria: list[primo] = []
 
-    for combinacao in lista_bits:
+    primeira_posicao = primos[0].inicio
+    ultima_posicao = primos[0].fim
+
+    for numero_primo in primos:
+        if numero_primo.inicio < primeira_posicao:
+            primeira_posicao = numero_primo.inicio
+        if numero_primo.fim > ultima_posicao:
+            ultima_posicao = numero_primo.fim
+
+    maior_comprimento_possivel = ultima_posicao - primeira_posicao
+
+    numero_combinacoes = len(lista_bits)
+
+    if len(primos) > 15:
+        divisoes = 10000
+    else:
+        divisoes = 10
+
+    intervalo = int(numero_combinacoes / divisoes)
+    contador = 0
+    indice_externo = 0
+
+    while len(lista_bits) > 0:
+        indice_externo += 1
+        combinacao = lista_bits[0]
+        lista_bits.remove(combinacao)
+        contador += 1
+
+        # TODO: Remover antes da submissão do PR
+        if contador == intervalo:
+            print(f"\t\t{indice_externo}/{numero_combinacoes}")
+            contador = 0
+
+        del lista_temporaria
         lista_temporaria: list[primo] = []
         total_caracteres = 0
 
+        primo_anterior: None | primo = None
+        sobreposicao_encontrada = False
+
         for indice, numero_primo in enumerate(primos):
             if combinacao[indice] == 1:
+                if len(lista_temporaria) > 1:
+                    primo_anterior_casted = cast(primo, primo_anterior)
+                    if numero_primo.sobrepoe_outro_primo_parcialmente(primo_anterior_casted) \
+                        or primo_anterior_casted.sobrepoe_outro_primo_parcialmente(
+                            numero_primo):
+                        # # TODO: Remover antes da submissão do PR
+                        # print("Saída prematura do loop em filtra_primos_sobrepostos")
+                        sobreposicao_encontrada = True
+                        break
+                primo_anterior = numero_primo
+
                 lista_temporaria.append(numero_primo)
                 total_caracteres += numero_primo.numero_caracteres()
+
+        if sobreposicao_encontrada:
+            sobreposicao_encontrada = False
+            continue
+
+        if total_caracteres < maior_comprimento_obtido:
+            continue
 
         lista_temporaria_e_disjunta = lista_e_disjunta(lista_temporaria)
 
@@ -258,6 +351,11 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
             lista_disjunta_encontrada = True
             melhor_combinacao = lista_temporaria.copy()
             maior_comprimento_obtido = total_caracteres
+
+            if maior_comprimento_obtido == maior_comprimento_possivel:
+                print(
+                    f"Terminou após {round(indice_externo/numero_combinacoes,2)}% completados...")
+                break
 
     if lista_disjunta_encontrada:
         return melhor_combinacao
@@ -291,8 +389,18 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
     lista_bits = combinacoes_bits(len(lista_primos_menores))
     lista_disjunta_encontrada = False
 
+    numero_combinacoes = len(lista_bits)
+    intervalo = int(numero_combinacoes/10)
+    contador = 0
+
     # Válido apenas para um primo principal
-    for combinacao in lista_bits:
+    for indice_externo, combinacao in enumerate(lista_bits):
+        contador += 1
+
+        if contador == intervalo:
+            print(f"\t\t{indice_externo}/{numero_combinacoes}")
+            contador = 0
+
         lista_temporaria: list[primo] = []
         total_caracteres = 0
 
