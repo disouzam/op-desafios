@@ -119,8 +119,6 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 else:
                     lista_temporaria.append(primo_atual)
 
-                print(primo_atual)
-
     if posicao_caractere_atual == len(digitos) - 1:
         lista_temporaria = filtrar_primos_disjuntos(
             lista_temporaria)
