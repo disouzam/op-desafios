@@ -35,8 +35,15 @@ def main(args) -> None:
     print()
 
     contador = 0
+    maximo = int(math.pow(2, 29)) - 1
+    intervalo = int(maximo / 1000)
+    indice = 0
     for combinacao in combinacoes_bits(29):
-        print(f"{contador} - {combinacao}")
+        if contador == intervalo:
+            print(f"{indice/maximo*100:.2f}% - {combinacao}")
+            contador = 0
+
+        indice += 1
         contador += 1
 
 
