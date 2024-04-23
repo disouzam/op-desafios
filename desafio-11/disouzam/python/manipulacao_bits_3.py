@@ -10,7 +10,7 @@ def combinacoes_bits(tamanho):
     tamanho: Número de bits para gerar a combinação
     """
     contador = 0
-    maximo = int(math.pow(2, tamanho) - 1)
+    maximo = int(math.pow(2, tamanho))
 
     for contador in range(0, maximo):
         numero_em_binario = '{0:0>{width}{base}}'.format(
@@ -20,8 +20,24 @@ def combinacoes_bits(tamanho):
 
 
 def main(args) -> None:
+    contador = 0
     for combinacao in combinacoes_bits(4):
-        print(combinacao)
+        print(f"{contador} - {combinacao}")
+        contador += 1
+
+    print()
+
+    contador = 0
+    for combinacao in combinacoes_bits(5):
+        print(f"{contador} - {combinacao}")
+        contador += 1
+
+    print()
+
+    contador = 0
+    for combinacao in combinacoes_bits(29):
+        print(f"{contador} - {combinacao}")
+        contador += 1
 
 
 if __name__ == "__main__":
