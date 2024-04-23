@@ -10,9 +10,9 @@ def combinacoes_bits(tamanho):
     tamanho: Número de bits para gerar a combinação
     """
     contador = 0
-    maximo = int(math.pow(2, tamanho))
+    maximo = int(math.pow(2, tamanho)) - 1
 
-    for contador in range(0, maximo):
+    for contador in range(maximo, 0, -1):
         numero_em_binario = '{0:0>{width}{base}}'.format(
             contador, base='b', width=tamanho)
         lista_convertida = list(numero_em_binario)
