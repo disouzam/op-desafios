@@ -36,11 +36,11 @@ def main(args) -> None:
 
     contador = 0
     maximo = int(math.pow(2, 29)) - 1
-    intervalo = int(maximo / 1000)
+    intervalo = int(maximo / 4)
     indice = 0
     for combinacao in combinacoes_bits(29):
         if contador == intervalo:
-            print(f"{indice/maximo*100:.2f}% - {combinacao}")
+            print(f"{indice} - {indice/maximo*100:.2f}% - {combinacao}")
             contador = 0
 
         indice += 1
