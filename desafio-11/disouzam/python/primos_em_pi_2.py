@@ -175,8 +175,8 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
         return primos
 
     # TODO: Remover antes da submissão do PR
-    print(
-        f"{primos[0].inicio} - Tamanho da lista temporaria: {len(primos)}")
+    # print(
+    #     f"{primos[0].inicio} - Tamanho da lista temporaria: {len(primos)}")
 
     sub_listas: list[list[primo]] = [[]]
     maiores_primos: list[list[primo]] = [[]]
@@ -230,8 +230,8 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
         lista_temporaria = sub_listas[indice_sublistas].copy()
 
         # TODO: Remover antes da submissão do PR
-        print(
-            f"Chamada à filtra_primos_disjuntos_de_lista_com_sobreposicao_total: {len(lista_temporaria)} elementos")
+        # print(
+        #     f"Chamada à filtra_primos_disjuntos_de_lista_com_sobreposicao_total: {len(lista_temporaria)} elementos")
         lista_temporaria = filtra_primos_disjuntos_de_lista_com_sobreposicao_total(
             lista_temporaria, maiores_primos[indice_sublistas][0])
 
@@ -259,8 +259,8 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
                 lista_temporaria[indice_interno] = primo_externo
 
     # TODO: Remover antes da submissão do PR
-    print(
-        f"Chamada à filtra_primos_sobrepostos: {len(lista_temporaria)} elementos")
+    # print(
+    #     f"Chamada à filtra_primos_sobrepostos: {len(lista_temporaria)} elementos")
     lista_temporaria = filtra_primos_sobrepostos(lista_temporaria)
 
     return lista_temporaria
@@ -273,12 +273,12 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     tamanho_lista_primos = len(primos)
 
     # TODO: Remover antes da submissão do PR
-    print("Início do cálculo de combinacoes")
+    # print("Início do cálculo de combinacoes")
     if tamanho_lista_primos == 0:
         return primos
 
     # TODO: Remover antes da submissão do PR
-    print("Fim do cálculo de combinacoes")
+    # print("Fim do cálculo de combinacoes")
 
     maior_comprimento_obtido = 0
     melhor_combinacao: list[primo] = []
@@ -312,9 +312,9 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
         contador += 1
 
         # TODO: Remover antes da submissão do PR
-        if contador == intervalo:
-            print(f"\t\t{indice_externo}/{numero_combinacoes}")
-            contador = 0
+        # if contador == intervalo:
+        #     print(f"\t\t{indice_externo}/{numero_combinacoes}")
+        #     contador = 0
 
         del lista_temporaria
         lista_temporaria: list[primo] = []
@@ -357,8 +357,8 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
             maior_comprimento_obtido = total_caracteres
 
             if maior_comprimento_obtido == maior_comprimento_possivel:
-                print(
-                    f"Terminou após {100 *round(indice_externo/numero_combinacoes,2)}% completados...")
+                # print(
+                #     f"Terminou após {100 *round(indice_externo/numero_combinacoes,2)}% completados...")
                 break
 
     if lista_disjunta_encontrada:
@@ -404,9 +404,9 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
         contador += 1
         indice_externo += 1
 
-        if contador == intervalo:
-            print(f"\t\t{indice_externo}/{numero_combinacoes}")
-            contador = 0
+        # if contador == intervalo:
+        #     print(f"\t\t{indice_externo}/{numero_combinacoes}")
+        #     contador = 0
 
         lista_temporaria: list[primo] = []
         total_caracteres = 0
