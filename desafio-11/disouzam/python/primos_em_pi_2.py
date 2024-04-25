@@ -3,11 +3,12 @@
 from __future__ import annotations
 import cProfile
 from ctypes import ArgumentError
+import math
 import os
 import sys
 from typing import cast
 
-import numpy
+
 from numeros_primos import primo
 
 
@@ -124,7 +125,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
 
                     for numero_primo in lista_temporaria:
-                        # lista_primos.append(numero_primo)
+                        lista_primos.append(numero_primo)
 
                         # TODO: Remover antes da submissão
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
@@ -145,7 +146,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
         #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
 
         for numero_primo in lista_temporaria:
-            # lista_primos.append(numero_primo)
+            lista_primos.append(numero_primo)
 
             # TODO: Remover antes da submissão
             with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
@@ -269,12 +270,12 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     """filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     Usando permutação, obtém a maior lista possível sem sobreposicao
     """
+    tamanho_lista_primos = len(primos)
+
     # TODO: Remover antes da submissão do PR
     print("Início do cálculo de combinacoes")
-    if len(primos) == 0:
+    if tamanho_lista_primos == 0:
         return primos
-
-    lista_bits = combinacoes_bits(len(primos))
 
     # TODO: Remover antes da submissão do PR
     print("Fim do cálculo de combinacoes")
@@ -293,11 +294,11 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
         if numero_primo.fim > ultima_posicao:
             ultima_posicao = numero_primo.fim
 
-    maior_comprimento_possivel = ultima_posicao - primeira_posicao
+    maior_comprimento_possivel = ultima_posicao - primeira_posicao + 1
 
-    numero_combinacoes = len(lista_bits)
+    numero_combinacoes = math.pow(2, tamanho_lista_primos)
 
-    if len(primos) > 15:
+    if tamanho_lista_primos > 15:
         divisoes = 10000
     else:
         divisoes = 10
@@ -306,10 +307,8 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     contador = 0
     indice_externo = 0
 
-    while len(lista_bits) > 0:
+    for combinacao in combinacoes_bits(tamanho_lista_primos):
         indice_externo += 1
-        combinacao = lista_bits[0]
-        lista_bits.remove(combinacao)
         contador += 1
 
         # TODO: Remover antes da submissão do PR
@@ -326,7 +325,7 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
 
         for indice, numero_primo in enumerate(primos):
             if combinacao[indice] == 1:
-                if len(lista_temporaria) > 1:
+                if len(lista_temporaria) >= 1:
                     primo_anterior_casted = cast(primo, primo_anterior)
                     if numero_primo.sobrepoe_outro_primo_parcialmente(primo_anterior_casted) \
                         or primo_anterior_casted.sobrepoe_outro_primo_parcialmente(
@@ -334,6 +333,7 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
                         # # TODO: Remover antes da submissão do PR
                         # print("Saída prematura do loop em filtra_primos_sobrepostos")
                         sobreposicao_encontrada = True
+                        lista_temporaria.clear()
                         break
                 primo_anterior = numero_primo
 
@@ -342,9 +342,11 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
 
         if sobreposicao_encontrada:
             sobreposicao_encontrada = False
+            lista_temporaria.clear()
             continue
 
         if total_caracteres < maior_comprimento_obtido:
+            lista_temporaria.clear()
             continue
 
         lista_temporaria_e_disjunta = lista_e_disjunta(lista_temporaria)
@@ -356,7 +358,7 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
 
             if maior_comprimento_obtido == maior_comprimento_possivel:
                 print(
-                    f"Terminou após {round(indice_externo/numero_combinacoes,2)}% completados...")
+                    f"Terminou após {100 *round(indice_externo/numero_combinacoes,2)}% completados...")
                 break
 
     if lista_disjunta_encontrada:
@@ -388,16 +390,19 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
     if falta_de_sobreposicao_total:
         return primos
 
-    lista_bits = combinacoes_bits(len(lista_primos_menores))
+    tamanho_lista_primos = len(lista_primos_menores)
     lista_disjunta_encontrada = False
 
-    numero_combinacoes = len(lista_bits)
+    numero_combinacoes = math.pow(2, tamanho_lista_primos)
+
     intervalo = int(numero_combinacoes/10)
     contador = 0
+    indice_externo = 0
 
     # Válido apenas para um primo principal
-    for indice_externo, combinacao in enumerate(lista_bits):
+    for combinacao in combinacoes_bits(tamanho_lista_primos):
         contador += 1
+        indice_externo += 1
 
         if contador == intervalo:
             print(f"\t\t{indice_externo}/{numero_combinacoes}")
@@ -444,37 +449,19 @@ def combinacoes_bits(tamanho):
     Parâmetro:
     tamanho: Número de bits para gerar a combinação
     """
-    lista_combinacoes_2 = []
+    contador = 0
+    maximo = int(math.pow(2, tamanho)) - 1
 
-    if tamanho == 0:
-        return lista_combinacoes_2
+    for contador in range(maximo, 0, -1):
+        numero_em_binario = '{0:0>{width}{base}}'.format(
+            contador, base='b', width=tamanho)
+        lista_convertida = list(numero_em_binario)
+        lista_inteiros = []
 
-    if tamanho == 1:
-        lista_2 = numpy.empty(1, dtype=numpy.int8)
-        lista_2[0] = 0
-        lista_combinacoes_2.append(lista_2)
+        for indice, item in enumerate(lista_convertida):
+            lista_inteiros.append(int(item))
 
-        del lista_2
-        lista_2 = numpy.empty(1, dtype=numpy.int8)
-        lista_2[0] = 1
-        lista_combinacoes_2.append(lista_2)
-
-        return lista_combinacoes_2
-
-    sub_combinacoes: list[list[int]] = combinacoes_bits(tamanho - 1)
-
-    for sub_combinacao in sub_combinacoes:
-        lista_2 = numpy.empty(1, dtype=numpy.int8)
-        lista_2[0] = 0
-        lista_2 = numpy.concatenate((lista_2, sub_combinacao))
-        lista_combinacoes_2.append(lista_2)
-
-        lista_2 = numpy.empty(1, dtype=numpy.int8)
-        lista_2[0] = 1
-        lista_2 = numpy.concatenate((lista_2, sub_combinacao))
-        lista_combinacoes_2.append(lista_2)
-
-    return lista_combinacoes_2
+        yield lista_inteiros
 
 
 def e_primo(numero) -> bool:
