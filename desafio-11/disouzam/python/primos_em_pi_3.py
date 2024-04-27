@@ -392,7 +392,55 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
     maior_primo: Primo com maior número de caracteres
     """
     lista_primos_menores: list[primo] = []
-    return lista_primos_menores
+
+    # Monta lista de primos menores
+    falta_de_sobreposicao_total = False
+    for numero_primo in primos:
+        if numero_primo != maior_primo:
+            lista_primos_menores.append(numero_primo)
+            if not maior_primo.sobrepoe_outro_primo_completamente(numero_primo):
+                falta_de_sobreposicao_total = True
+                break
+
+    if falta_de_sobreposicao_total:
+        return primos
+
+    tamanho_lista_primos = len(lista_primos_menores)
+    lista_disjunta_encontrada = False
+
+    numero_combinacoes = math.pow(2, tamanho_lista_primos)
+
+    intervalo = int(numero_combinacoes/10)
+    contador = 0
+    indice_externo = 0
+
+    # Válido apenas para um primo principal
+    for combinacao in combinacoes_bits(tamanho_lista_primos):
+        contador += 1
+        indice_externo += 1
+
+        # if contador == intervalo:
+        #     print(f"\t\t{indice_externo}/{numero_combinacoes}")
+        #     contador = 0
+
+        lista_temporaria: list[primo] = []
+        total_caracteres = 0
+
+        for indice, numero_primo in enumerate(lista_primos_menores):
+            if combinacao[indice] == 1:
+                lista_temporaria.append(numero_primo)
+                total_caracteres += numero_primo.numero_caracteres()
+
+        lista_temporaria_e_disjunta = lista_e_disjunta(lista_temporaria)
+
+        if lista_temporaria_e_disjunta and total_caracteres == maior_primo.numero_caracteres():
+            lista_disjunta_encontrada = True
+            break
+
+    if lista_disjunta_encontrada:
+        return lista_temporaria
+    else:
+        return primos
 
 
 def debugger_is_active() -> bool:
