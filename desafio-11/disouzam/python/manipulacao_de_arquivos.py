@@ -31,4 +31,13 @@ def ler_primos_do_arquivo(arquivo_com_numero_pi: str) -> list[str]:
     digitos_parte_fracionaria = numero_pi_com_n_casas_decimais[2:]
     digitos_parte_fracionaria = list(digitos_parte_fracionaria)
 
+    # TODO: Remover antes da submissão do PR
+    digitos_e_suas_posicoes = "digitos_e_suas_posicoes.txt"
+    if os.path.isfile(digitos_e_suas_posicoes):
+        os.remove(digitos_e_suas_posicoes)
+
+    with open(digitos_e_suas_posicoes, "w", encoding='utf-8') as arquivo:
+        for posicao, digito in enumerate(digitos_parte_fracionaria):
+            arquivo.write(f"{digito} (Posicao: {posicao})\n")
+
     return digitos_parte_fracionaria
