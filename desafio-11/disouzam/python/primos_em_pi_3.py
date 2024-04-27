@@ -78,7 +78,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     maximo_indice_final = 0
 
     # TODO: Remover antes da submissão do PR
-    arquivo_primos_candidatos = "primos_candidatos.txt"
+    arquivo_primos_candidatos = "primos_candidatos_primos_3.txt"
 
     # TODO: Remover antes da submissão do PR
     if os.path.exists(arquivo_primos_candidatos):
