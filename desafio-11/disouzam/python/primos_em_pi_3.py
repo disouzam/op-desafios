@@ -11,6 +11,7 @@ from typing import cast
 
 from numeros_primos import primo, e_primo
 from manipulacao_de_arquivos import ler_primos_do_arquivo
+from geracao_lista_bits import combinacoes_bits
 
 
 def main(args) -> None:
