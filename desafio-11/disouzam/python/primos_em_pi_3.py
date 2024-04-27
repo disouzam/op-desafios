@@ -126,6 +126,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     # print(
                     #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
 
+                    # TODO: Remover antes da submissão
+                    with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                        primo_candidato.write("\n")
+
                     for numero_primo in lista_temporaria:
                         lista_primos.append(numero_primo)
 
@@ -146,6 +150,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
         # # TODO: Remover antes da submissão
         # print(
         #     f"{primo_atual.inicio} - Tamanho da lista temporaria: {len(lista_temporaria)}")
+
+        # TODO: Remover antes da submissão
+        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+            primo_candidato.write("\n")
 
         for numero_primo in lista_temporaria:
             lista_primos.append(numero_primo)
