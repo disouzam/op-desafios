@@ -154,6 +154,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     maximo_indice_final = primo_atual.fim
                 else:
                     lista_temporaria.append(primo_atual)
+                    lista_temporaria_customizada.append(primo_atual)
 
     if posicao_caractere_atual == len(digitos) - 1:
         lista_temporaria = filtrar_primos_disjuntos(
