@@ -38,6 +38,12 @@ class lista_num_primos(object):
     def clear(self) -> None:
         self.__lista.clear()
 
+    def lista_de_primos_como_string(self) -> list[str]:
+        resultado: list[str] = []
+        for item in self.__lista:
+            resultado.append(f"{item.numero_primo}")
+        return resultado
+
     def disjunta(self) -> bool:
         """lista_e_disjunta(self) -> bool:
         Checa se uma lista é disjunta ou não
