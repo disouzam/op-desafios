@@ -35,6 +35,9 @@ class lista_num_primos(object):
         else:
             return False
 
+    def clear(self) -> None:
+        self.__lista.clear()
+
     def disjunta(self) -> bool:
         """lista_e_disjunta(self) -> bool:
         Checa se uma lista é disjunta ou não
