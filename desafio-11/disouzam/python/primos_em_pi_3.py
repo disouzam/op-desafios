@@ -13,6 +13,7 @@ import pdb
 from numeros_primos import primo, e_primo
 from manipulacao_de_arquivos import ler_primos_do_arquivo
 from geracao_lista_bits import combinacoes_bits
+from lista_numeros_primos import lista_num_primos
 
 
 def main(args) -> None:
@@ -75,7 +76,9 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     digitos: lista de dígitos
     """
     lista_primos: list[primo] = []
+    lista_primos_customizada = lista_num_primos()
     lista_temporaria: list[primo] = []
+    lista_temporaria_customizada = lista_num_primos()
     primo_anterior: None | primo = None
     maximo_indice_final = 0
 
@@ -138,13 +141,16 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
                     for numero_primo in lista_temporaria:
                         lista_primos.append(numero_primo)
+                        lista_primos_customizada.add(numero_primo)
 
                         # TODO: Remover antes da submissão
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                             primo_candidato.write(f"{numero_primo}\n")
 
                     lista_temporaria.clear()
+                    lista_temporaria_customizada.clear()
                     lista_temporaria.append(primo_atual)
+                    lista_temporaria_customizada.add(primo_atual)
                     maximo_indice_final = primo_atual.fim
                 else:
                     lista_temporaria.append(primo_atual)
@@ -163,6 +169,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
         for numero_primo in lista_temporaria:
             lista_primos.append(numero_primo)
+            lista_primos_customizada.add(numero_primo)
 
             # TODO: Remover antes da submissão
             with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
