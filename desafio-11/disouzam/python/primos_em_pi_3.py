@@ -428,8 +428,19 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
 
     assert tamanho_lista_primos <= 9, f"Tamanho da lista de primos era {tamanho_lista_primos}"
 
-    lista_disjunta_encontrada = False
+    primos_filtrados = filtra_primos_com_sobreposicao_total(
+        primos, lista_primos_menores, maior_primo)
 
+    return primos_filtrados
+
+
+def filtra_primos_com_sobreposicao_total(
+        primos: list[primo],
+        lista_primos_menores: list[primo],
+        maior_primo: primo) -> list[primo]:
+
+    lista_disjunta_encontrada = False
+    tamanho_lista_primos = len(lista_primos_menores)
     numero_combinacoes = math.pow(2, tamanho_lista_primos)
 
     intervalo = int(numero_combinacoes/10)
