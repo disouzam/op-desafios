@@ -185,8 +185,121 @@ def filtrar_primos_disjuntos(primos: list[primo]) -> list[primo]:
     Processa uma lista temporaria de primos com sobreposicao e mantem os primos disjuntos
     quando existir ou devolve a lista original
     """
+    # Razões para não seguir com o processamento
+    if len(primos) == 0:
+        return primos
+
+    # TODO: Remover antes da submissão do PR
+    # print(
+    #     f"{primos[0].inicio} - Tamanho da lista temporaria: {len(primos)}")
+
+    sub_listas: list[list[primo]] = [[]]
+    maiores_primos: list[list[primo]] = [[]]
+
+    # Inicia a formação das sublistas
+    primos_temporarios = primos.copy()
+
+    indice_sublistas = 0
+    while len(primos_temporarios) > 0:
+        primo_candidato = primos_temporarios[0]
+        primos_temporarios.remove(primo_candidato)
+
+        if indice_sublistas > 0:
+            sub_listas.append([])
+            maiores_primos.append([])
+
+        sub_listas[indice_sublistas].append(primo_candidato)
+        maiores_primos[indice_sublistas].append(primo_candidato)
+        maior_primo_atual = primo_candidato
+
+        indice_interno = 0
+        while indice_interno < len(primos_temporarios):
+            novo_candidato_a_maior_primo = primos_temporarios[indice_interno]
+            if novo_candidato_a_maior_primo.sobrepoe_outro_primo_completamente(maior_primo_atual):
+                # Troca de maior número primo
+                sub_listas[indice_sublistas].append(
+                    novo_candidato_a_maior_primo)
+                maiores_primos[indice_sublistas].clear()
+                maiores_primos[indice_sublistas].append(
+                    novo_candidato_a_maior_primo)
+                primos_temporarios.remove(novo_candidato_a_maior_primo)
+                maior_primo_atual = novo_candidato_a_maior_primo
+                indice_interno = 0
+            elif maior_primo_atual.sobrepoe_outro_primo_completamente(novo_candidato_a_maior_primo):
+                # Adiciona nov primo à sublista atual
+                sub_listas[indice_sublistas].append(
+                    novo_candidato_a_maior_primo)
+                primos_temporarios.remove(novo_candidato_a_maior_primo)
+                indice_interno = 0
+            else:
+                # Avança para o próximo índice para atingir o final da lista de primos temporários
+                indice_interno += 1
+
+        indice_sublistas += 1
+
+    numero_sublistas = len(sub_listas)
+    indice_sublistas = 0
+    lista_temporaria: list[primo] = []
+    while len(primos) > 0 and indice_sublistas < numero_sublistas:
+        del lista_temporaria
+        lista_temporaria = sub_listas[indice_sublistas].copy()
+
+        # TODO: Remover antes da submissão do PR
+        # print(
+        #     f"Chamada à filtra_primos_disjuntos_de_lista_com_sobreposicao_total: {len(lista_temporaria)} elementos")
+        lista_temporaria = filtra_primos_disjuntos_de_lista_com_sobreposicao_total(
+            lista_temporaria, maiores_primos[indice_sublistas][0])
+
+        sub_listas[indice_sublistas] = lista_temporaria
+        indice_sublistas += 1
+
+    # Mesclar as sublistas
+    lista_temporaria: list[primo] = []
+    numero_sublistas = len(sub_listas)
+    indice_sublistas = 0
+    while len(primos) > 0 and indice_sublistas < numero_sublistas:
+        lista_temporaria.extend(sub_listas[indice_sublistas])
+        indice_sublistas += 1
+
+    # Ordenar as sublistas
+    quantidade_primos = len(lista_temporaria)
+    for indice_externo in range(0, quantidade_primos - 1):
+        primo_externo = lista_temporaria[indice_externo]
+        for indice_interno in range(indice_externo + 1, quantidade_primos):
+            primo_interno = lista_temporaria[indice_interno]
+            if primo_interno.inicio < primo_externo.inicio or \
+                (primo_interno.inicio == primo_externo.inicio
+                    and primo_interno.numero_caracteres() < primo_externo.numero_caracteres()):
+                lista_temporaria[indice_externo] = primo_interno
+                lista_temporaria[indice_interno] = primo_externo
+
+    # TODO: Remover antes da submissão do PR
+    # print(
+    #     f"Chamada à filtra_primos_sobrepostos: {len(lista_temporaria)} elementos")
+    lista_temporaria = filtra_primos_sobrepostos(lista_temporaria)
+
+    return lista_temporaria
+
+
+def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
+    """filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
+    Usando permutação, obtém a maior lista possível sem sobreposicao
+    """
     lista_temporaria: list[primo] = []
     return lista_temporaria
+
+
+def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo], maior_primo: primo) -> list[primo]:
+    """filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo], maior_primo: primo) -> list[primo]:
+    Filtra uma lista de primos com sobreposicao total e devolve uma
+    lista de itens disjuntos, se existir
+
+    Parâmetros:
+    primos: Lista de números primos
+    maior_primo: Primo com maior número de caracteres
+    """
+    lista_primos_menores: list[primo] = []
+    return lista_primos_menores
 
 
 def debugger_is_active() -> bool:
