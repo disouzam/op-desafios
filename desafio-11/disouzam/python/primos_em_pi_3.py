@@ -75,8 +75,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     Parâmetro:
     digitos: lista de dígitos
     """
-    lista_primos_customizada = lista_num_primos()
-    lista_temporaria_customizada = lista_num_primos()
+    lista_primos = lista_num_primos()
+    lista_temporaria = lista_num_primos()
     primo_anterior: None | primo = None
     maximo_indice_final = 0
 
@@ -125,47 +125,47 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     primo_anterior = primo_atual
 
                 if not sobreposicao_entre_vizinhos:
-                    lista_temporaria_customizada.filtrar_primos_disjuntos()
+                    lista_temporaria.filtrar_primos()
 
-                    if lista_primos_customizada.size() > 0:
+                    if lista_primos.size() > 0:
                         # TODO: Remover antes da submissão
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                             primo_candidato.write("\n")
 
-                    for numero_primo in lista_temporaria_customizada:
-                        lista_primos_customizada.append(numero_primo)
+                    for numero_primo in lista_temporaria:
+                        lista_primos.append(numero_primo)
 
                         # TODO: Remover antes da submissão
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                             primo_candidato.write(f"{numero_primo}\n")
 
-                    lista_temporaria_customizada.clear()
-                    lista_temporaria_customizada.append(primo_atual)
+                    lista_temporaria.clear()
+                    lista_temporaria.append(primo_atual)
                     maximo_indice_final = primo_atual.fim
                 else:
-                    lista_temporaria_customizada.append(primo_atual)
+                    lista_temporaria.append(primo_atual)
 
     if posicao_caractere_atual == len(digitos) - 1:
-        lista_temporaria_customizada.filtrar_primos_disjuntos()
+        lista_temporaria.filtrar_primos()
 
         # TODO: Remover antes da submissão
         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
             primo_candidato.write("\n")
 
-        for numero_primo in lista_temporaria_customizada:
-            lista_primos_customizada.append(numero_primo)
+        for numero_primo in lista_temporaria:
+            lista_primos.append(numero_primo)
 
             # TODO: Remover antes da submissão
             with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                 primo_candidato.write(f"{numero_primo}\n")
 
-    del lista_temporaria_customizada, candidato, comprimento, inicio, fim, posicao_caractere_atual
+    del lista_temporaria, candidato, comprimento, inicio, fim, posicao_caractere_atual
     del primo_anterior, primo_atual, sobreposicao_entre_vizinhos, numero_primo
 
-    if not lista_primos_customizada.disjunta():
+    if not lista_primos.disjunta():
         raise ArgumentError(f"Lista de primos inválida.")
 
-    lista_primos_como_string = lista_primos_customizada.lista_de_primos_como_string()
+    lista_primos_como_string = lista_primos.lista_de_primos_como_string()
     return lista_primos_como_string
 
 

@@ -22,9 +22,7 @@ from ctypes import ArgumentError
 
 
 class primo(object):
-    """primo
-    Organiza as informações de um número primo posicionado nos decimais do número pi
-    """
+    """Organiza as informações de um número primo posicionado nos decimais do número pi"""
 
     def __init__(self, numero_primo: int, inicio: int, fim: int) -> None:
         """Construtor"""
