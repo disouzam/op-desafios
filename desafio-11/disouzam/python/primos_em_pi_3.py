@@ -59,7 +59,7 @@ def main(args) -> None:
     print(caracteres_concatenados)
 
     arquivo_de_resultado = "resultado_primos_3.txt"
-    if not os.path.isfile(arquivo_de_resultado):
+    if os.path.isfile(arquivo_de_resultado):
         os.remove(arquivo_de_resultado)
 
     with open(arquivo_de_resultado, "w", encoding='utf-8') as arquivo:
