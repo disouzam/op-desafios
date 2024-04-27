@@ -21,7 +21,7 @@ class lista_num_primos(object):
     def __repr__(self) -> str:
         return self.__str__()
 
-    def add(self, novo_primo: primo) -> bool:
+    def append(self, novo_primo: primo) -> bool:
         if novo_primo not in self.__lista:
             self.__lista.append(novo_primo)
             return True

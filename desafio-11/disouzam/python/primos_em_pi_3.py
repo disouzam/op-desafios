@@ -141,7 +141,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
                     for numero_primo in lista_temporaria:
                         lista_primos.append(numero_primo)
-                        lista_primos_customizada.add(numero_primo)
+                        lista_primos_customizada.append(numero_primo)
 
                         # TODO: Remover antes da submissão
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
@@ -150,7 +150,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     lista_temporaria.clear()
                     lista_temporaria_customizada.clear()
                     lista_temporaria.append(primo_atual)
-                    lista_temporaria_customizada.add(primo_atual)
+                    lista_temporaria_customizada.append(primo_atual)
                     maximo_indice_final = primo_atual.fim
                 else:
                     lista_temporaria.append(primo_atual)
@@ -169,7 +169,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
         for numero_primo in lista_temporaria:
             lista_primos.append(numero_primo)
-            lista_primos_customizada.add(numero_primo)
+            lista_primos_customizada.append(numero_primo)
 
             # TODO: Remover antes da submissão
             with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
