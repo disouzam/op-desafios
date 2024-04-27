@@ -90,6 +90,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
         for comprimento in range(1, 5):
             inicio = posicao_caractere_atual
             fim = posicao_caractere_atual + comprimento - 1
+
+            if fim > len(digitos) - 1:
+                continue
+
             candidato = int("".join(digitos[inicio:fim + 1]))
 
             if e_primo(candidato):
