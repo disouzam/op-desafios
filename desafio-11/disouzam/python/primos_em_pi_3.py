@@ -336,6 +336,7 @@ def filtra_primos_sobrepostos(primos: list[primo]) -> list[primo]:
     contador = 0
     indice_externo = 0
 
+    # TODO: Possível explosão combinatória que precisa ser substituída - Primos sobrepostos
     for combinacao in combinacoes_bits(tamanho_lista_primos):
         indice_externo += 1
         contador += 1
@@ -429,6 +430,7 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
     indice_externo = 0
 
     # Válido apenas para um primo principal
+    # TODO: Possível explosão combinatória que precisa ser substituída - Primos disjuntos
     for combinacao in combinacoes_bits(tamanho_lista_primos):
         contador += 1
         indice_externo += 1
