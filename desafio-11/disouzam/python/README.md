@@ -13,7 +13,7 @@ Executando dentro da pasta do desafio (desafio-11/disouzam/python), o comando pa
 código através do Pylint é:
 
 ```python
-pylint --rcfile=../../../ci/pylint3.rc primos_em_pi_2.py
+pylint --rcfile=../../../ci/pylint3.rc primos_em_pi_3.py
 ```
 
 # Como gerar arquivos com número específico de casas decimais de Pi
@@ -34,7 +34,7 @@ Executando dentro da pasta do desafio (desafio-11/disouzam/python), o comando é
 
 ```shell
 cd desafio-11/disouzam/python
-python -m primos_em_pi_2 pi-1M.txt
+python -m primos_em_pi_3 pi-1M.txt
 ```
 
 # Profiling
@@ -43,7 +43,7 @@ Alguns experimentos foram feitos usando cProfile, tanto diretamente via linha de
 
 ```shell
 cd desafio-11/disouzam/python
-python -m cProfile -o profiling-results.prof -m primos_em_pi_2 pi-1M.txt
+python -m cProfile -o profiling-results.prof -m primos_em_pi_3 pi-1M.txt
 ```
 
 ou via instrumentação dentro da chamada da função main:
@@ -75,7 +75,7 @@ python -m snakeviz profiling-results.prof
 
 ```shell
 cd desafio-11/disouzam/python
-python -m pytest -v test_primos_em_pi_2.py
+python -m pytest -v test_primos_em_pi_3.py
 ```
 
 # Referências
