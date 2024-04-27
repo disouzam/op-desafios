@@ -28,9 +28,22 @@ class lista_num_primos(object):
         else:
             return False
 
-    def remove(self, primo_a_ser_removido: primo):
+    def remove(self, primo_a_ser_removido: primo) -> bool:
         if primo_a_ser_removido in self.__lista:
             self.__lista.remove(primo_a_ser_removido)
             return True
         else:
             return False
+
+    def disjunta(self) -> bool:
+        """lista_e_disjunta(self) -> bool:
+        Checa se uma lista é disjunta ou não
+        """
+        for indice in range(0, len(self.__lista) - 1):
+            primo_atual = self.__lista[indice]
+            primo_seguinte = self.__lista[indice + 1]
+
+            if primo_atual.sobrepoe_outro_primo_parcialmente(primo_seguinte):
+                return False
+
+        return True
