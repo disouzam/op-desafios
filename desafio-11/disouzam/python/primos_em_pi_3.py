@@ -7,6 +7,7 @@ import math
 import os
 import sys
 from typing import cast
+import pdb
 
 
 from numeros_primos import primo, e_primo
@@ -421,6 +422,12 @@ def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo],
         return primos
 
     tamanho_lista_primos = len(lista_primos_menores)
+
+    if tamanho_lista_primos > 9:
+        pdb.set_trace()
+
+    assert tamanho_lista_primos <= 9, f"Tamanho da lista de primos era {tamanho_lista_primos}"
+
     lista_disjunta_encontrada = False
 
     numero_combinacoes = math.pow(2, tamanho_lista_primos)
