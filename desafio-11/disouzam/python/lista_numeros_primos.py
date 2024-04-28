@@ -2,9 +2,11 @@
 informações transitórias mas importantes
 """
 from __future__ import annotations
+import math
 from typing import Generator, cast
 
 from numeros_primos import primo
+from geracao_lista_bits import combinacoes_bits
 
 
 class lista_num_primos(object):
@@ -191,6 +193,8 @@ class lista_num_primos(object):
         if self.size() == 0:
             return
 
+        self.exclui_sobreposicao_total()
+
         maior_comprimento = 0
         maior_comprimento_possivel = self.maior_comprimento_possivel()
         melhor_combinacao = self.copy()
@@ -222,3 +226,139 @@ class lista_num_primos(object):
         self.__lista = melhor_combinacao.__lista.copy()
         # print("\nResultado:")
         # self.console_repr()
+
+    def exclui_sobreposicao_total(self) -> None:
+        sub_listas: list[lista_num_primos] = []
+        maiores_primos: list[lista_num_primos] = []
+
+        primos_temporarios = self.copy()
+
+        indice_sublistas = 0
+        while primos_temporarios.size() > 0:
+            primo_candidato = primos_temporarios[0]
+            primos_temporarios.remove(primo_candidato)
+
+            sub_listas.append(lista_num_primos())
+            maiores_primos.append(lista_num_primos())
+
+            sub_listas[indice_sublistas].append(primo_candidato)
+            maiores_primos[indice_sublistas].append(primo_candidato)
+            maior_primo_atual = primo_candidato
+
+            indice_interno = 0
+            while indice_interno < primos_temporarios.size():
+                novo_candidato_a_maior_primo = primos_temporarios[indice_interno]
+                if novo_candidato_a_maior_primo.sobrepoe_outro_primo_completamente(maior_primo_atual):
+                    # Troca de maior número primo
+                    sub_listas[indice_sublistas].append(
+                        novo_candidato_a_maior_primo)
+                    maiores_primos[indice_sublistas].clear()
+                    maiores_primos[indice_sublistas].append(
+                        novo_candidato_a_maior_primo)
+                    primos_temporarios.remove(novo_candidato_a_maior_primo)
+                    maior_primo_atual = novo_candidato_a_maior_primo
+                    indice_interno = 0
+                elif maior_primo_atual.sobrepoe_outro_primo_completamente(novo_candidato_a_maior_primo):
+                    # Adiciona nov primo à sublista atual
+                    sub_listas[indice_sublistas].append(
+                        novo_candidato_a_maior_primo)
+                    primos_temporarios.remove(novo_candidato_a_maior_primo)
+                    indice_interno = 0
+                else:
+                    # Avança para o próximo índice para atingir o final da lista de primos temporários
+                    indice_interno += 1
+
+            indice_sublistas += 1
+
+        numero_sublistas = len(sub_listas)
+        indice_sublistas = 0
+        lista_temporaria = lista_num_primos()
+        while indice_sublistas < numero_sublistas:
+            del lista_temporaria
+            lista_temporaria = sub_listas[indice_sublistas].copy()
+
+            lista_temporaria.filtra_primos_disjuntos_de_lista_com_sobreposicao_total(
+                maiores_primos[indice_sublistas][0])
+
+            sub_listas[indice_sublistas] = lista_temporaria
+            indice_sublistas += 1
+
+        # Mesclar as sublistas
+        lista_temporaria = lista_num_primos()
+        numero_sublistas = len(sub_listas)
+        indice_sublistas = 0
+        while indice_sublistas < numero_sublistas:
+            lista_temporaria.extend(sub_listas[indice_sublistas])
+            indice_sublistas += 1
+
+        # Ordenar as sublistas
+        quantidade_primos = lista_temporaria.size()
+        for indice_externo in range(0, quantidade_primos - 1):
+            primo_externo = lista_temporaria[indice_externo]
+            for indice_interno in range(indice_externo + 1, quantidade_primos):
+                primo_interno = lista_temporaria[indice_interno]
+                if primo_interno.inicio < primo_externo.inicio or \
+                    (primo_interno.inicio == primo_externo.inicio
+                        and primo_interno.numero_caracteres() < primo_externo.numero_caracteres()):
+                    lista_temporaria[indice_externo] = primo_interno
+                    lista_temporaria[indice_interno] = primo_externo
+
+        self.__lista = lista_temporaria.__lista.copy()
+
+    def filtra_primos_disjuntos_de_lista_com_sobreposicao_total(self, maior_primo: primo) -> None:
+        """filtra_primos_disjuntos_de_lista_com_sobreposicao_total(primos: list[primo], maior_primo: primo) -> list[primo]:
+        Filtra uma lista de primos com sobreposicao total e devolve uma
+        lista de itens disjuntos, se existir
+
+        Parâmetros:
+        primos: Lista de números primos
+        maior_primo: Primo com maior número de caracteres
+        """
+        lista_primos_menores = lista_num_primos()
+
+        # Monta lista de primos menores
+        falta_de_sobreposicao_total = False
+        for numero_primo in self:
+            if numero_primo != maior_primo:
+                lista_primos_menores.append(numero_primo)
+                if not maior_primo.sobrepoe_outro_primo_completamente(numero_primo):
+                    falta_de_sobreposicao_total = True
+                    break
+
+        if falta_de_sobreposicao_total:
+            return
+
+        tamanho_lista_primos = lista_primos_menores.size()
+        lista_disjunta_encontrada = False
+
+        numero_combinacoes = math.pow(2, tamanho_lista_primos)
+
+        intervalo = int(numero_combinacoes/10)
+        contador = 0
+        indice_externo = 0
+
+        # Válido apenas para um primo principal
+        for combinacao in combinacoes_bits(tamanho_lista_primos):
+            contador += 1
+            indice_externo += 1
+
+            # if contador == intervalo:
+            #     print(f"\t\t{indice_externo}/{numero_combinacoes}")
+            #     contador = 0
+
+            lista_temporaria = lista_num_primos()
+            total_caracteres = 0
+
+            for indice, numero_primo in enumerate(lista_primos_menores):
+                if combinacao[indice] == 1:
+                    lista_temporaria.append(numero_primo)
+                    total_caracteres += numero_primo.numero_caracteres()
+
+            lista_temporaria_e_disjunta = lista_temporaria.disjunta()
+
+            if lista_temporaria_e_disjunta and total_caracteres == maior_primo.numero_caracteres():
+                lista_disjunta_encontrada = True
+                break
+
+        if lista_disjunta_encontrada:
+            self.__lista = lista_temporaria.__lista.copy()
