@@ -6,6 +6,7 @@ from ctypes import ArgumentError
 import os
 import sys
 from typing import cast
+import datetime
 
 
 from numeros_primos import primo, e_primo
@@ -99,6 +100,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
     # Levanta todos os primos existentes, não checando sobreposição
     for posicao_caractere_atual in range(0, len(digitos)):
+        print(
+            f"Hora atual: {datetime.datetime.now()}-Posição caractere atual: {posicao_caractere_atual}")
         for comprimento in range(1, 5):
             inicio = posicao_caractere_atual
             fim = posicao_caractere_atual + comprimento - 1
