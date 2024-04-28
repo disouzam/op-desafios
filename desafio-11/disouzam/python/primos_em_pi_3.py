@@ -59,7 +59,7 @@ def main(args) -> None:
     caracteres_concatenados = "".join(primos_na_parte_fracionaria)
     print(caracteres_concatenados)
 
-    arquivo_de_resultado = "resultado_primos_3.txt"
+    arquivo_de_resultado = "saidas/resultado_primos_3.txt"
     if os.path.isfile(arquivo_de_resultado):
         os.remove(arquivo_de_resultado)
 
@@ -87,8 +87,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     maximo_indice_final = 0
 
     # TODO: Remover antes da submissão do PR
-    arquivo_primos_candidatos = "primos_candidatos_primos_3.txt"
-    contagem_de_tamanho_de_listas = "contagem_de_tamanho_de_listas_primos_3.txt"
+    arquivo_primos_candidatos = "saidas/primos_candidatos_primos_3.txt"
+    contagem_de_tamanho_de_listas = "saidas/contagem_de_tamanho_de_listas_primos_3.txt"
     ocorrencias_tamanho_de_listas = []
 
     # TODO: Remover antes da submissão do PR
