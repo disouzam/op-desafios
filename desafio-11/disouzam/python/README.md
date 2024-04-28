@@ -22,7 +22,7 @@ Para obter um arquivo com 20 decimais de Pi, o comando é apresentado abaixo
 
 ```shell
 cd desafio-11/disouzam/python
-cut -c1-22 < pi-1M.txt > pi-20.txt
+cut -c1-22 < entradas/pi-1M.txt > entradas/pi-20.txt
 ```
 
 # Como executar o script

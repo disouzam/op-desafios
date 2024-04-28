@@ -14,3 +14,4 @@ profiling-results.prof
 # Inclusão das entradas e saídas do programa
 !entradas/**
 !saidas/**
+!arquivo_referencia/**
