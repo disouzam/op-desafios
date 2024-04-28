@@ -36,6 +36,13 @@ def main(args) -> None:
             print("Programa abortado.")
             return
 
+    lista_de_candidatos: list[int] = []
+    with open(arquivo_com_potencias_de_2, 'r', encoding='utf-8') as arquivo:
+        for linha in arquivo:
+            linha_processada = (linha.split("\n"))[0]
+            candidato = int(linha_processada)
+            lista_de_candidatos.append(candidato)
+
 
 def debugger_is_active() -> bool:
     # TODO: Remover antes da submissão do PR
