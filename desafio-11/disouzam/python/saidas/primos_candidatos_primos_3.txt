@@ -1,0 +1,11 @@
+(primo: 41, inicio: 1, fim: 2)
+(primo: 59, inicio: 3, fim: 4)
+
+(primo: 2, inicio: 5, fim: 5)
+
+(primo: 653, inicio: 6, fim: 8)
+
+(primo: 5, inicio: 9, fim: 9)
+(primo: 89, inicio: 10, fim: 11)
+(primo: 7, inicio: 12, fim: 12)
+(primo: 9323, inicio: 13, fim: 16)
