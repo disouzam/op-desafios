@@ -3,16 +3,13 @@
 from __future__ import annotations
 import cProfile
 from ctypes import ArgumentError
-import math
 import os
 import sys
 from typing import cast
-import pdb
 
 
 from numeros_primos import primo, e_primo
 from manipulacao_de_arquivos import ler_primos_do_arquivo
-from geracao_lista_bits import combinacoes_bits
 from lista_numeros_primos import lista_num_primos
 
 

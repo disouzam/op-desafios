@@ -36,6 +36,11 @@ class lista_num_primos(object):
         """
         return (item for item in self.__lista)
 
+    def console_repr(self) -> None:
+        print("\n\n")
+        for item in self.__lista:
+            print(item)
+
     def size(self) -> int:
         """size(self) -> int:
         Tamanho da lista de primos
@@ -172,6 +177,7 @@ class lista_num_primos(object):
         if self.size() == 0:
             return
 
+        maior_comprimento = 0
         melhor_combinacao = self.copy()
 
         for indice_externo, primo_atual in enumerate(self):
@@ -189,7 +195,12 @@ class lista_num_primos(object):
             sub_lista.filtrar_primos()
             lista_temporaria.extend(sub_lista)
 
-            if lista_temporaria.comprimento() > melhor_combinacao.comprimento():
+            if lista_temporaria.comprimento() > maior_comprimento:
                 melhor_combinacao = lista_temporaria.copy()
+                maior_comprimento = melhor_combinacao.comprimento()
+                # print("\nMelhor combinação: ")
+                # melhor_combinacao.console_repr()
 
         self.__lista = melhor_combinacao.__lista.copy()
+        # print("\nResultado:")
+        # self.console_repr()
