@@ -8,12 +8,13 @@ import sys
 from typing import cast
 import datetime
 from os.path import join
+from collections import Counter
 
 
 from numeros_primos import primo, e_primo
 from manipulacao_de_arquivos import ler_primos_do_arquivo, get_file_name_without_extension
 from lista_numeros_primos import lista_num_primos
-from collections import Counter
+from peneira_de_eratosthenes import primos_ate_n
 
 
 def main(args) -> None:
@@ -107,6 +108,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
 
     ocorrencias_tamanho_de_listas = []
 
+    lista_de_primos_Erastothenes = primos_ate_n(9973)
+
     # TODO: Remover antes da submissão do PR
     if os.path.exists(arquivo_primos_candidatos):
         os.remove(arquivo_primos_candidatos)
@@ -130,7 +133,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
             if candidato == 0:
                 break
 
-            if e_primo(candidato):
+            if candidato in lista_de_primos_Erastothenes:
                 sobreposicao_entre_vizinhos = False
                 primo_atual = primo(candidato, inicio, fim)
 
