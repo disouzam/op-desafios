@@ -141,6 +141,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 primo_anterior = primo_atual
 
                 if not sobreposicao_entre_vizinhos:
+                    print(f"\t\tTamanho da lista: {lista_temporaria.size()}")
                     ocorrencias_tamanho_de_listas.append(
                         lista_temporaria.size())
                     lista_temporaria.filtrar_primos()
