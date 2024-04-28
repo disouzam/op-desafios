@@ -95,6 +95,9 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
             candidato = int("".join(digitos[inicio:fim + 1]))
 
+            if candidato == 0:
+                break
+
             if e_primo(candidato):
                 sobreposicao_entre_vizinhos = False
                 primo_atual = primo(candidato, inicio, fim)
