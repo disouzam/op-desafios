@@ -10,3 +10,7 @@ requirements.in
 
 # Arquivo binário de profiling
 profiling-results.prof
+
+# Inclusão das entradas e saídas do programa
+!entradas/**
+!saidas/**
