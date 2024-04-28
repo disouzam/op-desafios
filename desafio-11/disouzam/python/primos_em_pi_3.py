@@ -11,6 +11,7 @@ from typing import cast
 from numeros_primos import primo, e_primo
 from manipulacao_de_arquivos import ler_primos_do_arquivo
 from lista_numeros_primos import lista_num_primos
+from collections import Counter
 
 
 def main(args) -> None:
@@ -65,6 +66,13 @@ def main(args) -> None:
         arquivo.write(caracteres_concatenados)
 
 
+def imprimir_contagem_de_listas(caminho, contador: Counter):
+    # TODO: Remover antes da submissão
+    with open(caminho, "w", encoding='utf-8') as arquivo:
+        for tamanho, ocorrencia in contador.items():
+            arquivo.write(f"{tamanho}: {ocorrencia}\n")
+
+
 def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     """obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     Obtém uma lista de primos a partir de uma lista ordenada de dígitos
@@ -79,10 +87,15 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
 
     # TODO: Remover antes da submissão do PR
     arquivo_primos_candidatos = "primos_candidatos_primos_3.txt"
+    contagem_de_tamanho_de_listas = "contagem_de_tamanho_de_listas_primos_3.txt"
+    ocorrencias_tamanho_de_listas = []
 
     # TODO: Remover antes da submissão do PR
     if os.path.exists(arquivo_primos_candidatos):
         os.remove(arquivo_primos_candidatos)
+
+    if os.path.exists(contagem_de_tamanho_de_listas):
+        os.remove(contagem_de_tamanho_de_listas)
 
     # Levanta todos os primos existentes, não checando sobreposição
     for posicao_caractere_atual in range(0, len(digitos)):
@@ -125,7 +138,14 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 primo_anterior = primo_atual
 
                 if not sobreposicao_entre_vizinhos:
+                    ocorrencias_tamanho_de_listas.append(
+                        lista_temporaria.size())
                     lista_temporaria.filtrar_primos()
+
+                    contador = Counter(ocorrencias_tamanho_de_listas)
+
+                    imprimir_contagem_de_listas(
+                        contagem_de_tamanho_de_listas, contador)
 
                     if lista_primos.size() > 0:
                         # TODO: Remover antes da submissão
