@@ -15,6 +15,8 @@ class lista_num_primos(object):
         Construtor
         """
         self.__lista: list[primo] = []
+        self.__menor_posicao = -1
+        self.__maior_posicao = -1
 
     def __str__(self) -> str:
         """__str__(self) -> str:
@@ -51,11 +53,45 @@ class lista_num_primos(object):
         Insere um novo primo no final da lista
         """
         if novo_primo not in self.__lista:
+            if self.size() == 0:
+                self.__menor_posicao = novo_primo.inicio
+                self.__maior_posicao = novo_primo.fim
+            else:
+                if novo_primo.inicio < self.__menor_posicao:
+                    self.__menor_posicao = novo_primo.inicio
+
+                if novo_primo.fim < self.__maior_posicao:
+                    self.__maior_posicao = novo_primo.fim
+
             self.__lista.append(novo_primo)
 
             return True
         else:
             return False
+
+    def __recalcular_posicoes(self):
+
+        self.__menor_posicao = -1
+        self.__maior_posicao = -1
+
+        if self.size() > 0:
+            self.__menor_posicao = self[0].inicio
+            self.__maior_posicao = self[0].fim
+
+        for numero_primo in self.__lista:
+            if numero_primo.inicio < self.__menor_posicao:
+                self.__menor_posicao = numero_primo.inicio
+
+            if numero_primo.fim < self.__maior_posicao:
+                self.__maior_posicao = numero_primo.fim
+
+    def maior_comprimento_possivel(self):
+
+        if self.__menor_posicao == -1 or self.__maior_posicao == -1:
+            self.__recalcular_posicoes()
+
+        resultado = self.__maior_posicao - self.__menor_posicao + 1
+        return resultado
 
     def remove(self, primo_a_ser_removido: primo) -> bool:
         """remove(self, primo_a_ser_removido: primo) -> bool:
@@ -63,6 +99,9 @@ class lista_num_primos(object):
         """
         if primo_a_ser_removido in self.__lista:
             self.__lista.remove(primo_a_ser_removido)
+            self.__menor_posicao = -1
+            self.__maior_posicao = -1
+
             return True
         else:
             return False
@@ -153,6 +192,7 @@ class lista_num_primos(object):
             return
 
         maior_comprimento = 0
+        maior_comprimento_possivel = self.maior_comprimento_possivel()
         melhor_combinacao = self.copy()
 
         for indice_externo, primo_atual in enumerate(self):
@@ -175,6 +215,9 @@ class lista_num_primos(object):
                 maior_comprimento = melhor_combinacao.comprimento()
                 # print("\nMelhor combinação: ")
                 # melhor_combinacao.console_repr()
+
+            if maior_comprimento == maior_comprimento_possivel:
+                break
 
         self.__lista = melhor_combinacao.__lista.copy()
         # print("\nResultado:")
