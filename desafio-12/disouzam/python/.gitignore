@@ -7,3 +7,5 @@ setup.sh
 activate_python3.11_environment.sh
 requirements.in
 *.txt
+
+!arquivo_referencia/**
