@@ -7,10 +7,11 @@ import os
 import sys
 from typing import cast
 import datetime
+from os.path import join
 
 
 from numeros_primos import primo, e_primo
-from manipulacao_de_arquivos import ler_primos_do_arquivo
+from manipulacao_de_arquivos import ler_primos_do_arquivo, get_file_name_without_extension
 from lista_numeros_primos import lista_num_primos
 from collections import Counter
 
@@ -31,8 +32,9 @@ def main(args) -> None:
     # Validação dos argumentos
     if nargs >= 1:
         arquivo_com_numero_pi = args[0]
+        file_name = get_file_name_without_extension(arquivo_com_numero_pi)
         digitos_parte_fracionaria = ler_primos_do_arquivo(
-            arquivo_com_numero_pi)
+            arquivo_com_numero_pi, file_name)
 
     if nargs >= 2:
         mensagem = f"Você informou um número excessivo de argumentos ({nargs}). "
@@ -49,7 +51,7 @@ def main(args) -> None:
             return
 
     primos_na_parte_fracionaria = obtem_primos_de_lista_de_inteiros(
-        digitos_parte_fracionaria)
+        digitos_parte_fracionaria, file_name)
 
     # TODO: Remover antes da submissão do PR
     for numero_primo in primos_na_parte_fracionaria:
@@ -59,7 +61,11 @@ def main(args) -> None:
     caracteres_concatenados = "".join(primos_na_parte_fracionaria)
     print(caracteres_concatenados)
 
-    arquivo_de_resultado = "saidas/resultado_primos_3.txt"
+    diretorio_raiz = os.path.dirname(os.path.realpath(__file__))
+
+    arquivo_de_resultado = f"{file_name}-resultado_primos_3.txt"
+    arquivo_de_resultado = join("saidas", arquivo_de_resultado)
+    arquivo_de_resultado = join(diretorio_raiz, arquivo_de_resultado)
     if os.path.isfile(arquivo_de_resultado):
         os.remove(arquivo_de_resultado)
 
@@ -74,7 +80,7 @@ def imprimir_contagem_de_listas(caminho, contador: Counter):
             arquivo.write(f"{tamanho}: {ocorrencia}\n")
 
 
-def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
+def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str]:
     """obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     Obtém uma lista de primos a partir de uma lista ordenada de dígitos
 
@@ -86,9 +92,19 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
     primo_anterior: None | primo = None
     maximo_indice_final = 0
 
+    diretorio_raiz = os.path.dirname(os.path.realpath(__file__))
+
     # TODO: Remover antes da submissão do PR
-    arquivo_primos_candidatos = "saidas/primos_candidatos_primos_3.txt"
-    contagem_de_tamanho_de_listas = "saidas/contagem_de_tamanho_de_listas_primos_3.txt"
+    arquivo_primos_candidatos = f"{file_name}-primos_candidatos_primos_3.txt"
+    arquivo_primos_candidatos = join("saidas", arquivo_primos_candidatos)
+    arquivo_primos_candidatos = join(diretorio_raiz, arquivo_primos_candidatos)
+
+    contagem_de_tamanho_de_listas = f"{file_name}-contagem_de_tamanho_de_listas_primos_3.txt"
+    contagem_de_tamanho_de_listas = join(
+        "saidas", contagem_de_tamanho_de_listas)
+    contagem_de_tamanho_de_listas = join(
+        diretorio_raiz, contagem_de_tamanho_de_listas)
+
     ocorrencias_tamanho_de_listas = []
 
     # TODO: Remover antes da submissão do PR

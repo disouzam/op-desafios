@@ -1,0 +1,5 @@
+1 (Posicao: 0)
+4 (Posicao: 1)
+1 (Posicao: 2)
+5 (Posicao: 3)
+9 (Posicao: 4)

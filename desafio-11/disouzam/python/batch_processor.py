@@ -7,7 +7,7 @@ import os
 from os import walk
 from os.path import join
 
-from numpy import full
+from primos_em_pi_3 import main as ppi_main
 
 
 def main() -> None:
@@ -18,7 +18,8 @@ def main() -> None:
     caminho_completo = join(diretorio_raiz, pasta_de_dados_de_entrada)
     lista_de_arquivos = get_all_input_files(caminho_completo)
     for arquivo in lista_de_arquivos:
-        print(arquivo)
+        args = [arquivo]
+        ppi_main(args)
 
 
 def get_all_input_files(folder):
@@ -38,7 +39,7 @@ def get_all_input_files(folder):
         for txt in txtlist:
             fulltxtpath = join(dirpath, txt)
             result_list.append(fulltxtpath)
-    return txtlist
+    return result_list
 
 
 def debugger_is_active() -> bool:

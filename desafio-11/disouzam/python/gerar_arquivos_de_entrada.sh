@@ -3,7 +3,6 @@ date
 set -o xtrace
 PS4='${LINENO}: '
 
-cut -c1-4 < arquivo_referencia/pi-1M.txt > entradas/00-pi-2.txt
 cut -c1-7 < arquivo_referencia/pi-1M.txt > entradas/01-pi-5.txt
 cut -c1-12 < arquivo_referencia/pi-1M.txt > entradas/02-pi-10.txt
 cut -c1-22 < arquivo_referencia/pi-1M.txt > entradas/03-pi-20.txt

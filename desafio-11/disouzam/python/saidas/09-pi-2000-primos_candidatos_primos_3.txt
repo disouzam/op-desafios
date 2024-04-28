@@ -1,0 +1,1318 @@
+(primo: 41, inicio: 1, fim: 2)
+(primo: 59, inicio: 3, fim: 4)
+
+(primo: 2, inicio: 5, fim: 5)
+
+(primo: 653, inicio: 6, fim: 8)
+
+(primo: 5, inicio: 9, fim: 9)
+(primo: 89, inicio: 10, fim: 11)
+(primo: 7, inicio: 12, fim: 12)
+(primo: 9323, inicio: 13, fim: 16)
+
+(primo: 2, inicio: 20, fim: 20)
+
+(primo: 643, inicio: 21, fim: 23)
+(primo: 3, inicio: 24, fim: 24)
+(primo: 83, inicio: 25, fim: 26)
+
+(primo: 2, inicio: 27, fim: 27)
+
+(primo: 7, inicio: 28, fim: 28)
+
+(primo: 5, inicio: 30, fim: 30)
+
+(primo: 2, inicio: 32, fim: 32)
+
+(primo: 8419, inicio: 34, fim: 37)
+(primo: 7, inicio: 38, fim: 38)
+(primo: 1693, inicio: 39, fim: 42)
+
+(primo: 937, inicio: 44, fim: 46)
+(primo: 5, inicio: 47, fim: 47)
+
+(primo: 5, inicio: 50, fim: 50)
+
+(primo: 8209, inicio: 51, fim: 54)
+(primo: 7, inicio: 55, fim: 55)
+
+(primo: 59, inicio: 60, fim: 61)
+(primo: 2, inicio: 62, fim: 62)
+(primo: 307, inicio: 63, fim: 65)
+
+(primo: 2, inicio: 72, fim: 72)
+
+(primo: 2089, inicio: 75, fim: 78)
+
+(primo: 2803, inicio: 82, fim: 85)
+
+(primo: 2, inicio: 88, fim: 88)
+
+(primo: 5, inicio: 89, fim: 89)
+(primo: 3, inicio: 90, fim: 90)
+
+(primo: 421, inicio: 91, fim: 93)
+(primo: 17, inicio: 94, fim: 95)
+
+(primo: 67, inicio: 97, fim: 98)
+
+(primo: 821, inicio: 100, fim: 102)
+
+(primo: 5, inicio: 108, fim: 108)
+
+(primo: 13, inicio: 109, fim: 110)
+
+(primo: 2, inicio: 111, fim: 111)
+
+(primo: 823, inicio: 112, fim: 114)
+
+(primo: 647, inicio: 117, fim: 119)
+
+(primo: 3, inicio: 122, fim: 122)
+
+(primo: 5, inicio: 129, fim: 129)
+
+(primo: 5, inicio: 130, fim: 130)
+
+(primo: 5, inicio: 132, fim: 132)
+
+(primo: 2, inicio: 134, fim: 134)
+(primo: 2, inicio: 135, fim: 135)
+(primo: 31, inicio: 136, fim: 137)
+(primo: 7, inicio: 138, fim: 138)
+(primo: 2, inicio: 139, fim: 139)
+(primo: 5, inicio: 140, fim: 140)
+(primo: 3, inicio: 141, fim: 141)
+(primo: 59, inicio: 142, fim: 143)
+
+(primo: 2, inicio: 148, fim: 148)
+
+(primo: 811, inicio: 151, fim: 153)
+(primo: 17, inicio: 154, fim: 155)
+
+(primo: 5, inicio: 157, fim: 157)
+
+(primo: 2, inicio: 159, fim: 159)
+
+(primo: 41, inicio: 161, fim: 162)
+
+(primo: 2, inicio: 164, fim: 164)
+
+(primo: 7019, inicio: 165, fim: 168)
+(primo: 3, inicio: 169, fim: 169)
+
+(primo: 8521, inicio: 170, fim: 173)
+
+(primo: 5, inicio: 176, fim: 176)
+
+(primo: 5, inicio: 177, fim: 177)
+
+(primo: 5, inicio: 178, fim: 178)
+
+(primo: 6229, inicio: 183, fim: 186)
+
+(primo: 89, inicio: 188, fim: 189)
+
+(primo: 5, inicio: 190, fim: 190)
+
+(primo: 3, inicio: 193, fim: 193)
+
+(primo: 3, inicio: 195, fim: 195)
+
+(primo: 19, inicio: 197, fim: 198)
+
+(primo: 2, inicio: 202, fim: 202)
+
+(primo: 881, inicio: 203, fim: 205)
+(primo: 7, inicio: 208, fim: 208)
+
+(primo: 5, inicio: 209, fim: 209)
+
+(primo: 6659, inicio: 210, fim: 213)
+(primo: 3, inicio: 214, fim: 214)
+
+(primo: 3, inicio: 215, fim: 215)
+
+(primo: 461, inicio: 217, fim: 219)
+
+(primo: 2, inicio: 220, fim: 220)
+
+(primo: 47, inicio: 222, fim: 223)
+
+(primo: 5, inicio: 224, fim: 224)
+
+(primo: 823, inicio: 227, fim: 229)
+(primo: 3, inicio: 230, fim: 230)
+(primo: 7867, inicio: 231, fim: 234)
+
+(primo: 83, inicio: 235, fim: 236)
+
+(primo: 5, inicio: 239, fim: 239)
+
+(primo: 2, inicio: 240, fim: 240)
+(primo: 1201, inicio: 242, fim: 245)
+(primo: 9091, inicio: 246, fim: 249)
+
+(primo: 5, inicio: 251, fim: 251)
+
+(primo: 5, inicio: 255, fim: 255)
+
+(primo: 2, inicio: 259, fim: 259)
+(primo: 3, inicio: 260, fim: 260)
+
+(primo: 4603, inicio: 261, fim: 264)
+
+(primo: 4861, inicio: 265, fim: 268)
+
+(primo: 5, inicio: 271, fim: 271)
+
+(primo: 43, inicio: 272, fim: 273)
+
+(primo: 2, inicio: 274, fim: 274)
+
+(primo: 821, inicio: 278, fim: 280)
+(primo: 3, inicio: 281, fim: 281)
+
+(primo: 3, inicio: 282, fim: 282)
+
+(primo: 3, inicio: 284, fim: 284)
+(primo: 607, inicio: 285, fim: 287)
+
+(primo: 2, inicio: 288, fim: 288)
+
+(primo: 2, inicio: 291, fim: 291)
+
+(primo: 491, inicio: 292, fim: 294)
+
+(primo: 41, inicio: 295, fim: 296)
+(primo: 2, inicio: 297, fim: 297)
+(primo: 7, inicio: 298, fim: 298)
+(primo: 3, inicio: 299, fim: 299)
+(primo: 7, inicio: 300, fim: 300)
+
+(primo: 2, inicio: 301, fim: 301)
+
+(primo: 587, inicio: 303, fim: 305)
+
+(primo: 631, inicio: 311, fim: 313)
+
+(primo: 5, inicio: 314, fim: 314)
+
+(primo: 5, inicio: 315, fim: 315)
+(primo: 881, inicio: 316, fim: 318)
+(primo: 7, inicio: 319, fim: 319)
+
+(primo: 881, inicio: 321, fim: 323)
+
+(primo: 5, inicio: 324, fim: 324)
+(primo: 2, inicio: 325, fim: 325)
+(primo: 9209, inicio: 327, fim: 330)
+
+(primo: 2, inicio: 332, fim: 332)
+
+(primo: 829, inicio: 333, fim: 335)
+
+(primo: 2, inicio: 336, fim: 336)
+
+(primo: 5, inicio: 337, fim: 337)
+
+(primo: 409, inicio: 338, fim: 340)
+(primo: 17, inicio: 341, fim: 342)
+
+(primo: 5, inicio: 344, fim: 344)
+(primo: 3, inicio: 345, fim: 345)
+(primo: 643, inicio: 346, fim: 348)
+(primo: 67, inicio: 349, fim: 350)
+
+(primo: 89, inicio: 351, fim: 352)
+
+(primo: 2, inicio: 353, fim: 353)
+
+(primo: 5903, inicio: 354, fim: 357)
+
+(primo: 11, inicio: 361, fim: 362)
+(primo: 3, inicio: 363, fim: 363)
+
+(primo: 3, inicio: 364, fim: 364)
+
+(primo: 5, inicio: 366, fim: 366)
+(primo: 3, inicio: 367, fim: 367)
+
+(primo: 5, inicio: 369, fim: 369)
+
+(primo: 2, inicio: 373, fim: 373)
+
+(primo: 6521, inicio: 377, fim: 380)
+(primo: 3, inicio: 381, fim: 381)
+
+(primo: 41, inicio: 383, fim: 384)
+
+(primo: 5, inicio: 388, fim: 388)
+
+(primo: 19, inicio: 389, fim: 390)
+(primo: 41, inicio: 391, fim: 392)
+(primo: 5, inicio: 393, fim: 393)
+(primo: 1609, inicio: 395, fim: 398)
+(primo: 43, inicio: 399, fim: 400)
+(primo: 3, inicio: 401, fim: 401)
+
+(primo: 5, inicio: 403, fim: 403)
+
+(primo: 7, inicio: 404, fim: 404)
+(primo: 2, inicio: 405, fim: 405)
+(primo: 7, inicio: 406, fim: 406)
+
+(primo: 3, inicio: 408, fim: 408)
+
+(primo: 5, inicio: 410, fim: 410)
+
+(primo: 7, inicio: 411, fim: 411)
+
+(primo: 5, inicio: 412, fim: 412)
+
+(primo: 5, inicio: 414, fim: 414)
+(primo: 919, inicio: 415, fim: 417)
+(primo: 5309, inicio: 418, fim: 421)
+
+(primo: 2, inicio: 422, fim: 422)
+
+(primo: 1861, inicio: 423, fim: 426)
+(primo: 17, inicio: 427, fim: 428)
+(primo: 3, inicio: 429, fim: 429)
+
+(primo: 19, inicio: 431, fim: 432)
+(primo: 3, inicio: 433, fim: 433)
+
+(primo: 2, inicio: 434, fim: 434)
+
+(primo: 61, inicio: 435, fim: 436)
+(primo: 17, inicio: 437, fim: 438)
+
+(primo: 3, inicio: 440, fim: 440)
+(primo: 1051, inicio: 441, fim: 444)
+
+(primo: 5, inicio: 447, fim: 447)
+
+(primo: 7, inicio: 451, fim: 451)
+
+(primo: 2, inicio: 455, fim: 455)
+(primo: 3, inicio: 456, fim: 456)
+(primo: 79, inicio: 457, fim: 458)
+
+(primo: 2749, inicio: 461, fim: 464)
+
+(primo: 5, inicio: 465, fim: 465)
+
+(primo: 67, inicio: 466, fim: 467)
+(primo: 3, inicio: 468, fim: 468)
+(primo: 5, inicio: 469, fim: 469)
+
+(primo: 857, inicio: 472, fim: 474)
+
+(primo: 5, inicio: 475, fim: 475)
+
+(primo: 2, inicio: 476, fim: 476)
+
+(primo: 7, inicio: 477, fim: 477)
+
+(primo: 2, inicio: 478, fim: 478)
+
+(primo: 89, inicio: 480, fim: 481)
+
+(primo: 2, inicio: 483, fim: 483)
+(primo: 2, inicio: 484, fim: 484)
+(primo: 7, inicio: 485, fim: 485)
+
+(primo: 3, inicio: 487, fim: 487)
+
+(primo: 83, inicio: 490, fim: 491)
+(primo: 11, inicio: 493, fim: 494)
+(primo: 9491, inicio: 495, fim: 498)
+
+(primo: 2, inicio: 499, fim: 499)
+(primo: 983, inicio: 500, fim: 502)
+(primo: 367, inicio: 503, fim: 505)
+(primo: 3, inicio: 506, fim: 506)
+(primo: 3, inicio: 507, fim: 507)
+
+(primo: 2, inicio: 509, fim: 509)
+
+(primo: 5, inicio: 514, fim: 514)
+
+(primo: 643, inicio: 516, fim: 518)
+
+(primo: 2, inicio: 523, fim: 523)
+
+(primo: 13, inicio: 524, fim: 525)
+
+(primo: 9463, inicio: 528, fim: 531)
+
+(primo: 5, inicio: 533, fim: 533)
+
+(primo: 2, inicio: 534, fim: 534)
+
+(primo: 2, inicio: 535, fim: 535)
+(primo: 47, inicio: 536, fim: 537)
+(primo: 37, inicio: 538, fim: 539)
+(primo: 1907, inicio: 540, fim: 543)
+
+(primo: 2, inicio: 545, fim: 545)
+(primo: 179, inicio: 546, fim: 548)
+
+(primo: 8609, inicio: 549, fim: 552)
+(primo: 43, inicio: 553, fim: 554)
+(primo: 7027, inicio: 555, fim: 558)
+(primo: 7, inicio: 559, fim: 559)
+
+(primo: 5, inicio: 561, fim: 561)
+(primo: 3, inicio: 562, fim: 562)
+
+(primo: 2, inicio: 564, fim: 564)
+
+(primo: 17, inicio: 565, fim: 566)
+(primo: 17, inicio: 567, fim: 568)
+
+(primo: 29, inicio: 570, fim: 571)
+(primo: 31, inicio: 572, fim: 573)
+(primo: 7, inicio: 574, fim: 574)
+
+(primo: 67, inicio: 575, fim: 576)
+(primo: 5, inicio: 577, fim: 577)
+(primo: 2, inicio: 578, fim: 578)
+(primo: 3, inicio: 579, fim: 579)
+
+(primo: 8467, inicio: 580, fim: 583)
+
+(primo: 8467, inicio: 587, fim: 590)
+
+(primo: 4051, inicio: 594, fim: 597)
+(primo: 3, inicio: 598, fim: 598)
+
+(primo: 2, inicio: 599, fim: 599)
+
+(primo: 5, inicio: 603, fim: 603)
+
+(primo: 127, inicio: 606, fim: 608)
+
+(primo: 5, inicio: 611, fim: 611)
+
+(primo: 263, inicio: 612, fim: 614)
+
+(primo: 5, inicio: 615, fim: 615)
+
+(primo: 827, inicio: 618, fim: 620)
+(primo: 7, inicio: 621, fim: 621)
+
+(primo: 857, inicio: 622, fim: 624)
+(primo: 7, inicio: 625, fim: 625)
+(primo: 13, inicio: 626, fim: 627)
+
+(primo: 2, inicio: 629, fim: 629)
+
+(primo: 7, inicio: 630, fim: 630)
+(primo: 5, inicio: 631, fim: 631)
+(primo: 7, inicio: 632, fim: 632)
+(primo: 7, inicio: 633, fim: 633)
+(primo: 89, inicio: 634, fim: 635)
+
+(primo: 6091, inicio: 636, fim: 639)
+(primo: 7, inicio: 640, fim: 640)
+(primo: 3637, inicio: 641, fim: 644)
+(primo: 1787, inicio: 645, fim: 648)
+
+(primo: 2, inicio: 649, fim: 649)
+
+(primo: 4409, inicio: 654, fim: 657)
+
+(primo: 2, inicio: 660, fim: 660)
+
+(primo: 2, inicio: 661, fim: 661)
+
+(primo: 953, inicio: 663, fim: 665)
+
+(primo: 43, inicio: 666, fim: 667)
+
+(primo: 5, inicio: 672, fim: 672)
+
+(primo: 5, inicio: 675, fim: 675)
+
+(primo: 853, inicio: 676, fim: 678)
+(primo: 7, inicio: 679, fim: 679)
+
+(primo: 5, inicio: 682, fim: 682)
+
+(primo: 7, inicio: 684, fim: 684)
+(primo: 9227, inicio: 685, fim: 688)
+(primo: 9689, inicio: 689, fim: 692)
+
+(primo: 2, inicio: 693, fim: 693)
+
+(primo: 5, inicio: 694, fim: 694)
+
+(primo: 89, inicio: 695, fim: 696)
+(primo: 2, inicio: 697, fim: 697)
+(primo: 3, inicio: 698, fim: 698)
+
+(primo: 5, inicio: 699, fim: 699)
+
+(primo: 4201, inicio: 700, fim: 703)
+
+(primo: 5, inicio: 706, fim: 706)
+
+(primo: 61, inicio: 707, fim: 708)
+
+(primo: 2129, inicio: 710, fim: 713)
+
+(primo: 2, inicio: 715, fim: 715)
+
+(primo: 19, inicio: 716, fim: 717)
+
+(primo: 3, inicio: 724, fim: 724)
+
+(primo: 41, inicio: 726, fim: 727)
+
+(primo: 5981, inicio: 730, fim: 733)
+(primo: 3, inicio: 734, fim: 734)
+
+(primo: 2, inicio: 736, fim: 736)
+(primo: 97, inicio: 737, fim: 738)
+(primo: 7, inicio: 739, fim: 739)
+(primo: 47, inicio: 740, fim: 741)
+(primo: 7, inicio: 742, fim: 742)
+(primo: 13, inicio: 743, fim: 744)
+
+(primo: 5, inicio: 750, fim: 750)
+
+(primo: 8707, inicio: 752, fim: 755)
+(primo: 2, inicio: 756, fim: 756)
+(primo: 11, inicio: 757, fim: 758)
+(primo: 3, inicio: 759, fim: 759)
+(primo: 499, inicio: 760, fim: 762)
+
+(primo: 983, inicio: 766, fim: 768)
+(primo: 7, inicio: 769, fim: 769)
+(primo: 2, inicio: 770, fim: 770)
+(primo: 97, inicio: 771, fim: 772)
+
+(primo: 499, inicio: 775, fim: 777)
+
+(primo: 5, inicio: 778, fim: 778)
+
+(primo: 5, inicio: 781, fim: 781)
+(primo: 97, inicio: 782, fim: 783)
+(primo: 3, inicio: 784, fim: 784)
+(primo: 173, inicio: 785, fim: 787)
+
+(primo: 2, inicio: 788, fim: 788)
+(primo: 1609, inicio: 790, fim: 793)
+(primo: 631, inicio: 794, fim: 796)
+
+(primo: 859, inicio: 797, fim: 799)
+
+(primo: 5, inicio: 800, fim: 800)
+
+(primo: 2, inicio: 802, fim: 802)
+
+(primo: 5, inicio: 805, fim: 805)
+
+(primo: 5, inicio: 808, fim: 808)
+
+(primo: 3469, inicio: 810, fim: 813)
+
+(primo: 83, inicio: 815, fim: 816)
+
+(primo: 2, inicio: 818, fim: 818)
+
+(primo: 2, inicio: 821, fim: 821)
+
+(primo: 5, inicio: 822, fim: 822)
+
+(primo: 2, inicio: 823, fim: 823)
+(primo: 2, inicio: 824, fim: 824)
+(primo: 3, inicio: 825, fim: 825)
+
+(primo: 2, inicio: 828, fim: 828)
+
+(primo: 5, inicio: 829, fim: 829)
+(primo: 3, inicio: 830, fim: 830)
+
+(primo: 3, inicio: 831, fim: 831)
+
+(primo: 503, inicio: 836, fim: 838)
+
+(primo: 5, inicio: 839, fim: 839)
+(primo: 2, inicio: 840, fim: 840)
+(primo: 61, inicio: 841, fim: 842)
+(primo: 9311, inicio: 843, fim: 846)
+
+(primo: 881, inicio: 847, fim: 849)
+(primo: 7, inicio: 850, fim: 850)
+(primo: 101, inicio: 851, fim: 853)
+
+(primo: 3, inicio: 857, fim: 857)
+(primo: 13, inicio: 858, fim: 859)
+(primo: 7, inicio: 860, fim: 860)
+
+(primo: 8387, inicio: 861, fim: 864)
+
+(primo: 5, inicio: 865, fim: 865)
+
+(primo: 2, inicio: 866, fim: 866)
+
+(primo: 5, inicio: 870, fim: 870)
+(primo: 8753, inicio: 871, fim: 874)
+
+(primo: 3, inicio: 875, fim: 875)
+
+(primo: 2083, inicio: 876, fim: 879)
+
+(primo: 2, inicio: 883, fim: 883)
+
+(primo: 61, inicio: 885, fim: 886)
+(primo: 71, inicio: 887, fim: 888)
+(primo: 7, inicio: 889, fim: 889)
+(primo: 7, inicio: 890, fim: 890)
+(primo: 6691, inicio: 891, fim: 894)
+
+(primo: 47, inicio: 895, fim: 896)
+(primo: 3, inicio: 897, fim: 897)
+
+(primo: 3, inicio: 899, fim: 899)
+(primo: 59, inicio: 900, fim: 901)
+
+(primo: 2, inicio: 903, fim: 903)
+
+(primo: 349, inicio: 905, fim: 907)
+
+(primo: 2, inicio: 910, fim: 910)
+
+(primo: 7, inicio: 912, fim: 912)
+
+(primo: 5, inicio: 913, fim: 913)
+
+(primo: 5, inicio: 914, fim: 914)
+
+(primo: 8731, inicio: 917, fim: 920)
+
+(primo: 5, inicio: 922, fim: 922)
+
+(primo: 5, inicio: 924, fim: 924)
+
+(primo: 2, inicio: 926, fim: 926)
+
+(primo: 863, inicio: 927, fim: 929)
+
+(primo: 823, inicio: 931, fim: 933)
+(primo: 5, inicio: 934, fim: 934)
+(primo: 3, inicio: 935, fim: 935)
+(primo: 787, inicio: 936, fim: 938)
+
+(primo: 59, inicio: 939, fim: 940)
+(primo: 3, inicio: 941, fim: 941)
+(primo: 7, inicio: 942, fim: 942)
+(primo: 5, inicio: 943, fim: 943)
+(primo: 19, inicio: 944, fim: 945)
+
+(primo: 5, inicio: 946, fim: 946)
+(primo: 7, inicio: 947, fim: 947)
+(primo: 7, inicio: 948, fim: 948)
+
+(primo: 857, inicio: 951, fim: 953)
+(primo: 7, inicio: 954, fim: 954)
+
+(primo: 8053, inicio: 955, fim: 958)
+(primo: 2, inicio: 959, fim: 959)
+(primo: 17, inicio: 960, fim: 961)
+
+(primo: 2, inicio: 963, fim: 963)
+
+(primo: 2, inicio: 964, fim: 964)
+
+(primo: 661, inicio: 968, fim: 970)
+(primo: 3001, inicio: 971, fim: 974)
+
+(primo: 2, inicio: 976, fim: 976)
+
+(primo: 787, inicio: 977, fim: 979)
+
+(primo: 661, inicio: 980, fim: 982)
+(primo: 11, inicio: 983, fim: 984)
+
+(primo: 5, inicio: 986, fim: 986)
+
+(primo: 2, inicio: 990, fim: 990)
+
+(primo: 4201, inicio: 993, fim: 996)
+
+(primo: 89, inicio: 998, fim: 999)
+
+(primo: 3, inicio: 1000, fim: 1000)
+
+(primo: 809, inicio: 1001, fim: 1003)
+
+(primo: 5, inicio: 1004, fim: 1004)
+
+(primo: 2, inicio: 1005, fim: 1005)
+(primo: 5, inicio: 1006, fim: 1006)
+(primo: 7, inicio: 1007, fim: 1007)
+
+(primo: 2, inicio: 1008, fim: 1008)
+
+(primo: 5, inicio: 1013, fim: 1013)
+
+(primo: 5, inicio: 1016, fim: 1016)
+
+(primo: 863, inicio: 1017, fim: 1019)
+
+(primo: 2, inicio: 1020, fim: 1020)
+
+(primo: 7, inicio: 1021, fim: 1021)
+
+(primo: 659, inicio: 1024, fim: 1026)
+(primo: 3, inicio: 1027, fim: 1027)
+
+(primo: 61, inicio: 1028, fim: 1029)
+
+(primo: 5, inicio: 1030, fim: 1030)
+(primo: 3, inicio: 1031, fim: 1031)
+
+(primo: 3, inicio: 1032, fim: 1032)
+
+(primo: 827, inicio: 1035, fim: 1037)
+
+(primo: 6823, inicio: 1039, fim: 1042)
+
+(primo: 3019, inicio: 1044, fim: 1047)
+
+(primo: 5, inicio: 1048, fim: 1048)
+
+(primo: 2, inicio: 1049, fim: 1049)
+
+(primo: 3, inicio: 1051, fim: 1051)
+(primo: 5, inicio: 1052, fim: 1052)
+(primo: 3, inicio: 1053, fim: 1053)
+
+(primo: 5, inicio: 1057, fim: 1057)
+
+(primo: 29, inicio: 1058, fim: 1059)
+(primo: 6899, inicio: 1060, fim: 1063)
+
+(primo: 5, inicio: 1064, fim: 1064)
+(primo: 7, inicio: 1065, fim: 1065)
+(primo: 7, inicio: 1066, fim: 1066)
+(primo: 3, inicio: 1067, fim: 1067)
+
+(primo: 2, inicio: 1069, fim: 1069)
+
+(primo: 2, inicio: 1070, fim: 1070)
+
+(primo: 5, inicio: 1071, fim: 1071)
+(primo: 9941, inicio: 1072, fim: 1075)
+(primo: 3, inicio: 1076, fim: 1076)
+(primo: 89, inicio: 1077, fim: 1078)
+
+(primo: 1249, inicio: 1079, fim: 1082)
+(primo: 7, inicio: 1083, fim: 1083)
+(primo: 2, inicio: 1084, fim: 1084)
+(primo: 17, inicio: 1085, fim: 1086)
+
+(primo: 7, inicio: 1087, fim: 1087)
+
+(primo: 5, inicio: 1088, fim: 1088)
+
+(primo: 2, inicio: 1089, fim: 1089)
+(primo: 83, inicio: 1090, fim: 1091)
+(primo: 47, inicio: 1092, fim: 1093)
+
+(primo: 13, inicio: 1095, fim: 1096)
+(primo: 151, inicio: 1097, fim: 1099)
+
+(primo: 5, inicio: 1100, fim: 1100)
+(primo: 5, inicio: 1101, fim: 1101)
+(primo: 7, inicio: 1102, fim: 1102)
+
+(primo: 857, inicio: 1104, fim: 1106)
+
+(primo: 2, inicio: 1107, fim: 1107)
+
+(primo: 2, inicio: 1109, fim: 1109)
+
+(primo: 5, inicio: 1111, fim: 1111)
+(primo: 41, inicio: 1112, fim: 1113)
+
+(primo: 5, inicio: 1114, fim: 1114)
+
+(primo: 6959, inicio: 1116, fim: 1119)
+
+(primo: 5, inicio: 1120, fim: 1120)
+
+(primo: 829, inicio: 1122, fim: 1124)
+(primo: 5, inicio: 1125, fim: 1125)
+(primo: 3, inicio: 1126, fim: 1126)
+(primo: 31, inicio: 1127, fim: 1128)
+
+(primo: 61, inicio: 1132, fim: 1133)
+(primo: 7, inicio: 1134, fim: 1134)
+(primo: 2, inicio: 1135, fim: 1135)
+(primo: 7, inicio: 1136, fim: 1136)
+
+(primo: 5, inicio: 1138, fim: 1138)
+
+(primo: 5, inicio: 1139, fim: 1139)
+
+(primo: 89, inicio: 1141, fim: 1142)
+(primo: 7, inicio: 1144, fim: 1144)
+
+(primo: 509, inicio: 1145, fim: 1147)
+(primo: 83, inicio: 1148, fim: 1149)
+
+(primo: 17, inicio: 1151, fim: 1152)
+
+(primo: 5, inicio: 1153, fim: 1153)
+
+(primo: 463, inicio: 1154, fim: 1156)
+(primo: 7, inicio: 1157, fim: 1157)
+
+(primo: 4649, inicio: 1158, fim: 1161)
+
+(primo: 3, inicio: 1162, fim: 1162)
+(primo: 9319, inicio: 1163, fim: 1166)
+
+(primo: 2, inicio: 1167, fim: 1167)
+
+(primo: 5, inicio: 1168, fim: 1168)
+
+(primo: 5, inicio: 1169, fim: 1169)
+
+(primo: 9277, inicio: 1176, fim: 1179)
+(primo: 167, inicio: 1181, fim: 1183)
+(primo: 11, inicio: 1184, fim: 1185)
+(primo: 3, inicio: 1186, fim: 1186)
+
+(primo: 2, inicio: 1195, fim: 1195)
+
+(primo: 401, inicio: 1196, fim: 1198)
+
+(primo: 2, inicio: 1199, fim: 1199)
+
+(primo: 5, inicio: 1201, fim: 1201)
+
+(primo: 83, inicio: 1202, fim: 1203)
+
+(primo: 61, inicio: 1204, fim: 1205)
+
+(primo: 3, inicio: 1208, fim: 1208)
+
+(primo: 563, inicio: 1209, fim: 1211)
+(primo: 7, inicio: 1212, fim: 1212)
+
+(primo: 7, inicio: 1214, fim: 1214)
+
+(primo: 601, inicio: 1216, fim: 1218)
+
+(primo: 47, inicio: 1220, fim: 1221)
+(primo: 101, inicio: 1222, fim: 1224)
+(primo: 19, inicio: 1226, fim: 1227)
+
+(primo: 2, inicio: 1229, fim: 1229)
+
+(primo: 5, inicio: 1231, fim: 1231)
+
+(primo: 5, inicio: 1232, fim: 1232)
+
+(primo: 5, inicio: 1233, fim: 1233)
+(primo: 9619, inicio: 1234, fim: 1237)
+
+(primo: 89, inicio: 1238, fim: 1239)
+(primo: 467, inicio: 1240, fim: 1242)
+
+(primo: 67, inicio: 1243, fim: 1244)
+
+(primo: 83, inicio: 1245, fim: 1246)
+(primo: 7, inicio: 1247, fim: 1247)
+
+(primo: 449, inicio: 1248, fim: 1250)
+
+(primo: 2, inicio: 1254, fim: 1254)
+
+(primo: 5, inicio: 1255, fim: 1255)
+
+(primo: 5, inicio: 1256, fim: 1256)
+(primo: 37, inicio: 1257, fim: 1258)
+(primo: 97, inicio: 1259, fim: 1260)
+(primo: 7, inicio: 1261, fim: 1261)
+
+(primo: 47, inicio: 1262, fim: 1263)
+
+(primo: 2, inicio: 1264, fim: 1264)
+
+(primo: 47, inicio: 1267, fim: 1268)
+
+(primo: 47, inicio: 1273, fim: 1274)
+
+(primo: 5, inicio: 1275, fim: 1275)
+(primo: 3, inicio: 1276, fim: 1276)
+
+(primo: 2, inicio: 1281, fim: 1281)
+
+(primo: 4259, inicio: 1289, fim: 1292)
+
+(primo: 6949, inicio: 1294, fim: 1297)
+
+(primo: 29, inicio: 1299, fim: 1300)
+(primo: 331, inicio: 1301, fim: 1303)
+(primo: 3, inicio: 1304, fim: 1304)
+(primo: 677, inicio: 1305, fim: 1307)
+
+(primo: 2, inicio: 1309, fim: 1309)
+
+(primo: 89, inicio: 1310, fim: 1311)
+
+(primo: 89, inicio: 1312, fim: 1313)
+
+(primo: 521, inicio: 1315, fim: 1317)
+
+(primo: 47, inicio: 1319, fim: 1320)
+
+(primo: 521, inicio: 1321, fim: 1323)
+
+(primo: 2, inicio: 1325, fim: 1325)
+
+(primo: 5, inicio: 1327, fim: 1327)
+
+(primo: 2, inicio: 1333, fim: 1333)
+
+(primo: 5, inicio: 1336, fim: 1336)
+
+(primo: 3, inicio: 1339, fim: 1339)
+
+(primo: 5, inicio: 1342, fim: 1342)
+
+(primo: 19, inicio: 1344, fim: 1345)
+(primo: 3, inicio: 1346, fim: 1346)
+(primo: 5, inicio: 1347, fim: 1347)
+(primo: 11, inicio: 1348, fim: 1349)
+
+(primo: 2, inicio: 1350, fim: 1350)
+
+(primo: 5, inicio: 1351, fim: 1351)
+(primo: 3, inicio: 1352, fim: 1352)
+
+(primo: 3, inicio: 1353, fim: 1353)
+
+(primo: 8243, inicio: 1354, fim: 1357)
+
+(primo: 3, inicio: 1360, fim: 1360)
+
+(primo: 5, inicio: 1361, fim: 1361)
+
+(primo: 587, inicio: 1362, fim: 1364)
+
+(primo: 2, inicio: 1368, fim: 1368)
+
+(primo: 47, inicio: 1369, fim: 1370)
+
+(primo: 647, inicio: 1373, fim: 1375)
+(primo: 3, inicio: 1376, fim: 1376)
+
+(primo: 263, inicio: 1377, fim: 1379)
+
+(primo: 41, inicio: 1382, fim: 1383)
+
+(primo: 2, inicio: 1386, fim: 1386)
+
+(primo: 7, inicio: 1387, fim: 1387)
+
+(primo: 2, inicio: 1388, fim: 1388)
+
+(primo: 269, inicio: 1392, fim: 1394)
+(primo: 9227, inicio: 1395, fim: 1398)
+(primo: 967, inicio: 1399, fim: 1401)
+(primo: 823, inicio: 1402, fim: 1404)
+(primo: 5, inicio: 1405, fim: 1405)
+(primo: 47, inicio: 1406, fim: 1407)
+
+(primo: 163, inicio: 1409, fim: 1411)
+
+(primo: 9341, inicio: 1415, fim: 1418)
+(primo: 7, inicio: 1419, fim: 1419)
+(primo: 2, inicio: 1420, fim: 1420)
+
+(primo: 641, inicio: 1422, fim: 1424)
+
+(primo: 2, inicio: 1425, fim: 1425)
+
+(primo: 19, inicio: 1426, fim: 1427)
+
+(primo: 2, inicio: 1429, fim: 1429)
+
+(primo: 5, inicio: 1431, fim: 1431)
+
+(primo: 863, inicio: 1432, fim: 1434)
+
+(primo: 503, inicio: 1436, fim: 1438)
+
+(primo: 2861, inicio: 1440, fim: 1443)
+
+(primo: 829, inicio: 1444, fim: 1446)
+(primo: 7, inicio: 1447, fim: 1447)
+
+(primo: 5, inicio: 1449, fim: 1449)
+(primo: 5, inicio: 1450, fim: 1450)
+(primo: 5, inicio: 1451, fim: 1451)
+(primo: 7, inicio: 1452, fim: 1452)
+
+(primo: 67, inicio: 1454, fim: 1455)
+
+(primo: 983, inicio: 1457, fim: 1459)
+
+(primo: 5, inicio: 1461, fim: 1461)
+
+(primo: 5, inicio: 1463, fim: 1463)
+
+(primo: 5, inicio: 1467, fim: 1467)
+
+(primo: 5, inicio: 1470, fim: 1470)
+
+(primo: 2, inicio: 1474, fim: 1474)
+
+(primo: 5, inicio: 1478, fim: 1478)
+
+(primo: 2, inicio: 1483, fim: 1483)
+
+(primo: 7, inicio: 1484, fim: 1484)
+
+(primo: 2, inicio: 1485, fim: 1485)
+
+(primo: 107, inicio: 1486, fim: 1488)
+(primo: 7, inicio: 1490, fim: 1490)
+
+(primo: 5, inicio: 1491, fim: 1491)
+
+(primo: 3, inicio: 1494, fim: 1494)
+
+(primo: 2, inicio: 1496, fim: 1496)
+
+(primo: 5, inicio: 1498, fim: 1498)
+
+(primo: 5, inicio: 1499, fim: 1499)
+(primo: 3, inicio: 1500, fim: 1500)
+
+(primo: 2, inicio: 1501, fim: 1501)
+(primo: 11, inicio: 1502, fim: 1503)
+
+(primo: 653, inicio: 1504, fim: 1506)
+(primo: 449, inicio: 1507, fim: 1509)
+(primo: 7, inicio: 1511, fim: 1511)
+
+(primo: 2, inicio: 1512, fim: 1512)
+(primo: 2, inicio: 1514, fim: 1514)
+(primo: 7, inicio: 1515, fim: 1515)
+(primo: 5, inicio: 1516, fim: 1516)
+(primo: 59, inicio: 1517, fim: 1518)
+
+(primo: 2, inicio: 1521, fim: 1521)
+(primo: 3, inicio: 1522, fim: 1522)
+
+(primo: 5, inicio: 1529, fim: 1529)
+
+(primo: 499, inicio: 1530, fim: 1532)
+(primo: 11, inicio: 1533, fim: 1534)
+
+(primo: 881, inicio: 1536, fim: 1538)
+
+(primo: 83, inicio: 1539, fim: 1540)
+(primo: 47, inicio: 1541, fim: 1542)
+(primo: 97, inicio: 1543, fim: 1544)
+(primo: 7, inicio: 1545, fim: 1545)
+(primo: 5, inicio: 1546, fim: 1546)
+(primo: 3, inicio: 1547, fim: 1547)
+
+(primo: 5, inicio: 1548, fim: 1548)
+
+(primo: 3, inicio: 1551, fim: 1551)
+
+(primo: 7, inicio: 1556, fim: 1556)
+
+(primo: 2, inicio: 1558, fim: 1558)
+
+(primo: 5, inicio: 1560, fim: 1560)
+
+(primo: 2, inicio: 1562, fim: 1562)
+
+(primo: 5, inicio: 1563, fim: 1563)
+
+(primo: 2, inicio: 1564, fim: 1564)
+
+(primo: 7, inicio: 1565, fim: 1565)
+
+(primo: 2, inicio: 1568, fim: 1568)
+(primo: 5, inicio: 1569, fim: 1569)
+(primo: 5, inicio: 1570, fim: 1570)
+(primo: 181, inicio: 1571, fim: 1573)
+
+(primo: 41, inicio: 1575, fim: 1576)
+(primo: 7, inicio: 1577, fim: 1577)
+(primo: 5, inicio: 1578, fim: 1578)
+(primo: 7, inicio: 1579, fim: 1579)
+
+(primo: 467, inicio: 1580, fim: 1582)
+
+(primo: 2, inicio: 1583, fim: 1583)
+
+(primo: 89, inicio: 1584, fim: 1585)
+
+(primo: 97, inicio: 1587, fim: 1588)
+(primo: 7, inicio: 1589, fim: 1589)
+
+(primo: 7, inicio: 1590, fim: 1590)
+(primo: 7, inicio: 1591, fim: 1591)
+(primo: 2, inicio: 1592, fim: 1592)
+(primo: 7, inicio: 1593, fim: 1593)
+
+(primo: 3, inicio: 1595, fim: 1595)
+
+(primo: 647, inicio: 1602, fim: 1604)
+
+(primo: 61, inicio: 1610, fim: 1611)
+
+(primo: 5, inicio: 1613, fim: 1613)
+
+(primo: 2, inicio: 1614, fim: 1614)
+
+(primo: 491, inicio: 1615, fim: 1617)
+
+(primo: 2, inicio: 1619, fim: 1619)
+
+(primo: 17, inicio: 1620, fim: 1621)
+(primo: 3, inicio: 1622, fim: 1622)
+(primo: 2, inicio: 1623, fim: 1623)
+(primo: 1721, inicio: 1624, fim: 1627)
+
+(primo: 47, inicio: 1628, fim: 1629)
+(primo: 7, inicio: 1630, fim: 1630)
+(primo: 2, inicio: 1631, fim: 1631)
+(primo: 3, inicio: 1632, fim: 1632)
+
+(primo: 5, inicio: 1633, fim: 1633)
+
+(primo: 41, inicio: 1636, fim: 1637)
+
+(primo: 419, inicio: 1639, fim: 1641)
+(primo: 3, inicio: 1643, fim: 1643)
+
+(primo: 5, inicio: 1644, fim: 1644)
+
+(primo: 5, inicio: 1647, fim: 1647)
+
+(primo: 8161, inicio: 1649, fim: 1652)
+(primo: 3, inicio: 1653, fim: 1653)
+(primo: 61, inicio: 1654, fim: 1655)
+(primo: 157, inicio: 1656, fim: 1658)
+(primo: 3, inicio: 1659, fim: 1659)
+
+(primo: 5, inicio: 1660, fim: 1660)
+
+(primo: 2, inicio: 1661, fim: 1661)
+
+(primo: 5, inicio: 1662, fim: 1662)
+(primo: 521, inicio: 1663, fim: 1665)
+(primo: 3, inicio: 1666, fim: 1666)
+(primo: 3, inicio: 1667, fim: 1667)
+(primo: 47, inicio: 1668, fim: 1669)
+(primo: 5, inicio: 1670, fim: 1670)
+(primo: 7, inicio: 1671, fim: 1671)
+(primo: 41, inicio: 1672, fim: 1673)
+
+(primo: 43, inicio: 1680, fim: 1681)
+
+(primo: 5, inicio: 1683, fim: 1683)
+(primo: 2, inicio: 1684, fim: 1684)
+(primo: 3, inicio: 1685, fim: 1685)
+(primo: 3, inicio: 1686, fim: 1686)
+(primo: 2, inicio: 1687, fim: 1687)
+(primo: 3, inicio: 1688, fim: 1688)
+(primo: 907, inicio: 1689, fim: 1691)
+(primo: 3, inicio: 1692, fim: 1692)
+(primo: 941, inicio: 1693, fim: 1695)
+(primo: 43, inicio: 1696, fim: 1697)
+(primo: 3, inicio: 1698, fim: 1698)
+
+(primo: 3, inicio: 1699, fim: 1699)
+
+(primo: 4547, inicio: 1700, fim: 1703)
+(primo: 7, inicio: 1704, fim: 1704)
+
+(primo: 2, inicio: 1706, fim: 1706)
+(primo: 41, inicio: 1707, fim: 1708)
+
+(primo: 2, inicio: 1712, fim: 1712)
+(primo: 5189, inicio: 1713, fim: 1716)
+(primo: 83, inicio: 1717, fim: 1718)
+
+(primo: 5, inicio: 1719, fim: 1719)
+
+(primo: 5, inicio: 1724, fim: 1724)
+
+(primo: 5, inicio: 1725, fim: 1725)
+
+(primo: 2, inicio: 1727, fim: 1727)
+
+(primo: 2, inicio: 1731, fim: 1731)
+
+(primo: 19, inicio: 1732, fim: 1733)
+
+(primo: 2221, inicio: 1734, fim: 1737)
+
+(primo: 2, inicio: 1740, fim: 1740)
+
+(primo: 7, inicio: 1741, fim: 1741)
+
+(primo: 2, inicio: 1742, fim: 1742)
+
+(primo: 5, inicio: 1743, fim: 1743)
+
+(primo: 5, inicio: 1744, fim: 1744)
+
+(primo: 2, inicio: 1746, fim: 1746)
+
+(primo: 5, inicio: 1747, fim: 1747)
+
+(primo: 2, inicio: 1749, fim: 1749)
+
+(primo: 5, inicio: 1750, fim: 1750)
+
+(primo: 887, inicio: 1752, fim: 1754)
+
+(primo: 67, inicio: 1755, fim: 1756)
+(primo: 17, inicio: 1757, fim: 1758)
+(primo: 9049, inicio: 1759, fim: 1762)
+
+(primo: 601, inicio: 1764, fim: 1766)
+
+(primo: 653, inicio: 1767, fim: 1769)
+
+(primo: 8627, inicio: 1778, fim: 1781)
+
+(primo: 2, inicio: 1782, fim: 1782)
+(primo: 3, inicio: 1783, fim: 1783)
+
+(primo: 2, inicio: 1784, fim: 1784)
+(primo: 79, inicio: 1785, fim: 1786)
+(primo: 17, inicio: 1787, fim: 1788)
+
+(primo: 857, inicio: 1792, fim: 1794)
+
+(primo: 43, inicio: 1796, fim: 1797)
+(primo: 83, inicio: 1798, fim: 1799)
+
+(primo: 827, inicio: 1800, fim: 1802)
+(primo: 967, inicio: 1803, fim: 1805)
+(primo: 97, inicio: 1806, fim: 1807)
+
+(primo: 5, inicio: 1813, fim: 1813)
+(primo: 1009, inicio: 1815, fim: 1818)
+(primo: 5, inicio: 1819, fim: 1819)
+(primo: 3, inicio: 1820, fim: 1820)
+
+(primo: 883, inicio: 1821, fim: 1823)
+(primo: 7, inicio: 1824, fim: 1824)
+
+(primo: 863, inicio: 1825, fim: 1827)
+
+(primo: 5, inicio: 1831, fim: 1831)
+
+(primo: 2, inicio: 1839, fim: 1839)
+(primo: 251, inicio: 1840, fim: 1842)
+
+(primo: 2, inicio: 1843, fim: 1843)
+
+(primo: 5, inicio: 1844, fim: 1844)
+
+(primo: 2, inicio: 1845, fim: 1845)
+
+(primo: 5, inicio: 1847, fim: 1847)
+
+(primo: 11, inicio: 1848, fim: 1849)
+(primo: 739, inicio: 1850, fim: 1852)
+(primo: 2, inicio: 1853, fim: 1853)
+
+(primo: 89, inicio: 1857, fim: 1858)
+
+(primo: 41, inicio: 1862, fim: 1863)
+
+(primo: 2, inicio: 1864, fim: 1864)
+
+(primo: 6269, inicio: 1869, fim: 1872)
+
+(primo: 5, inicio: 1874, fim: 1874)
+
+(primo: 4241, inicio: 1877, fim: 1880)
+
+(primo: 5, inicio: 1883, fim: 1883)
+
+(primo: 2, inicio: 1884, fim: 1884)
+
+(primo: 5, inicio: 1886, fim: 1886)
+
+(primo: 2221, inicio: 1888, fim: 1891)
+
+(primo: 661, inicio: 1893, fim: 1895)
+
+(primo: 863, inicio: 1897, fim: 1899)
+(primo: 67, inicio: 1901, fim: 1902)
+
+(primo: 2, inicio: 1905, fim: 1905)
+
+(primo: 7, inicio: 1906, fim: 1906)
+
+(primo: 2, inicio: 1909, fim: 1909)
+(primo: 2039, inicio: 1910, fim: 1913)
+(primo: 19, inicio: 1914, fim: 1915)
+
+(primo: 5, inicio: 1919, fim: 1919)
+
+(primo: 47, inicio: 1921, fim: 1922)
+(primo: 1237, inicio: 1923, fim: 1926)
+(primo: 13, inicio: 1927, fim: 1928)
+(primo: 7, inicio: 1929, fim: 1929)
+
+(primo: 563, inicio: 1936, fim: 1938)
+(primo: 643, inicio: 1939, fim: 1941)
+(primo: 19, inicio: 1943, fim: 1944)
+(primo: 17, inicio: 1945, fim: 1946)
+
+(primo: 2, inicio: 1947, fim: 1947)
+
+(primo: 7, inicio: 1949, fim: 1949)
+
+(primo: 467, inicio: 1950, fim: 1952)
+(primo: 7, inicio: 1953, fim: 1953)
+
+(primo: 4657, inicio: 1955, fim: 1958)
+(primo: 739, inicio: 1960, fim: 1962)
+
+(primo: 2, inicio: 1964, fim: 1964)
+(primo: 41, inicio: 1965, fim: 1966)
+(primo: 3, inicio: 1967, fim: 1967)
+(primo: 89, inicio: 1968, fim: 1969)
+
+(primo: 5, inicio: 1973, fim: 1973)
+
+(primo: 83, inicio: 1974, fim: 1975)
+
+(primo: 2, inicio: 1976, fim: 1976)
+
+(primo: 5, inicio: 1979, fim: 1979)
+
+(primo: 5813, inicio: 1982, fim: 1985)
+
+(primo: 3, inicio: 1986, fim: 1986)
+
+(primo: 47, inicio: 1989, fim: 1990)
+
+(primo: 2, inicio: 1993, fim: 1993)
+
+(primo: 7, inicio: 1994, fim: 1994)
+
+(primo: 5, inicio: 1995, fim: 1995)
