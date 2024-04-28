@@ -15,7 +15,6 @@ class lista_num_primos(object):
         Construtor
         """
         self.__lista: list[primo] = []
-        self.__maior_primo: None | primo = None
 
     def __str__(self) -> str:
         """__str__(self) -> str:
@@ -47,32 +46,12 @@ class lista_num_primos(object):
         """
         return len(self.__lista)
 
-    def maior_primo(self) -> primo | None:
-        """maior_primo(self) -> primo | None:
-        Maior número primo presente nessa lista
-        """
-        if self.__maior_primo is not None:
-            return self.__maior_primo
-        elif self.size() > 0:
-            self.__maior_primo = self.__lista[0]
-            for indice in range(1, self.size()):
-                primo_anterior = self.__lista[indice - 1]
-                primo_atual = self.__lista[indice]
-                if primo_atual.numero_primo > primo_anterior.numero_primo:
-                    self.__maior_primo = primo_atual
-            return self.__maior_primo
-        else:
-            return None
-
     def append(self, novo_primo: primo) -> bool:
         """append(self, novo_primo: primo) -> bool:
         Insere um novo primo no final da lista
         """
         if novo_primo not in self.__lista:
             self.__lista.append(novo_primo)
-
-            if self.__maior_primo is None or novo_primo.numero_primo > self.__maior_primo.numero_primo:
-                self.__maior_primo = novo_primo
 
             return True
         else:
@@ -83,10 +62,6 @@ class lista_num_primos(object):
         Remove um determinado número primo da lista
         """
         if primo_a_ser_removido in self.__lista:
-
-            if primo_a_ser_removido == self.__maior_primo:
-                self.__maior_primo = self.maior_primo()
-
             self.__lista.remove(primo_a_ser_removido)
             return True
         else:
