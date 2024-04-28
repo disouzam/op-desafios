@@ -102,7 +102,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                 if primo_anterior is None:
                     primo_anterior = primo_atual
 
-                if inicio > 0:
+                if lista_temporaria.size() > 0:
                     # Sobreposição entre vizinhos imediatos
                     if primo_anterior != primo_atual and \
                             primo_atual.sobrepoe_outro_primo_parcialmente(
@@ -119,7 +119,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str]) -> list[str]:
                     if primo_atual.fim > maximo_indice_final:
                         maximo_indice_final = primo_atual.fim
 
-                    primo_anterior = primo_atual
+                primo_anterior = primo_atual
 
                 if not sobreposicao_entre_vizinhos:
                     lista_temporaria.filtrar_primos()
