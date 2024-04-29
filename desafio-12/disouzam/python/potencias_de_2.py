@@ -43,6 +43,44 @@ def main(args) -> None:
             candidato = int(linha_processada)
             lista_de_candidatos.append(candidato)
 
+    lista_de_resultados = processa_candidatos(lista_de_candidatos)
+
+    for resultado in lista_de_resultados:
+        print(resultado)
+
+
+def processa_candidatos(lista_de_candidatos) -> list[str]:
+    resultados: list[str] = []
+
+    for candidato in lista_de_candidatos:
+        potencia_de_2, expoente = descobre_expoente(candidato)
+        if potencia_de_2:
+            resultado = f"{candidato} {str(potencia_de_2).lower()} {expoente}"
+        else:
+            resultado = f"{candidato} {str(potencia_de_2).lower()}"
+        resultados.append(resultado)
+
+    return resultados
+
+
+def descobre_expoente(candidato: int) -> tuple[bool, int]:
+    resultado = candidato
+    potencia_de_2 = True
+    expoente = 0
+
+    while resultado % 2 == 0:
+        resultado = resultado / 2
+        expoente += 1
+
+    if candidato == 1:
+        return True, 0
+
+    if resultado != 1 and resultado % 2 != 0:
+        potencia_de_2 = False
+        expoente = -1
+
+    return potencia_de_2, expoente
+
 
 def debugger_is_active() -> bool:
     # TODO: Remover antes da submissão do PR
