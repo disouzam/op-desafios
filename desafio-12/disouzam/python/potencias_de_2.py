@@ -65,21 +65,21 @@ def processa_candidatos(lista_de_candidatos) -> list[str]:
 
 def descobre_expoente(candidato: int) -> tuple[bool, int]:
 
-    if candidato == 1:
-        return True, 0
-
     if candidato == 0:
         return False, -1
 
-    resultado = candidato
-    potencia_de_2 = True
-    expoente = 0
+    if candidato == 1:
+        return True, 0
 
-    while resultado % 2 == 0:
-        resultado = resultado / 2
+    resultado = 2
+    potencia_de_2 = True
+    expoente = 1
+
+    while resultado < candidato:
+        resultado = resultado * 2
         expoente += 1
 
-    if resultado != 1 and resultado % 2 != 0:
+    if resultado > candidato:
         potencia_de_2 = False
         expoente = -1
 
