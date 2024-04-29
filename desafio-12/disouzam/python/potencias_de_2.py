@@ -45,8 +45,10 @@ def main(args) -> None:
 
     lista_de_resultados = processa_candidatos(lista_de_candidatos)
 
-    for resultado in lista_de_resultados:
-        print(resultado)
+    with open("resultado.txt", "w", encoding='utf-8') as arquivo:
+        for resultado in lista_de_resultados:
+            print(resultado)
+            arquivo.write(f"{resultado}\n")
 
 
 def processa_candidatos(lista_de_candidatos) -> list[str]:
