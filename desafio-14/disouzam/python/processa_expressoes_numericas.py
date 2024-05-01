@@ -44,11 +44,17 @@ def main(args) -> None:
 
 
 def processa_linha(linha) -> None:
+    saldo_de_parenteses = 0
     for caractere in linha:
         if caractere == "(":
+            saldo_de_parenteses += 1
             print("Abriu parênteses...")
             continue
         if caractere == ")":
+            saldo_de_parenteses -= 1
+            if saldo_de_parenteses < 0:
+                raise Exception(
+                    "Foram fechados mais parênteses que abertos...")
             print("Fechou parênteses...")
             continue
         if caractere == "+":
@@ -76,6 +82,8 @@ def processa_linha(linha) -> None:
         except:
             print("Caractere não classificado...")
             raise Exception("Caractere não classificado...")
+    if saldo_de_parenteses != 0:
+        raise Exception("Saldo de parênteses diferente de zero...")
 
 
 def debugger_is_active() -> bool:
