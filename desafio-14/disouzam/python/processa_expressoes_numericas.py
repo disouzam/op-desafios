@@ -5,7 +5,7 @@ import cProfile
 from ctypes import ArgumentError
 import sys
 
-from expressao import expressao_numerica
+from expressao import SyntaxErrorException, expressao_numerica
 
 
 def main(args) -> None:
@@ -42,8 +42,12 @@ def main(args) -> None:
         for linha in arquivo:
             linha_processada = linha.strip("\n")
             print(linha_processada)
-            expressao = expressao_numerica(linha_processada)
-            expressao.processa_linha()
+            try:
+                expressao = expressao_numerica(linha_processada)
+                expressao.processa_linha()
+                print(expressao.resultado())
+            except SyntaxErrorException:
+                print("ERR SYNTAX")
 
 
 def debugger_is_active() -> bool:

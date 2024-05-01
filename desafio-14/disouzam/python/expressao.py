@@ -11,6 +11,10 @@ class Operador(Enum):
     POTENCIACAO = "^"
 
 
+class SyntaxErrorException(Exception):
+    pass
+
+
 class expressao_numerica(object):
 
     expressao_a_esquerda = None
@@ -39,8 +43,10 @@ class expressao_numerica(object):
         self.__conteudo += ' '
 
         saldo_de_parenteses = 0
+        posicao_abertura_parenteses = -1
+        posicao_fechamento_parenteses = -1
         numero_como_string = None
-        for caractere in self.__conteudo:
+        for posicao, caractere in enumerate(self.__conteudo):
 
             try:
                 if int(caractere) in range(0, 10):
@@ -65,18 +71,22 @@ class expressao_numerica(object):
                 continue
 
             if caractere == "(":
+                if saldo_de_parenteses == 0:
+                    posicao_abertura_parenteses = posicao
                 saldo_de_parenteses += 1
                 print("Abriu parênteses...")
                 continue
             if caractere == ")":
                 saldo_de_parenteses -= 1
+                if saldo_de_parenteses == 0:
+                    posicao_fechamento_parenteses = posicao
                 if saldo_de_parenteses < 0:
-                    raise Exception(
-                        "Foram fechados mais parênteses que abertos...")
-                print("Fechou parênteses...")
+                    raise SyntaxErrorException(
+                        "ERR SYNTAX")
                 continue
             if caractere in self.__operadores:
                 print("Operador encontrado")
                 self.operador = self.__operadores[caractere]
         if saldo_de_parenteses != 0:
-            raise Exception("Saldo de parênteses diferente de zero...")
+            raise SyntaxErrorException(
+                "Saldo de parênteses diferente de zero...")
