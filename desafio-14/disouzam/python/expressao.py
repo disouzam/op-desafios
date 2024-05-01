@@ -46,9 +46,14 @@ class expressao_numerica(object):
 
         saldo_de_parenteses = 0
         posicao_abertura_parenteses = -1
-        posicao_fechamento_parenteses = -1
+        posicao_inicial_numero = -1
         numero_como_string = None
         for posicao, caractere in enumerate(self.__conteudo):
+
+            if self.expressao_a_esquerda is not None and \
+                    self.operador is not None and \
+                    self.expressao_a_direita is not None:
+                break
 
             if caractere == "(":
                 if saldo_de_parenteses == 0:
@@ -73,6 +78,8 @@ class expressao_numerica(object):
                         self.expressao_a_esquerda = expressao_numerica(
                             expressao_dentro_dos_parenteses)
                     elif self.expressao_a_direita is None:
+
+                        # Fim da expressão atual
                         if posicao_proximo_operador == -1 and len(expressao_remanescente) == 1:
                             self.expressao_a_direita = expressao_numerica(
                                 expressao_dentro_dos_parenteses)
@@ -92,6 +99,7 @@ class expressao_numerica(object):
                 if int(caractere) in range(0, 10):
                     if numero_como_string is None:
                         numero_como_string = caractere
+                        posicao_inicial_numero = posicao
                     else:
                         numero_como_string += caractere
                     continue
@@ -99,10 +107,16 @@ class expressao_numerica(object):
                 if numero_como_string is not None:
                     if self.expressao_a_esquerda is None:
                         self.expressao_a_esquerda = int(numero_como_string)
-                    elif self.expressao_a_direita is None:
-                        self.expressao_a_direita = int(numero_como_string)
+
+                    elif self.expressao_a_direita is None and self.operador is not None:
+                        expressao_remanescente = self.__conteudo[posicao_inicial_numero: self.len]
+                        self.expressao_a_direita = expressao_numerica(
+                            expressao_remanescente)
+                    else:
+                        raise SyntaxErrorException("ERR SYNTAX")
 
                 # Reseta o valor da variável para monitorar próximo número
+                posicao_inicial_numero = -1
                 numero_como_string = None
 
             # Ignora espaços em branco
@@ -114,6 +128,17 @@ class expressao_numerica(object):
         if saldo_de_parenteses != 0:
             raise SyntaxErrorException(
                 "Saldo de parênteses diferente de zero...")
+
+        if self.expressao_a_esquerda is not None:
+            if self.operador is None and self.expressao_a_direita is None:
+                return self.expressao_a_esquerda.resultado()
+            elif self.operador is None and self.expressao_a_direita is not None:
+                raise SyntaxErrorException("ERR SYNTAX")
+            elif self.operador is not None and self.expressao_a_direita is None:
+                raise SyntaxErrorException("ERR SYNTAX")
+            else:
+                # Implementar operacoes
+                pass
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0
