@@ -45,11 +45,17 @@ class expressao_numerica(object):
     operador = None
     expressao_a_direita = None
     __resultado = None
+    continha_parenteses = False
 
     __operadores = {member.value: member for member in Operador}
 
     def __init__(self, conteudo: str) -> None:
-        self.__conteudo = conteudo
+        conteudo = conteudo.strip()
+        if conteudo[0] == "(" and conteudo[-1] == ")":
+            continha_parenteses = True
+            self.__conteudo = conteudo[1:len(conteudo) - 1]
+        else:
+            self.__conteudo = conteudo
 
         # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
         self.__conteudo += ' '
@@ -154,7 +160,7 @@ class expressao_numerica(object):
                     posicao_proximo_operador = self.procura_operador(
                         posicao_fechamento)
 
-                    expressao_remanescente = self.__conteudo[posicao_fechamento + 1: self.len]
+                    expressao_remanescente = self.__conteudo[posicao_fechamento + 2: self.len]
 
                     if self.expressao_a_esquerda is None:
                         self.expressao_a_esquerda = expressao_numerica(
