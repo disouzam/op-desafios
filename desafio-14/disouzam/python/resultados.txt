@@ -5,7 +5,7 @@ Arquivo de entrada: exemplo.txt
 953.0
 1.8925441112254468e+27
 4.0
-ERR SYNTAX: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 270']
+ERR SYNTAX: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 278']
 -4.0
-ERR DIVBYZERO: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 146']
+ERR DIVBYZERO: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 153']
 7.0
