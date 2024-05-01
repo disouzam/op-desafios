@@ -40,8 +40,8 @@ class expressao_numerica(object):
             self.__processa_conteudo()
 
     def __str__(self) -> str:
-        resultado = f"len: {self.len}, Conteúdo: {self.__conteudo}"
-        return resultado
+        representacao_como_string = f"len: {self.len}, Conteúdo: {self.__conteudo}"
+        return representacao_como_string
 
     def __repr__(self) -> str:
         return self.__str__()
