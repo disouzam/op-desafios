@@ -18,7 +18,7 @@ class expressao_numerica(object):
     expressao_a_direita = None
     __resultado = None
 
-    __operadores = [member.value for member in Operador]
+    __operadores = {member.value: member for member in Operador}
 
     def __init__(self, linha: str) -> None:
         self.__linha = linha
@@ -49,6 +49,7 @@ class expressao_numerica(object):
                 continue
             if caractere in self.__operadores:
                 print("Operador encontrado")
+                self.operador = self.__operadores[caractere]
             if caractere == "+":
                 print("Sinal de adição...")
                 continue
