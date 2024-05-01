@@ -104,12 +104,8 @@ class expressao_numerica(object):
             resultado_a_direita = cast(float, resultado_a_direita)
 
             resultado = 0
-
-            if self.operador == Operador.ADICAO:
-                resultado = resultado_a_esquerda + resultado_a_direita
-
-            if self.operador == Operador.SUBTRACAO:
-                resultado = resultado_a_esquerda - resultado_a_direita
+            if self.operador == Operador.POTENCIACAO:
+                resultado = math.pow(resultado_a_esquerda, resultado_a_direita)
 
             if self.operador == Operador.MULTIPLICACAO:
                 resultado = resultado_a_esquerda * resultado_a_direita
@@ -120,8 +116,11 @@ class expressao_numerica(object):
                     raise DivByZeroErrorException(frametype=frameinfo)
                 resultado = resultado_a_esquerda / resultado_a_direita
 
-            if self.operador == Operador.POTENCIACAO:
-                resultado = math.pow(resultado_a_esquerda, resultado_a_direita)
+            if self.operador == Operador.ADICAO:
+                resultado = resultado_a_esquerda + resultado_a_direita
+
+            if self.operador == Operador.SUBTRACAO:
+                resultado = resultado_a_esquerda - resultado_a_direita
 
             return resultado
 
