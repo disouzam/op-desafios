@@ -129,7 +129,7 @@ class expressao_numerica(object):
             raise SyntaxErrorException(
                 "Saldo de parênteses diferente de zero...")
 
-        if self.expressao_a_esquerda is not None:
+        if self.expressao_a_esquerda is not None and isinstance(self.expressao_a_esquerda, expressao_numerica):
             if self.operador is None and self.expressao_a_direita is None:
                 return self.expressao_a_esquerda.resultado()
             elif self.operador is None and self.expressao_a_direita is not None:
