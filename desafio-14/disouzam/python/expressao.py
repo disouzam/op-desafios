@@ -33,7 +33,7 @@ class expressao_numerica(object):
         self.len = len(self.__conteudo)
 
     def __str__(self) -> str:
-        resultado = f"Conteúdo: {self.__conteudo}, len: {self.len}"
+        resultado = f"len: {self.len}, Conteúdo: {self.__conteudo}"
         return resultado
 
     def __repr__(self) -> str:
