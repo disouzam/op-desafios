@@ -30,6 +30,8 @@ class expressao_numerica(object):
         # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
         self.__conteudo += ' '
 
+        self.len = len(self.__conteudo)
+
     def __str__(self) -> str:
         resultado = f"Conteúdo: {self.__conteudo}"
         return resultado
