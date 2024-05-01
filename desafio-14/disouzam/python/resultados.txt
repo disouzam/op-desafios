@@ -1,0 +1,11 @@
+Arquivo de entrada: exemplo.txt
+1.681792830507429
+0.0
+4.14159
+953.0
+1.8925441112254468e+27
+4.0
+ERR SYNTAX: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 246']
+-4.0
+ERR DIVBYZERO: ['E:\\GitHubRepos\\op-desafios\\desafio-14\\disouzam\\python\\expressao.py - 122']
+7.0
