@@ -34,6 +34,10 @@ class expressao_numerica(object):
         return self.__resultado
 
     def processa_linha(self) -> None:
+
+        # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
+        self.__linha += ' '
+
         saldo_de_parenteses = 0
         numero_como_string = None
         for caractere in self.__linha:
