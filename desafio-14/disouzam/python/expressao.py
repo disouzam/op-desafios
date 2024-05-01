@@ -5,8 +5,9 @@
 class expressao_numerica(object):
 
     expressao_a_esquerda = None
+    operador = None
     expressao_a_direita = None
-    resultado = None
+    __resultado = None
 
     def __init__(self, linha: str) -> None:
         self.__linha = linha
@@ -17,6 +18,9 @@ class expressao_numerica(object):
 
     def __repr__(self) -> str:
         return self.__str__()
+
+    def resultado(self):
+        return self.__resultado
 
     def processa_linha(self) -> None:
         saldo_de_parenteses = 0
