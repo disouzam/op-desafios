@@ -20,11 +20,11 @@ class expressao_numerica(object):
 
     __operadores = {member.value: member for member in Operador}
 
-    def __init__(self, linha: str) -> None:
-        self.__linha = linha
+    def __init__(self, conteudo: str) -> None:
+        self.__conteudo = conteudo
 
     def __str__(self) -> str:
-        resultado = f"Conteúdo: {self.__linha}"
+        resultado = f"Conteúdo: {self.__conteudo}"
         return resultado
 
     def __repr__(self) -> str:
@@ -36,11 +36,11 @@ class expressao_numerica(object):
     def processa_linha(self) -> None:
 
         # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
-        self.__linha += ' '
+        self.__conteudo += ' '
 
         saldo_de_parenteses = 0
         numero_como_string = None
-        for caractere in self.__linha:
+        for caractere in self.__conteudo:
 
             try:
                 if int(caractere) in range(0, 10):
