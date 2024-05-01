@@ -27,6 +27,9 @@ class expressao_numerica(object):
     def __init__(self, conteudo: str) -> None:
         self.__conteudo = conteudo
 
+        # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
+        self.__conteudo += ' '
+
     def __str__(self) -> str:
         resultado = f"Conteúdo: {self.__conteudo}"
         return resultado
@@ -38,9 +41,6 @@ class expressao_numerica(object):
         return self.__resultado
 
     def processa_linha(self) -> None:
-
-        # Adição de espaço em branco ao final do conteúdo para evitar condição de borda ao final
-        self.__conteudo += ' '
 
         saldo_de_parenteses = 0
         posicao_abertura_parenteses = -1
