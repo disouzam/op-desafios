@@ -40,6 +40,8 @@ def main(args) -> None:
 
     with open(arquivo_com_expressoes_numericas, 'r', encoding='utf-8') as arquivo:
         with open("resultados.txt", "w", encoding='utf-8') as resultado_em_arquivo:
+            resultado_em_arquivo.write(
+                f"Arquivo de entrada: {arquivo_com_expressoes_numericas}\n")
             for linha in arquivo:
                 linha_processada = linha.strip("\n")
                 try:
