@@ -33,7 +33,7 @@ class expressao_numerica(object):
         self.len = len(self.__conteudo)
 
     def __str__(self) -> str:
-        resultado = f"Conteúdo: {self.__conteudo}"
+        resultado = f"Conteúdo: {self.__conteudo}, len: {self.len}"
         return resultado
 
     def __repr__(self) -> str:
@@ -54,6 +54,9 @@ class expressao_numerica(object):
                 if saldo_de_parenteses == 0:
                     posicao_abertura_parenteses = posicao
                 saldo_de_parenteses += 1
+
+                posicao_fechamento = self.procura_parenteses_de_fechamento(
+                    self.__conteudo, posicao_abertura_parenteses)
                 continue
             if caractere == ")":
                 saldo_de_parenteses -= 1
