@@ -102,6 +102,8 @@ class expressao_numerica(object):
             if self.operador == Operador.DIVISAO:
                 resultado = resultado_a_esquerda / resultado_a_direita
 
+            return resultado
+
     def __processa_conteudo(self) -> None:
 
         saldo_de_parenteses = 0
@@ -190,6 +192,10 @@ class expressao_numerica(object):
 
             if caractere in self.__operadores:
                 self.operador = self.__operadores[caractere]
+
+                expressao_remanescente = self.__conteudo[posicao + 1: self.len]
+                self.expressao_a_direita = expressao_numerica(
+                    expressao_remanescente)
         if saldo_de_parenteses != 0:
             frameinfo = cast(FrameType, currentframe())
             raise SyntaxErrorException(
