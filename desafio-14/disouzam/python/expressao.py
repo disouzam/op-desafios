@@ -37,6 +37,7 @@ class expressao_numerica(object):
         saldo_de_parenteses = 0
         numero_como_string = None
         for caractere in self.__linha:
+
             try:
                 if int(caractere) in range(0, 10):
                     print("Dígito...")
@@ -45,8 +46,20 @@ class expressao_numerica(object):
                     else:
                         numero_como_string += caractere
                     continue
-            except:
+            except ValueError:
+                if numero_como_string is not None:
+                    if self.expressao_a_esquerda is None:
+                        self.expressao_a_esquerda = int(numero_como_string)
+                    elif self.expressao_a_direita is None:
+                        self.expressao_a_direita = int(numero_como_string)
+
+                # Reseta o valor da variável para monitorar próximo número
                 numero_como_string = None
+
+            # Ignora espaços em branco
+            if caractere == " ":
+                continue
+
             if caractere == "(":
                 saldo_de_parenteses += 1
                 print("Abriu parênteses...")
