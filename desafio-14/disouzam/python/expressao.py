@@ -127,7 +127,7 @@ class expressao_numerica(object):
                 continue
 
             try:
-                if int(caractere) in range(0, 10):
+                if caractere == "." or int(caractere) in range(0, 10):
                     if numero_como_string is None:
                         numero_como_string = caractere
                         posicao_inicial_numero = posicao
