@@ -5,6 +5,8 @@ import cProfile
 from ctypes import ArgumentError
 import sys
 
+from expressao import expressao_numerica
+
 
 def main(args) -> None:
     """main(args):
@@ -40,50 +42,8 @@ def main(args) -> None:
         for linha in arquivo:
             linha_processada = linha.strip("\n")
             print(linha_processada)
-            processa_linha(linha_processada)
-
-
-def processa_linha(linha) -> None:
-    saldo_de_parenteses = 0
-    for caractere in linha:
-        if caractere == "(":
-            saldo_de_parenteses += 1
-            print("Abriu parênteses...")
-            continue
-        if caractere == ")":
-            saldo_de_parenteses -= 1
-            if saldo_de_parenteses < 0:
-                raise Exception(
-                    "Foram fechados mais parênteses que abertos...")
-            print("Fechou parênteses...")
-            continue
-        if caractere == "+":
-            print("Sinal de adição...")
-            continue
-        if caractere == "-":
-            print("Sinal de subtração...")
-            continue
-        if caractere == "*":
-            print("Sinal de multiplicação...")
-            continue
-        if caractere == "/":
-            print("Sinal de divisão...")
-            continue
-        if caractere == "^":
-            print("Sinal de potenciação...")
-            continue
-        if caractere == " ":
-            print("Espaço vazio...")
-            continue
-        try:
-            if int(caractere) in range(0, 10):
-                print("Dígito...")
-                continue
-        except:
-            print("Caractere não classificado...")
-            raise Exception("Caractere não classificado...")
-    if saldo_de_parenteses != 0:
-        raise Exception("Saldo de parênteses diferente de zero...")
+            expressao = expressao_numerica(linha_processada)
+            expressao.processa_linha()
 
 
 def debugger_is_active() -> bool:
