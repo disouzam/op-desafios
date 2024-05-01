@@ -43,7 +43,7 @@ def main(args) -> None:
             processa_linha(linha_processada)
 
 
-def processa_linha(linha):
+def processa_linha(linha) -> None:
     for caractere in linha:
         if caractere == "(":
             print("Abriu parênteses...")
