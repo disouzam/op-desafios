@@ -39,15 +39,19 @@ def main(args) -> None:
             return
 
     with open(arquivo_com_expressoes_numericas, 'r', encoding='utf-8') as arquivo:
-        for linha in arquivo:
-            linha_processada = linha.strip("\n")
-            try:
-                expressao = expressao_numerica(linha_processada)
-                print(expressao.resultado())
-            except SyntaxErrorException as ex:
-                print(f"ERR SYNTAX: {ex}")
-            except DivByZeroErrorException as ex:
-                print(f"ERR DIVBYZERO: {ex}")
+        with open("resultados.txt", "w", encoding='utf-8') as resultado_em_arquivo:
+            for linha in arquivo:
+                linha_processada = linha.strip("\n")
+                try:
+                    expressao = expressao_numerica(linha_processada)
+                    resultado_da_linha = expressao.resultado()
+                except SyntaxErrorException as ex:
+                    resultado_da_linha = f"ERR SYNTAX: {ex}"
+                except DivByZeroErrorException as ex:
+                    resultado_da_linha = f"ERR DIVBYZERO: {ex}"
+
+                resultado_em_arquivo.write(f"{str(resultado_da_linha)}\n")
+                print(resultado_da_linha)
 
 
 def debugger_is_active() -> bool:
