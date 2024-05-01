@@ -1,5 +1,14 @@
 """Representa uma expressao numerica recursivamente
 """
+from enum import Enum
+
+
+class Operador(Enum):
+    ADICAO = "+"
+    SUBTRACAO = "-"
+    MULTIPLICACAO = "*"
+    DIVISAO = "/"
+    POTENCIACAO = "^"
 
 
 class expressao_numerica(object):
@@ -8,6 +17,8 @@ class expressao_numerica(object):
     operador = None
     expressao_a_direita = None
     __resultado = None
+
+    __operadores = [member.value for member in Operador]
 
     def __init__(self, linha: str) -> None:
         self.__linha = linha
@@ -36,6 +47,8 @@ class expressao_numerica(object):
                         "Foram fechados mais parênteses que abertos...")
                 print("Fechou parênteses...")
                 continue
+            if caractere in self.__operadores:
+                print("Operador encontrado")
             if caractere == "+":
                 print("Sinal de adição...")
                 continue
