@@ -110,7 +110,8 @@ class expressao_numerica(object):
         # Se existe só a expressão à esquerda, o resultado é somente dela
         if self.expressao_a_direita is None and self.operador == Operador.NONE:
             if isinstance(self.expressao_a_esquerda, expressao_numerica):
-                return self.expressao_a_esquerda.resultado()
+                self.__resultado = self.expressao_a_esquerda.resultado()
+                return self.__resultado
 
         # Ter uma expressão à direta e não ter operador, lança um erro de sintaxe
         if self.expressao_a_direita is not None and self.operador == Operador.NONE:
@@ -152,7 +153,8 @@ class expressao_numerica(object):
             if self.operador == Operador.SUBTRACAO:
                 resultado = resultado_a_esquerda - resultado_a_direita
 
-            return resultado
+            self.__resultado = resultado
+            return self.__resultado
 
     def __processa_conteudo(self) -> None:
 
