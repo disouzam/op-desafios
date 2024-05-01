@@ -33,6 +33,8 @@ class expressao_numerica(object):
 
         self.len = len(self.__conteudo)
 
+        self.__processa_conteudo()
+
     def __str__(self) -> str:
         resultado = f"len: {self.len}, Conteúdo: {self.__conteudo}"
         return resultado
@@ -41,6 +43,17 @@ class expressao_numerica(object):
         return self.__str__()
 
     def resultado(self):
+
+        if self.expressao_a_esquerda is not None and isinstance(self.expressao_a_esquerda, expressao_numerica):
+            if self.operador is None and self.expressao_a_direita is None:
+                return self.expressao_a_esquerda.resultado()
+            elif self.operador is None and self.expressao_a_direita is not None:
+                raise SyntaxErrorException("ERR SYNTAX")
+            elif self.operador is not None and self.expressao_a_direita is None:
+                raise SyntaxErrorException("ERR SYNTAX")
+            else:
+                # Implementar operacoes
+                pass
 
         if self.expressao_a_direita is None and self.operador is None:
             __resultado = float(cast(float, self.expressao_a_esquerda))
@@ -52,7 +65,7 @@ class expressao_numerica(object):
 
         return self.__resultado
 
-    def processa_conteudo(self) -> None:
+    def __processa_conteudo(self) -> None:
 
         saldo_de_parenteses = 0
         posicao_abertura_parenteses = -1
@@ -139,17 +152,6 @@ class expressao_numerica(object):
         if saldo_de_parenteses != 0:
             raise SyntaxErrorException(
                 "Saldo de parênteses diferente de zero...")
-
-        if self.expressao_a_esquerda is not None and isinstance(self.expressao_a_esquerda, expressao_numerica):
-            if self.operador is None and self.expressao_a_direita is None:
-                return self.expressao_a_esquerda.resultado()
-            elif self.operador is None and self.expressao_a_direita is not None:
-                raise SyntaxErrorException("ERR SYNTAX")
-            elif self.operador is not None and self.expressao_a_direita is None:
-                raise SyntaxErrorException("ERR SYNTAX")
-            else:
-                # Implementar operacoes
-                pass
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0

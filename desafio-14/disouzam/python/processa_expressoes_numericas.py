@@ -43,7 +43,6 @@ def main(args) -> None:
             linha_processada = linha.strip("\n")
             try:
                 expressao = expressao_numerica(linha_processada)
-                expressao.processa_conteudo()
                 print(expressao.resultado())
             except SyntaxErrorException:
                 print("ERR SYNTAX")
