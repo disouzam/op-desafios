@@ -56,15 +56,31 @@ class expressao_numerica(object):
                 saldo_de_parenteses += 1
 
                 posicao_fechamento = self.procura_parenteses_de_fechamento(
-                    self.__conteudo, posicao_abertura_parenteses)
+                    posicao_abertura_parenteses)
+
+                if posicao_fechamento != -1:
+                    expressao_dentro_dos_parenteses = self.__conteudo[
+                        posicao_abertura_parenteses+1:posicao_fechamento]
+                    posicao_proximo_operador = self.procura_operador(
+                        posicao_fechamento)
+                    if self.expressao_a_esquerda is None:
+                        self.expressao_a_esquerda = expressao_numerica(
+                            expressao_dentro_dos_parenteses)
+                    elif self.expressao_a_direita is None:
+                        if posicao_proximo_operador == -1:
+                            self.expressao_a_direita = expressao_numerica(
+                                expressao_dentro_dos_parenteses)
+                        else:
+                            raise SyntaxErrorException("ERR SYNTAX")
+                else:
+                    raise SyntaxErrorException("ERR SYNTAX")
                 continue
             if caractere == ")":
                 saldo_de_parenteses -= 1
                 if saldo_de_parenteses == 0:
                     posicao_fechamento_parenteses = posicao
                 if saldo_de_parenteses < 0:
-                    raise SyntaxErrorException(
-                        "ERR SYNTAX")
+                    raise SyntaxErrorException("ERR SYNTAX")
                 continue
 
             try:
@@ -93,3 +109,9 @@ class expressao_numerica(object):
         if saldo_de_parenteses != 0:
             raise SyntaxErrorException(
                 "Saldo de parênteses diferente de zero...")
+
+    def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
+        return -1
+
+    def procura_operador(posicao_fechamento):
+        return -1
