@@ -36,6 +36,10 @@ def main(args) -> None:
             print("Programa abortado.")
             return
 
+    with open(arquivo_com_expressoes_numericas, 'r', encoding='utf-8') as arquivo:
+        for linha in arquivo:
+            print(linha)
+
 
 def debugger_is_active() -> bool:
     # TODO: Remover antes da submissão do PR
