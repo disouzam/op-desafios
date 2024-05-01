@@ -62,13 +62,45 @@ class expressao_numerica(object):
         if self.__resultado is not None:
             return self.__resultado
 
+        # Se não existe a expressão à esquerda, lança um erro de sintaxe
+        if self.expressao_a_esquerda is None:
+            frameinfo = cast(FrameType, currentframe())
+            raise SyntaxErrorException(frametype=frameinfo)
+
+        # Se existe só a expressão à esquerda, o resultado é somente dela
         if self.expressao_a_direita is None and self.operador is None:
             if isinstance(self.expressao_a_esquerda, expressao_numerica):
                 return self.expressao_a_esquerda.resultado()
 
+        # Ter uma expressão à direta e não ter operador, lança um erro de sintaxe
         if self.expressao_a_direita is not None and self.operador is None:
             frameinfo = cast(FrameType, currentframe())
             raise SyntaxErrorException(frametype=frameinfo)
+
+        # Ter um operador mas não ter uma expressão à direita, lança um erro de sintaxe
+        if self.expressao_a_direita is None and self.operador is not None:
+            frameinfo = cast(FrameType, currentframe())
+            raise SyntaxErrorException(frametype=frameinfo)
+
+        # Recursão
+        if self.expressao_a_esquerda is not None and self.expressao_a_direita is not None:
+            resultado_a_esquerda = self.expressao_a_esquerda.resultado()
+            resultado_a_direita = self.expressao_a_direita.resultado()
+
+            resultado_a_esquerda = cast(float, resultado_a_esquerda)
+            resultado_a_direita = cast(float, resultado_a_direita)
+
+            if self.operador == Operador.ADICAO:
+                resultado = resultado_a_esquerda + resultado_a_direita
+
+            if self.operador == Operador.SUBTRACAO:
+                resultado = resultado_a_esquerda - resultado_a_direita
+
+            if self.operador == Operador.MULTIPLICACAO:
+                resultado = resultado_a_esquerda * resultado_a_direita
+
+            if self.operador == Operador.DIVISAO:
+                resultado = resultado_a_esquerda / resultado_a_direita
 
     def __processa_conteudo(self) -> None:
 
