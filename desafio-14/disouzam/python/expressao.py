@@ -16,16 +16,13 @@ class Operador(Enum):
 
 class SyntaxErrorException(Exception):
 
-    def __init__(self, frametype: FrameType | None = None, *args: object) -> None:
+    def __init__(self, *args: object, frametype: FrameType | None = None) -> None:
         if frametype is not None:
             frameinfo = getframeinfo(frametype)
             mensagem = f"{frameinfo.filename} - {frameinfo.lineno}"
             unpacked_args = [*args]
 
-            if len(unpacked_args) > 0:
-                print("Entrei")
-            else:
-                unpacked_args.append(mensagem)
+            unpacked_args.append(mensagem)
         super().__init__(unpacked_args)
 
 
@@ -163,8 +160,8 @@ class expressao_numerica(object):
                 self.operador = self.__operadores[caractere]
         if saldo_de_parenteses != 0:
             frameinfo = cast(FrameType, currentframe())
-            raise SyntaxErrorException(frameinfo,
-                                       f"Saldo de parênteses diferente de zero...")
+            raise SyntaxErrorException(
+                f"Saldo de parênteses diferente de zero...", frametype=frameinfo)
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0
