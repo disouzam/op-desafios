@@ -125,14 +125,14 @@ class expressao_numerica(object):
 
         # Recursão
         if self.expressao_a_esquerda is not None and self.expressao_a_direita is not None:
-            precedencia_esquerda_atual = precedencia_operadores(
+            precedencia_esquerda_sobre_atual = precedencia_operadores(
                 self.expressao_a_esquerda.operador, self.operador)
 
-            precedencia_direita_atual = precedencia_operadores(
-                self.operador, self.expressao_a_direita.operador)
-
-            precedencia_esquerda_direita = precedencia_operadores(
+            precedencia_esquerda_sobre_direita = precedencia_operadores(
                 self.expressao_a_esquerda.operador, self.expressao_a_direita.operador)
+
+            precedencia_atual_sobre_direita = precedencia_operadores(
+                self.operador, self.expressao_a_direita.operador)
 
             resultado_a_esquerda = self.expressao_a_esquerda.resultado()
             resultado_a_direita = self.expressao_a_direita.resultado()
