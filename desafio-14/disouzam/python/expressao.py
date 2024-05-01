@@ -52,7 +52,7 @@ class expressao_numerica(object):
 
         return self.__resultado
 
-    def processa_linha(self) -> None:
+    def processa_conteudo(self) -> None:
 
         saldo_de_parenteses = 0
         posicao_abertura_parenteses = -1
