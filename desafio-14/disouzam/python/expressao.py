@@ -1,5 +1,6 @@
 """Representa uma expressao numerica recursivamente
 """
+from __future__ import annotations
 from enum import Enum
 import math
 from types import FrameType
@@ -8,11 +9,31 @@ from inspect import currentframe, getframeinfo
 
 
 class Operador(Enum):
+    NONE = "None"
     ADICAO = "+"
     SUBTRACAO = "-"
     MULTIPLICACAO = "*"
     DIVISAO = "/"
     POTENCIACAO = "^"
+
+
+def precedencia_operadores(primeiroOperador: Operador, segundoOperador: Operador):
+    valores = {member: -1 for member in Operador}
+
+    valores[Operador.ADICAO] = 0
+    valores[Operador.SUBTRACAO] = 0
+
+    valores[Operador.DIVISAO] = 1
+    valores[Operador.MULTIPLICACAO] = 1
+
+    valores[Operador.POTENCIACAO] = 2
+
+    primeiro = valores[primeiroOperador]
+    segundo = valores[segundoOperador]
+
+    resultado = primeiro - segundo
+
+    return resultado
 
 
 class SyntaxErrorException(Exception):
@@ -42,7 +63,7 @@ class DivByZeroErrorException(Exception):
 class expressao_numerica(object):
 
     expressao_a_esquerda = None
-    operador = None
+    operador = Operador.NONE
     expressao_a_direita = None
     __resultado = None
     continha_parenteses = False
@@ -87,22 +108,25 @@ class expressao_numerica(object):
             raise SyntaxErrorException(frametype=frameinfo)
 
         # Se existe só a expressão à esquerda, o resultado é somente dela
-        if self.expressao_a_direita is None and self.operador is None:
+        if self.expressao_a_direita is None and self.operador == Operador.NONE:
             if isinstance(self.expressao_a_esquerda, expressao_numerica):
                 return self.expressao_a_esquerda.resultado()
 
         # Ter uma expressão à direta e não ter operador, lança um erro de sintaxe
-        if self.expressao_a_direita is not None and self.operador is None:
+        if self.expressao_a_direita is not None and self.operador == Operador.NONE:
             frameinfo = cast(FrameType, currentframe())
             raise SyntaxErrorException(frametype=frameinfo)
 
         # Ter um operador mas não ter uma expressão à direita, lança um erro de sintaxe
-        if self.expressao_a_direita is None and self.operador is not None:
+        if self.expressao_a_direita is None and self.operador != Operador.NONE:
             frameinfo = cast(FrameType, currentframe())
             raise SyntaxErrorException(frametype=frameinfo)
 
         # Recursão
         if self.expressao_a_esquerda is not None and self.expressao_a_direita is not None:
+            precedencia = precedencia_operadores(
+                self.expressao_a_esquerda.operador, self.expressao_a_direita.operador)
+
             resultado_a_esquerda = self.expressao_a_esquerda.resultado()
             resultado_a_direita = self.expressao_a_direita.resultado()
 
@@ -138,9 +162,9 @@ class expressao_numerica(object):
         numero_como_string = None
         for posicao, caractere in enumerate(self.__conteudo):
 
-            if self.expressao_a_esquerda is not None and \
-                    self.operador is not None and \
-                    self.expressao_a_direita is not None:
+            if self.expressao_a_direita is not None and \
+                self.operador != Operador.NONE and \
+                    self.expressao_a_esquerda is not None:
                 break
 
             if caractere == "(":
