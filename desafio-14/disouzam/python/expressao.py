@@ -1,6 +1,7 @@
 """Representa uma expressao numerica recursivamente
 """
 from enum import Enum
+import math
 from types import FrameType
 from typing import cast
 from inspect import FrameInfo, currentframe, getframeinfo
@@ -15,6 +16,18 @@ class Operador(Enum):
 
 
 class SyntaxErrorException(Exception):
+
+    def __init__(self, *args: object, frametype: FrameType | None = None) -> None:
+        if frametype is not None:
+            frameinfo = getframeinfo(frametype)
+            mensagem = f"{frameinfo.filename} - {frameinfo.lineno}"
+            unpacked_args = [*args]
+
+            unpacked_args.append(mensagem)
+        super().__init__(unpacked_args)
+
+
+class DivByZeroErrorException(Exception):
 
     def __init__(self, *args: object, frametype: FrameType | None = None) -> None:
         if frametype is not None:
@@ -90,6 +103,8 @@ class expressao_numerica(object):
             resultado_a_esquerda = cast(float, resultado_a_esquerda)
             resultado_a_direita = cast(float, resultado_a_direita)
 
+            resultado = 0
+
             if self.operador == Operador.ADICAO:
                 resultado = resultado_a_esquerda + resultado_a_direita
 
@@ -100,7 +115,13 @@ class expressao_numerica(object):
                 resultado = resultado_a_esquerda * resultado_a_direita
 
             if self.operador == Operador.DIVISAO:
+                if resultado_a_direita == 0:
+                    frameinfo = cast(FrameType, currentframe())
+                    raise DivByZeroErrorException(frametype=frameinfo)
                 resultado = resultado_a_esquerda / resultado_a_direita
+
+            if self.operador == Operador.POTENCIACAO:
+                resultado = math.pow(resultado_a_esquerda, resultado_a_direita)
 
             return resultado
 

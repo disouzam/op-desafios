@@ -5,7 +5,7 @@ import cProfile
 from ctypes import ArgumentError
 import sys
 
-from expressao import SyntaxErrorException, expressao_numerica
+from expressao import DivByZeroErrorException, SyntaxErrorException, expressao_numerica
 
 
 def main(args) -> None:
@@ -46,6 +46,8 @@ def main(args) -> None:
                 print(expressao.resultado())
             except SyntaxErrorException as ex:
                 print(f"ERR SYNTAX: {ex}")
+            except DivByZeroErrorException as ex:
+                print(f"ERR DIVBYZERO: {ex}")
 
 
 def debugger_is_active() -> bool:
