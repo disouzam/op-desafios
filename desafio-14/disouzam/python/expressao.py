@@ -4,6 +4,10 @@
 
 class expressao_numerica(object):
 
+    expressao_a_esquerda = None
+    expressao_a_direita = None
+    resultado = None
+
     def __init__(self, linha: str) -> None:
         self.__linha = linha
 
