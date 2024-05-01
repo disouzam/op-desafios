@@ -81,10 +81,9 @@ class expressao_numerica(object):
                 else:
                     raise SyntaxErrorException("ERR SYNTAX")
                 continue
+
             if caractere == ")":
                 saldo_de_parenteses -= 1
-                if saldo_de_parenteses == 0:
-                    posicao_fechamento_parenteses = posicao
                 if saldo_de_parenteses < 0:
                     raise SyntaxErrorException("ERR SYNTAX")
                 continue

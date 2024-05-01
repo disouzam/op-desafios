@@ -41,7 +41,6 @@ def main(args) -> None:
     with open(arquivo_com_expressoes_numericas, 'r', encoding='utf-8') as arquivo:
         for linha in arquivo:
             linha_processada = linha.strip("\n")
-            print(linha_processada)
             try:
                 expressao = expressao_numerica(linha_processada)
                 expressao.processa_linha()
