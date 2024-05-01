@@ -17,7 +17,7 @@ class Operador(Enum):
     POTENCIACAO = "^"
 
 
-def precedencia_operadores(primeiroOperador: Operador, segundoOperador: Operador):
+def precedencia_operadores(primeiroOperador: Operador, segundoOperador: Operador) -> int:
     valores = {member: -1 for member in Operador}
 
     valores[Operador.ADICAO] = 0
