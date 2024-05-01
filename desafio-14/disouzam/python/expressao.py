@@ -48,8 +48,13 @@ class expressao_numerica(object):
 
     def resultado(self):
 
+        # Expressão numérica base, sem sub-expressões numéricas à esquerda e à direita
         if self.__resultado is not None:
             return self.__resultado
+
+        if self.expressao_a_direita is None and self.operador is None:
+            if isinstance(self.expressao_a_esquerda, expressao_numerica):
+                return self.expressao_a_esquerda.resultado()
 
     def __processa_conteudo(self) -> None:
 
