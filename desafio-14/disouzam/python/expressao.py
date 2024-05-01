@@ -33,7 +33,11 @@ class expressao_numerica(object):
 
         self.len = len(self.__conteudo)
 
-        self.__processa_conteudo()
+        try:
+            valor_convertido = float(self.__conteudo)
+            self.__resultado = valor_convertido
+        except ValueError:
+            self.__processa_conteudo()
 
     def __str__(self) -> str:
         resultado = f"len: {self.len}, Conteúdo: {self.__conteudo}"
@@ -43,6 +47,9 @@ class expressao_numerica(object):
         return self.__str__()
 
     def resultado(self):
+
+        if self.__resultado is not None:
+            return self.__resultado
 
         if self.expressao_a_esquerda is not None and isinstance(self.expressao_a_esquerda, expressao_numerica):
             if self.operador is None and self.expressao_a_direita is None:
@@ -62,8 +69,6 @@ class expressao_numerica(object):
             except:
                 if isinstance(self.expressao_a_esquerda, expressao_numerica):
                     return self.expressao_a_esquerda.resultado()
-
-        return self.__resultado
 
     def __processa_conteudo(self) -> None:
 
