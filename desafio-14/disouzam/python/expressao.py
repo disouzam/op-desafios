@@ -35,18 +35,18 @@ class expressao_numerica(object):
 
     def processa_linha(self) -> None:
         saldo_de_parenteses = 0
-        numero = None
+        numero_como_string = None
         for caractere in self.__linha:
             try:
                 if int(caractere) in range(0, 10):
                     print("Dígito...")
-                    if numero is None:
-                        numero = caractere
+                    if numero_como_string is None:
+                        numero_como_string = caractere
                     else:
-                        numero += caractere
+                        numero_como_string += caractere
                     continue
             except:
-                numero = None
+                numero_como_string = None
             if caractere == "(":
                 saldo_de_parenteses += 1
                 print("Abriu parênteses...")
