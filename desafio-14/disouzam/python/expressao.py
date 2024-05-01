@@ -1,6 +1,7 @@
 """Representa uma expressao numerica recursivamente
 """
 from enum import Enum
+from typing import cast
 
 
 class Operador(Enum):
@@ -40,6 +41,15 @@ class expressao_numerica(object):
         return self.__str__()
 
     def resultado(self):
+
+        if self.expressao_a_direita is None and self.operador is None:
+            __resultado = float(cast(float, self.expressao_a_esquerda))
+            try:
+                return self.__resultado
+            except:
+                if isinstance(self.expressao_a_esquerda, expressao_numerica):
+                    return self.expressao_a_esquerda.resultado()
+
         return self.__resultado
 
     def processa_linha(self) -> None:
@@ -106,7 +116,8 @@ class expressao_numerica(object):
             except ValueError:
                 if numero_como_string is not None:
                     if self.expressao_a_esquerda is None:
-                        self.expressao_a_esquerda = int(numero_como_string)
+                        self.expressao_a_esquerda = expressao_numerica(
+                            numero_como_string)
 
                     elif self.expressao_a_direita is None and self.operador is not None:
                         expressao_remanescente = self.__conteudo[posicao_inicial_numero: self.len]
