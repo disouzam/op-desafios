@@ -3,8 +3,8 @@
 from enum import Enum
 import math
 from types import FrameType
-from typing import cast
-from inspect import FrameInfo, currentframe, getframeinfo
+from typing import Any, Literal, cast
+from inspect import currentframe, getframeinfo
 
 
 class Operador(Enum):
@@ -69,7 +69,7 @@ class expressao_numerica(object):
     def __repr__(self) -> str:
         return self.__str__()
 
-    def resultado(self):
+    def resultado(self) -> float | Any | Literal[0] | None:
 
         # Expressão numérica base, sem sub-expressões numéricas à esquerda e à direita
         if self.__resultado is not None:
