@@ -35,7 +35,18 @@ class expressao_numerica(object):
 
     def processa_linha(self) -> None:
         saldo_de_parenteses = 0
+        numero = None
         for caractere in self.__linha:
+            try:
+                if int(caractere) in range(0, 10):
+                    print("Dígito...")
+                    if numero is None:
+                        numero = caractere
+                    else:
+                        numero += caractere
+                    continue
+            except:
+                numero = None
             if caractere == "(":
                 saldo_de_parenteses += 1
                 print("Abriu parênteses...")
@@ -68,12 +79,5 @@ class expressao_numerica(object):
             if caractere == " ":
                 print("Espaço vazio...")
                 continue
-            try:
-                if int(caractere) in range(0, 10):
-                    print("Dígito...")
-                    continue
-            except:
-                print("Caractere não classificado...")
-                raise Exception("Caractere não classificado...")
         if saldo_de_parenteses != 0:
             raise Exception("Saldo de parênteses diferente de zero...")
