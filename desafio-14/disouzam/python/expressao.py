@@ -149,7 +149,7 @@ class expressao_numerica(object):
                 if posicao_fechamento != -1:
 
                     expressao_dentro_dos_parenteses = self.__conteudo[
-                        posicao_abertura_parenteses+1:posicao_fechamento]
+                        posicao_abertura_parenteses:posicao_fechamento + 1]
 
                     posicao_proximo_operador = self.procura_operador(
                         posicao_fechamento)
