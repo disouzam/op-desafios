@@ -38,7 +38,44 @@ def main(args) -> None:
 
     with open(arquivo_com_expressoes_numericas, 'r', encoding='utf-8') as arquivo:
         for linha in arquivo:
-            print(linha)
+            linha_processada = linha.strip("\n")
+            print(linha_processada)
+            processa_linha(linha_processada)
+
+
+def processa_linha(linha):
+    for caractere in linha:
+        if caractere == "(":
+            print("Abriu parênteses...")
+            continue
+        if caractere == ")":
+            print("Fechou parênteses...")
+            continue
+        if caractere == "+":
+            print("Sinal de adição...")
+            continue
+        if caractere == "-":
+            print("Sinal de subtração...")
+            continue
+        if caractere == "*":
+            print("Sinal de multiplicação...")
+            continue
+        if caractere == "/":
+            print("Sinal de divisão...")
+            continue
+        if caractere == "^":
+            print("Sinal de potenciação...")
+            continue
+        if caractere == " ":
+            print("Espaço vazio...")
+            continue
+        try:
+            if int(caractere) in range(0, 10):
+                print("Dígito...")
+                continue
+        except:
+            print("Caractere não classificado...")
+            raise Exception("Caractere não classificado...")
 
 
 def debugger_is_active() -> bool:
