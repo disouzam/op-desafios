@@ -44,8 +44,8 @@ def main(args) -> None:
             try:
                 expressao = expressao_numerica(linha_processada)
                 print(expressao.resultado())
-            except SyntaxErrorException:
-                print("ERR SYNTAX")
+            except SyntaxErrorException as ex:
+                print(f"ERR SYNTAX: {ex}")
 
 
 def debugger_is_active() -> bool:

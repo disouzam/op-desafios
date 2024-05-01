@@ -1,7 +1,9 @@
 """Representa uma expressao numerica recursivamente
 """
 from enum import Enum
+from types import FrameType
 from typing import cast
+from inspect import FrameInfo, currentframe, getframeinfo
 
 
 class Operador(Enum):
@@ -56,6 +58,12 @@ class expressao_numerica(object):
             if isinstance(self.expressao_a_esquerda, expressao_numerica):
                 return self.expressao_a_esquerda.resultado()
 
+        if self.expressao_a_direita is not None and self.operador is None:
+            frameinfo = cast(FrameType, currentframe())
+            frameinfo = getframeinfo(frameinfo)
+            raise SyntaxErrorException(
+                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+
     def __processa_conteudo(self) -> None:
 
         saldo_de_parenteses = 0
@@ -98,15 +106,24 @@ class expressao_numerica(object):
                             self.expressao_a_direita = expressao_numerica(
                                 expressao_dentro_dos_parenteses)
                         else:
-                            raise SyntaxErrorException("ERR SYNTAX")
+                            frameinfo = cast(FrameType, currentframe())
+                            frameinfo = getframeinfo(frameinfo)
+                            raise SyntaxErrorException(
+                                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
                 else:
-                    raise SyntaxErrorException("ERR SYNTAX")
+                    frameinfo = cast(FrameType, currentframe())
+                    frameinfo = getframeinfo(frameinfo)
+                    raise SyntaxErrorException(
+                        f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
                 continue
 
             if caractere == ")":
                 saldo_de_parenteses -= 1
                 if saldo_de_parenteses < 0:
-                    raise SyntaxErrorException("ERR SYNTAX")
+                    frameinfo = cast(FrameType, currentframe())
+                    frameinfo = getframeinfo(frameinfo)
+                    raise SyntaxErrorException(
+                        f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
                 continue
 
             try:
@@ -128,7 +145,10 @@ class expressao_numerica(object):
                         self.expressao_a_direita = expressao_numerica(
                             expressao_remanescente)
                     else:
-                        raise SyntaxErrorException("ERR SYNTAX")
+                        frameinfo = cast(FrameType, currentframe())
+                        frameinfo = getframeinfo(frameinfo)
+                        raise SyntaxErrorException(
+                            f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
 
                 # Reseta o valor da variável para monitorar próximo número
                 posicao_inicial_numero = -1
@@ -141,8 +161,10 @@ class expressao_numerica(object):
             if caractere in self.__operadores:
                 self.operador = self.__operadores[caractere]
         if saldo_de_parenteses != 0:
+            frameinfo = cast(FrameType, currentframe())
+            frameinfo = getframeinfo(frameinfo)
             raise SyntaxErrorException(
-                "Saldo de parênteses diferente de zero...")
+                f"Saldo de parênteses diferente de zero...{frameinfo.filename} - {frameinfo.lineno}")  # type: ignore
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0
@@ -159,7 +181,10 @@ class expressao_numerica(object):
                 return posicao
 
         if saldo_de_parenteses != 0:
-            raise SyntaxErrorException("ERR SYNTAX")
+            frameinfo = cast(FrameType, currentframe())
+            frameinfo = getframeinfo(frameinfo)
+            raise SyntaxErrorException(
+                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
 
         return posicao_fechamento_parenteses
 
