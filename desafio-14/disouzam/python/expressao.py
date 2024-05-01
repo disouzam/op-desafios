@@ -51,25 +51,6 @@ class expressao_numerica(object):
         if self.__resultado is not None:
             return self.__resultado
 
-        if self.expressao_a_esquerda is not None and isinstance(self.expressao_a_esquerda, expressao_numerica):
-            if self.operador is None and self.expressao_a_direita is None:
-                return self.expressao_a_esquerda.resultado()
-            elif self.operador is None and self.expressao_a_direita is not None:
-                raise SyntaxErrorException("ERR SYNTAX")
-            elif self.operador is not None and self.expressao_a_direita is None:
-                raise SyntaxErrorException("ERR SYNTAX")
-            else:
-                # Implementar operacoes
-                pass
-
-        if self.expressao_a_direita is None and self.operador is None:
-            __resultado = float(cast(float, self.expressao_a_esquerda))
-            try:
-                return self.__resultado
-            except:
-                if isinstance(self.expressao_a_esquerda, expressao_numerica):
-                    return self.expressao_a_esquerda.resultado()
-
     def __processa_conteudo(self) -> None:
 
         saldo_de_parenteses = 0
