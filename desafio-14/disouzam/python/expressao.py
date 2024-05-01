@@ -15,7 +15,18 @@ class Operador(Enum):
 
 
 class SyntaxErrorException(Exception):
-    pass
+
+    def __init__(self, frametype: FrameType | None = None, *args: object) -> None:
+        if frametype is not None:
+            frameinfo = getframeinfo(frametype)
+            mensagem = f"{frameinfo.filename} - {frameinfo.lineno}"
+            unpacked_args = [*args]
+
+            if len(unpacked_args) > 0:
+                print("Entrei")
+            else:
+                unpacked_args.append(mensagem)
+        super().__init__(unpacked_args)
 
 
 class expressao_numerica(object):
@@ -60,9 +71,7 @@ class expressao_numerica(object):
 
         if self.expressao_a_direita is not None and self.operador is None:
             frameinfo = cast(FrameType, currentframe())
-            frameinfo = getframeinfo(frameinfo)
-            raise SyntaxErrorException(
-                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+            raise SyntaxErrorException(frametype=frameinfo)
 
     def __processa_conteudo(self) -> None:
 
@@ -107,23 +116,17 @@ class expressao_numerica(object):
                                 expressao_dentro_dos_parenteses)
                         else:
                             frameinfo = cast(FrameType, currentframe())
-                            frameinfo = getframeinfo(frameinfo)
-                            raise SyntaxErrorException(
-                                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+                            raise SyntaxErrorException(frametype=frameinfo)
                 else:
                     frameinfo = cast(FrameType, currentframe())
-                    frameinfo = getframeinfo(frameinfo)
-                    raise SyntaxErrorException(
-                        f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+                    raise SyntaxErrorException(frametype=frameinfo)
                 continue
 
             if caractere == ")":
                 saldo_de_parenteses -= 1
                 if saldo_de_parenteses < 0:
                     frameinfo = cast(FrameType, currentframe())
-                    frameinfo = getframeinfo(frameinfo)
-                    raise SyntaxErrorException(
-                        f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+                    raise SyntaxErrorException(frametype=frameinfo)
                 continue
 
             try:
@@ -146,9 +149,7 @@ class expressao_numerica(object):
                             expressao_remanescente)
                     else:
                         frameinfo = cast(FrameType, currentframe())
-                        frameinfo = getframeinfo(frameinfo)
-                        raise SyntaxErrorException(
-                            f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+                        raise SyntaxErrorException(frametype=frameinfo)
 
                 # Reseta o valor da variável para monitorar próximo número
                 posicao_inicial_numero = -1
@@ -162,9 +163,8 @@ class expressao_numerica(object):
                 self.operador = self.__operadores[caractere]
         if saldo_de_parenteses != 0:
             frameinfo = cast(FrameType, currentframe())
-            frameinfo = getframeinfo(frameinfo)
-            raise SyntaxErrorException(
-                f"Saldo de parênteses diferente de zero...{frameinfo.filename} - {frameinfo.lineno}")  # type: ignore
+            raise SyntaxErrorException(frameinfo,
+                                       f"Saldo de parênteses diferente de zero...")
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0
@@ -182,9 +182,7 @@ class expressao_numerica(object):
 
         if saldo_de_parenteses != 0:
             frameinfo = cast(FrameType, currentframe())
-            frameinfo = getframeinfo(frameinfo)
-            raise SyntaxErrorException(
-                f"ERR SYNTAX: {frameinfo.filename} - {frameinfo.lineno}")
+            raise SyntaxErrorException(frametype=frameinfo)
 
         return posicao_fechamento_parenteses
 
