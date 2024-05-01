@@ -48,9 +48,22 @@ class expressao_numerica(object):
         numero_como_string = None
         for posicao, caractere in enumerate(self.__conteudo):
 
+            if caractere == "(":
+                if saldo_de_parenteses == 0:
+                    posicao_abertura_parenteses = posicao
+                saldo_de_parenteses += 1
+                continue
+            if caractere == ")":
+                saldo_de_parenteses -= 1
+                if saldo_de_parenteses == 0:
+                    posicao_fechamento_parenteses = posicao
+                if saldo_de_parenteses < 0:
+                    raise SyntaxErrorException(
+                        "ERR SYNTAX")
+                continue
+
             try:
                 if int(caractere) in range(0, 10):
-                    print("Dígito...")
                     if numero_como_string is None:
                         numero_como_string = caractere
                     else:
@@ -70,22 +83,7 @@ class expressao_numerica(object):
             if caractere == " ":
                 continue
 
-            if caractere == "(":
-                if saldo_de_parenteses == 0:
-                    posicao_abertura_parenteses = posicao
-                saldo_de_parenteses += 1
-                print("Abriu parênteses...")
-                continue
-            if caractere == ")":
-                saldo_de_parenteses -= 1
-                if saldo_de_parenteses == 0:
-                    posicao_fechamento_parenteses = posicao
-                if saldo_de_parenteses < 0:
-                    raise SyntaxErrorException(
-                        "ERR SYNTAX")
-                continue
             if caractere in self.__operadores:
-                print("Operador encontrado")
                 self.operador = self.__operadores[caractere]
         if saldo_de_parenteses != 0:
             raise SyntaxErrorException(
