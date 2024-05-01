@@ -53,21 +53,27 @@ class expressao_numerica(object):
             if caractere == "(":
                 if saldo_de_parenteses == 0:
                     posicao_abertura_parenteses = posicao
+
                 saldo_de_parenteses += 1
 
                 posicao_fechamento = self.procura_parenteses_de_fechamento(
                     posicao_abertura_parenteses)
 
                 if posicao_fechamento != -1:
+
                     expressao_dentro_dos_parenteses = self.__conteudo[
                         posicao_abertura_parenteses+1:posicao_fechamento]
+
                     posicao_proximo_operador = self.procura_operador(
                         posicao_fechamento)
+
+                    expressao_remanescente = self.__conteudo[posicao_fechamento + 1: self.len]
+
                     if self.expressao_a_esquerda is None:
                         self.expressao_a_esquerda = expressao_numerica(
                             expressao_dentro_dos_parenteses)
                     elif self.expressao_a_direita is None:
-                        if posicao_proximo_operador == -1:
+                        if posicao_proximo_operador == -1 and len(expressao_remanescente) == 1:
                             self.expressao_a_direita = expressao_numerica(
                                 expressao_dentro_dos_parenteses)
                         else:
@@ -111,7 +117,30 @@ class expressao_numerica(object):
                 "Saldo de parênteses diferente de zero...")
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
-        return -1
+        saldo_de_parenteses = 0
+        posicao_fechamento_parenteses = -1
 
-    def procura_operador(posicao_fechamento):
-        return -1
+        for posicao in range(posicao_abertura_parenteses, self.len):
+            caractere = self.__conteudo[posicao]
+            if caractere == "(":
+                saldo_de_parenteses += 1
+            if caractere == ")":
+                saldo_de_parenteses -= 1
+
+            if saldo_de_parenteses == 0:
+                return posicao
+
+        if saldo_de_parenteses != 0:
+            raise SyntaxErrorException("ERR SYNTAX")
+
+        return posicao_fechamento_parenteses
+
+    def procura_operador(self, posicao_fechamento):
+        posicao_operador = -1
+
+        for posicao in range(posicao_fechamento + 1, self.len):
+            caractere = self.__conteudo[posicao]
+            if caractere in self.__operadores:
+                return posicao
+
+        return posicao_operador
