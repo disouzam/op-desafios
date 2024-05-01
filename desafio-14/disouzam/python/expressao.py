@@ -78,23 +78,5 @@ class expressao_numerica(object):
             if caractere in self.__operadores:
                 print("Operador encontrado")
                 self.operador = self.__operadores[caractere]
-            if caractere == "+":
-                print("Sinal de adição...")
-                continue
-            if caractere == "-":
-                print("Sinal de subtração...")
-                continue
-            if caractere == "*":
-                print("Sinal de multiplicação...")
-                continue
-            if caractere == "/":
-                print("Sinal de divisão...")
-                continue
-            if caractere == "^":
-                print("Sinal de potenciação...")
-                continue
-            if caractere == " ":
-                print("Espaço vazio...")
-                continue
         if saldo_de_parenteses != 0:
             raise Exception("Saldo de parênteses diferente de zero...")
