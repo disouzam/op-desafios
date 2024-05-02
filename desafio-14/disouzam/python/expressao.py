@@ -239,6 +239,7 @@ class expressao_numerica(object):
         posicao_abertura_parenteses = -1
         posicao_inicial_numero = -1
         numero_como_string = None
+
         for posicao, caractere in enumerate(self.__conteudo):
 
             if self.expressao_a_direita is not None and \
@@ -321,6 +322,19 @@ class expressao_numerica(object):
 
             if caractere in self.__operadores:
                 self.operador = self.__operadores[caractere]
+
+                posicao_proximo_operador = self.procura_operador(
+                    posicao)
+
+                if posicao_proximo_operador != -1:
+                    encontrou_digito_valido = False
+                    for indice in range(posicao + 1, posicao_proximo_operador):
+                        if self.__conteudo[indice] != " " and self.__conteudo not in self.__operadores:
+                            encontrou_digito_valido = True
+
+                    if not encontrou_digito_valido:
+                        frameinfo = cast(FrameType, currentframe())
+                        raise SyntaxErrorException(frametype=frameinfo)
 
                 expressao_remanescente = self.__conteudo[posicao + 1: self.len]
                 self.expressao_a_direita = expressao_numerica(
