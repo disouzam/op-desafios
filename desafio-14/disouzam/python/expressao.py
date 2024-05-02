@@ -82,7 +82,8 @@ class expressao_numerica(object):
 
     __operadores = {member.value: member for member in Operador}
 
-    def __init__(self, conteudo: str) -> None:
+    def __init__(self, conteudo: str, pai: expressao_numerica = None) -> None:
+        self.__pai = pai
         conteudo = conteudo.strip()
         if conteudo[0] == "(" and conteudo[-1] == ")":
             self.continha_parenteses = True
@@ -177,7 +178,13 @@ class expressao_numerica(object):
                 else:
                     self.processa_primeiro_a_direita()
 
-            resultado = self.resultado()
+            if self.__pai is not None:
+                return
+
+            # Realiza mais um passe de avaliação de resultados se tiver na raiz
+            if self.__pai is None:
+                resultado = self.resultado()
+
             self.__resultado = float(resultado)
             return self.__resultado
 
@@ -190,6 +197,12 @@ class expressao_numerica(object):
 
         expressao_a_esquerda_da_direita = cast(
             expressao_numerica, expressao_a_direita.expressao_a_esquerda)
+
+        if not expressao_a_esquerda.primitiva():
+            expressao_a_esquerda.resultado()
+
+        if not expressao_a_direita.primitiva():
+            expressao_a_direita.resultado()
 
         if expressao_a_esquerda.primitiva() and \
                 expressao_a_esquerda_da_direita is not None and \
@@ -207,7 +220,7 @@ class expressao_numerica(object):
             self.operador = Operador.NONE
 
         self.expressao_a_esquerda = expressao_numerica(
-            str(resultado_intermediario))
+            str(resultado_intermediario), self)
 
         # Reseta a expressão atual pois já foi manipulada
         self.__conteudo = str('')
@@ -250,8 +263,12 @@ class expressao_numerica(object):
         posicao_abertura_parenteses = -1
         posicao_inicial_numero = -1
         numero_como_string = None
+        posicao = -1
 
-        for posicao, caractere in enumerate(self.__conteudo):
+        # pylint: disable=consider-using-enumerate
+        while posicao < len(self.__conteudo):
+            posicao += 1
+            caractere = self.__conteudo[posicao]
 
             if self.expressao_a_direita is not None and \
                 self.operador != Operador.NONE and \
@@ -269,6 +286,8 @@ class expressao_numerica(object):
 
                 if posicao_fechamento != -1:
 
+                    posicao = posicao_fechamento - 1
+
                     expressao_dentro_dos_parenteses = self.__conteudo[
                         posicao_abertura_parenteses:posicao_fechamento + 1]
 
@@ -279,13 +298,13 @@ class expressao_numerica(object):
 
                     if self.expressao_a_esquerda is None:
                         self.expressao_a_esquerda = expressao_numerica(
-                            expressao_dentro_dos_parenteses)
+                            expressao_dentro_dos_parenteses, self)
                     elif self.expressao_a_direita is None:
 
                         # Fim da expressão atual
                         if posicao_proximo_operador == -1 and len(expressao_remanescente) == 1:
                             self.expressao_a_direita = expressao_numerica(
-                                expressao_dentro_dos_parenteses)
+                                expressao_dentro_dos_parenteses, self)
                         else:
                             frameinfo = cast(FrameType, currentframe())
                             raise SyntaxErrorException(frametype=frameinfo)
@@ -313,12 +332,12 @@ class expressao_numerica(object):
                 if numero_como_string is not None:
                     if self.expressao_a_esquerda is None:
                         self.expressao_a_esquerda = expressao_numerica(
-                            numero_como_string)
+                            numero_como_string, self)
 
                     elif self.expressao_a_direita is None and self.operador is not None:
                         expressao_remanescente = self.__conteudo[posicao_inicial_numero: self.len]
                         self.expressao_a_direita = expressao_numerica(
-                            expressao_remanescente)
+                            expressao_remanescente, self)
                     else:
                         frameinfo = cast(FrameType, currentframe())
                         raise SyntaxErrorException(frametype=frameinfo)
@@ -342,6 +361,7 @@ class expressao_numerica(object):
                     for indice in range(posicao + 1, posicao_proximo_operador):
                         if self.__conteudo[indice] != " " and self.__conteudo not in self.__operadores:
                             encontrou_digito_valido = True
+                            break
 
                     if not encontrou_digito_valido:
                         frameinfo = cast(FrameType, currentframe())
@@ -349,11 +369,12 @@ class expressao_numerica(object):
 
                 expressao_remanescente = self.__conteudo[posicao + 1: self.len]
                 self.expressao_a_direita = expressao_numerica(
-                    expressao_remanescente)
-        if saldo_de_parenteses != 0:
-            frameinfo = cast(FrameType, currentframe())
-            raise SyntaxErrorException(
-                f"Saldo de parênteses diferente de zero...", frametype=frameinfo)
+                    expressao_remanescente, self)
+
+            if saldo_de_parenteses != 0:
+                frameinfo = cast(FrameType, currentframe())
+                raise SyntaxErrorException(
+                    f"Saldo de parênteses diferente de zero...", frametype=frameinfo)
 
     def procura_parenteses_de_fechamento(self, posicao_abertura_parenteses):
         saldo_de_parenteses = 0
