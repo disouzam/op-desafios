@@ -6,6 +6,7 @@ import math
 from types import FrameType
 from typing import Any, Literal, cast
 from inspect import currentframe, getframeinfo
+from unittest import result
 
 
 class Operador(Enum):
@@ -91,12 +92,19 @@ class expressao_numerica(object):
 
     def __str__(self) -> str:
         representacao_como_string = f"len: {self.len}, Conteúdo: {self.__conteudo}"
+
+        if self.expressao_a_esquerda is None and self.expressao_a_direita is None:
+            representacao_como_string += ", Tipo: Primitiva"
         return representacao_como_string
 
     def __repr__(self) -> str:
         return self.__str__()
 
-    def resultado(self) -> float | Any | Literal[0] | None:
+    def primitiva(self):
+        expressao_e_primitiva = self.__resultado is not None
+        return expressao_e_primitiva
+
+    def resultado(self):
 
         # Expressão numérica base, sem sub-expressões numéricas à esquerda e à direita
         if self.__resultado is not None:
@@ -125,6 +133,9 @@ class expressao_numerica(object):
 
         # Recursão
         if self.expressao_a_esquerda is not None and self.expressao_a_direita is not None:
+            resultado_a_esquerda = None
+            resultado_a_direita = None
+
             precedencia_esquerda_sobre_atual = precedencia_operadores(
                 self.expressao_a_esquerda.operador, self.operador)
 
@@ -134,33 +145,64 @@ class expressao_numerica(object):
             precedencia_atual_sobre_direita = precedencia_operadores(
                 self.operador, self.expressao_a_direita.operador)
 
-            resultado_a_esquerda = self.expressao_a_esquerda.resultado()
-            resultado_a_direita = self.expressao_a_direita.resultado()
+            if precedencia_esquerda_sobre_atual > 0 and precedencia_esquerda_sobre_direita > 0:
+                # processa primeiro a esquerda
+                resultado_a_esquerda = self.expressao_a_esquerda.resultado()
 
-            resultado_a_esquerda = cast(float, resultado_a_esquerda)
-            resultado_a_direita = cast(float, resultado_a_direita)
+            if precedencia_esquerda_sobre_atual < 0 and precedencia_atual_sobre_direita > 0:
+                # processa primeiro a atual
+                expressao_a_direita = self.expressao_a_direita
+                expressao_a_esquerda_da_direita = cast(
+                    expressao_numerica, expressao_a_direita.expressao_a_esquerda)
 
-            resultado = 0
-            if self.operador == Operador.POTENCIACAO:
-                resultado = math.pow(resultado_a_esquerda, resultado_a_direita)
+                if self.expressao_a_esquerda.primitiva() and \
+                        expressao_a_esquerda_da_direita is not None and \
+                        expressao_a_esquerda_da_direita.primitiva():
+                    resultado_intermediario = self.executar_operacoes_matematicas(
+                        self.expressao_a_esquerda, expressao_a_esquerda_da_direita, self.operador)
+                    self.expressao_a_direita = expressao_a_direita.expressao_a_direita
+                    self.operador = expressao_a_direita.operador
 
-            if self.operador == Operador.MULTIPLICACAO:
-                resultado = resultado_a_esquerda * resultado_a_direita
+                if self.expressao_a_esquerda.primitiva() and \
+                        expressao_a_direita.primitiva():
+                    resultado_intermediario = self.executar_operacoes_matematicas(
+                        self.expressao_a_esquerda, expressao_a_direita, self.operador)
 
-            if self.operador == Operador.DIVISAO:
-                if resultado_a_direita == 0:
-                    frameinfo = cast(FrameType, currentframe())
-                    raise DivByZeroErrorException(frametype=frameinfo)
-                resultado = resultado_a_esquerda / resultado_a_direita
+                self.expressao_a_esquerda = expressao_numerica(
+                    str(resultado_intermediario))
 
-            if self.operador == Operador.ADICAO:
-                resultado = resultado_a_esquerda + resultado_a_direita
+            if precedencia_esquerda_sobre_atual < 0 and precedencia_atual_sobre_direita < 0:
+                # processa primeiro a direita
+                resultado_a_direita = self.expressao_a_direita.resultado()
 
-            if self.operador == Operador.SUBTRACAO:
-                resultado = resultado_a_esquerda - resultado_a_direita
-
-            self.__resultado = resultado
+            resultado = self.resultado()
+            self.__resultado = float(resultado)
             return self.__resultado
+
+    def executar_operacoes_matematicas(self, esquerda, direita, operador):
+        resultado_esquerda = esquerda.resultado()
+        resultado_direita = direita.resultado()
+
+        if operador == Operador.POTENCIACAO:
+            resultado = math.pow(resultado_esquerda, resultado_direita)
+
+        if operador == Operador.MULTIPLICACAO:
+            resultado = resultado_esquerda * resultado_direita
+
+        if operador == Operador.DIVISAO:
+            if direita == 0:
+                frameinfo = cast(FrameType, currentframe())
+                raise DivByZeroErrorException(frametype=frameinfo)
+            resultado = resultado_esquerda / resultado_direita
+
+        if operador == Operador.ADICAO:
+            resultado = resultado_esquerda + resultado_direita
+
+        if operador == Operador.SUBTRACAO:
+            resultado = resultado_esquerda - resultado_direita
+
+        resultado = float(resultado)
+        return resultado
 
     def __processa_conteudo(self) -> None:
 
