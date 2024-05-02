@@ -48,9 +48,15 @@ def main(args) -> None:
                     expressao = expressao_numerica(linha_processada)
                     resultado_da_linha = expressao.resultado()
                 except SyntaxErrorException as ex:
-                    resultado_da_linha = f"ERR SYNTAX: {ex}"
+                    if debugger_is_active():
+                        resultado_da_linha = f"ERR SYNTAX: {ex}"
+                    else:
+                        resultado_da_linha = "ERR SYNTAX"
                 except DivByZeroErrorException as ex:
-                    resultado_da_linha = f"ERR DIVBYZERO: {ex}"
+                    if debugger_is_active():
+                        resultado_da_linha = f"ERR DIVBYZERO: {ex}"
+                    else:
+                        resultado_da_linha = "ERR DIVBYZERO"
 
                 resultado_em_arquivo.write(f"{str(resultado_da_linha)}\n")
                 print(resultado_da_linha)

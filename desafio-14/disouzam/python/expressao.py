@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 import math
+import sys
 from types import FrameType
 from typing import Any, Literal, cast
 from inspect import currentframe, getframeinfo
@@ -46,7 +47,12 @@ class SyntaxErrorException(Exception):
             unpacked_args = [*args]
 
             unpacked_args.append(mensagem)
-        super().__init__(unpacked_args)
+
+        # TODO: Remover antes da submissão do PR
+        if debugger_is_active():
+            super().__init__(unpacked_args)
+        else:
+            super().__init__()
 
 
 class DivByZeroErrorException(Exception):
@@ -58,7 +64,12 @@ class DivByZeroErrorException(Exception):
             unpacked_args = [*args]
 
             unpacked_args.append(mensagem)
-        super().__init__(unpacked_args)
+
+        # TODO: Remover antes da submissão do PR
+        if debugger_is_active():
+            super().__init__(unpacked_args)
+        else:
+            super().__init__()
 
 
 class expressao_numerica(object):
@@ -373,3 +384,13 @@ class expressao_numerica(object):
                 return posicao
 
         return posicao_operador
+
+
+def debugger_is_active() -> bool:
+    # TODO: Remover antes da submissão do PR
+    """Return if the debugger is currently active
+
+    # pylint: disable=line-too-long
+    Source: https://stackoverflow.com/questions/38634988/check-if-program-runs-in-debug-mode/67065084
+    """
+    return hasattr(sys, 'gettrace') and sys.gettrace() is not None
