@@ -74,7 +74,7 @@ class expressao_numerica(object):
     def __init__(self, conteudo: str) -> None:
         conteudo = conteudo.strip()
         if conteudo[0] == "(" and conteudo[-1] == ")":
-            continha_parenteses = True
+            self.continha_parenteses = True
             self.__conteudo = conteudo[1:len(conteudo) - 1]
         else:
             self.__conteudo = conteudo
@@ -146,38 +146,67 @@ class expressao_numerica(object):
                 self.operador, self.expressao_a_direita.operador)
 
             if precedencia_esquerda_sobre_atual > 0 and precedencia_esquerda_sobre_direita > 0:
-                # processa primeiro a esquerda
-                resultado_a_esquerda = self.expressao_a_esquerda.resultado()
+                if self.expressao_a_direita.continha_parenteses:
+                    self.processa_primeiro_a_direita()
+                else:
+                    self.processa_primeiro_a_esquerda()
 
-            if precedencia_esquerda_sobre_atual < 0 and precedencia_atual_sobre_direita > 0:
-                # processa primeiro a atual
-                expressao_a_direita = self.expressao_a_direita
-                expressao_a_esquerda_da_direita = cast(
-                    expressao_numerica, expressao_a_direita.expressao_a_esquerda)
+            elif precedencia_esquerda_sobre_atual < 0 and \
+                    precedencia_atual_sobre_direita >= 0:
+                if self.expressao_a_esquerda.continha_parenteses:
+                    self.processa_primeiro_a_esquerda()
+                elif self.expressao_a_direita.continha_parenteses:
+                    self.processa_primeiro_a_direita()
+                else:
+                    self.processa_primeiro_a_atual()
 
-                if self.expressao_a_esquerda.primitiva() and \
-                        expressao_a_esquerda_da_direita is not None and \
-                        expressao_a_esquerda_da_direita.primitiva():
-                    resultado_intermediario = self.executar_operacoes_matematicas(
-                        self.expressao_a_esquerda, expressao_a_esquerda_da_direita, self.operador)
-                    self.expressao_a_direita = expressao_a_direita.expressao_a_direita
-                    self.operador = expressao_a_direita.operador
-
-                if self.expressao_a_esquerda.primitiva() and \
-                        expressao_a_direita.primitiva():
-                    resultado_intermediario = self.executar_operacoes_matematicas(
-                        self.expressao_a_esquerda, expressao_a_direita, self.operador)
-
-                self.expressao_a_esquerda = expressao_numerica(
-                    str(resultado_intermediario))
-
-            if precedencia_esquerda_sobre_atual < 0 and precedencia_atual_sobre_direita < 0:
-                # processa primeiro a direita
-                resultado_a_direita = self.expressao_a_direita.resultado()
+            elif precedencia_esquerda_sobre_atual < 0 and precedencia_atual_sobre_direita < 0:
+                if self.expressao_a_esquerda.continha_parenteses:
+                    self.processa_primeiro_a_esquerda()
+                else:
+                    self.processa_primeiro_a_direita()
 
             resultado = self.resultado()
             self.__resultado = float(resultado)
             return self.__resultado
+
+    def processa_primeiro_a_atual(self):
+        expressao_a_esquerda = cast(
+            expressao_numerica, self.expressao_a_esquerda)
+
+        expressao_a_direita = cast(
+            expressao_numerica, self.expressao_a_direita)
+
+        expressao_a_esquerda_da_direita = cast(
+            expressao_numerica, expressao_a_direita.expressao_a_esquerda)
+
+        if expressao_a_esquerda.primitiva() and \
+                expressao_a_esquerda_da_direita is not None and \
+                expressao_a_esquerda_da_direita.primitiva():
+            resultado_intermediario = self.executar_operacoes_matematicas(
+                expressao_a_esquerda, expressao_a_esquerda_da_direita, self.operador)
+            self.expressao_a_direita = expressao_a_direita.expressao_a_direita
+            self.operador = expressao_a_direita.operador
+
+        elif expressao_a_esquerda.primitiva() and \
+                expressao_a_direita.primitiva():
+            resultado_intermediario = self.executar_operacoes_matematicas(
+                expressao_a_esquerda, expressao_a_direita, self.operador)
+            self.expressao_a_direita = None
+            self.operador = Operador.NONE
+
+        self.expressao_a_esquerda = expressao_numerica(
+            str(resultado_intermediario))
+
+        # Reseta a expressão atual pois já foi manipulada
+        self.__conteudo = str('')
+        self.continha_parenteses = False
+
+    def processa_primeiro_a_esquerda(self):
+        return self.expressao_a_esquerda.resultado()
+
+    def processa_primeiro_a_direita(self):
+        return self.expressao_a_direita.resultado()
 
     def executar_operacoes_matematicas(self, esquerda, direita, operador):
         resultado_esquerda = esquerda.resultado()
@@ -190,7 +219,7 @@ class expressao_numerica(object):
             resultado = resultado_esquerda * resultado_direita
 
         if operador == Operador.DIVISAO:
-            if direita == 0:
+            if resultado_direita == 0:
                 frameinfo = cast(FrameType, currentframe())
                 raise DivByZeroErrorException(frametype=frameinfo)
             resultado = resultado_esquerda / resultado_direita
