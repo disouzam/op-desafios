@@ -175,12 +175,14 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
                             primo_candidato.write("\n")
 
-                    for numero_primo in lista_temporaria:
-                        lista_primos.append(numero_primo)
+                    if lista_temporaria.comprimento() > lista_primos.comprimento():
+                        for numero_primo in lista_temporaria:
+                            lista_primos.clear()
+                            lista_primos.append(numero_primo)
 
-                        # TODO: Remover antes da submissão
-                        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                            primo_candidato.write(f"{numero_primo}\n")
+                            # TODO: Remover antes da submissão
+                            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                                primo_candidato.write(f"{numero_primo}\n")
 
                     lista_temporaria.clear()
                     lista_temporaria.append(primo_atual)
@@ -194,13 +196,15 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
         # TODO: Remover antes da submissão
         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
             primo_candidato.write("\n")
+        
+        if lista_temporaria.comprimento() > lista_primos.comprimento():
 
-        for numero_primo in lista_temporaria:
-            lista_primos.append(numero_primo)
+            for numero_primo in lista_temporaria:
+                lista_primos.append(numero_primo)
 
-            # TODO: Remover antes da submissão
-            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                primo_candidato.write(f"{numero_primo}\n")
+                # TODO: Remover antes da submissão
+                with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
+                    primo_candidato.write(f"{numero_primo}\n")
 
     del lista_temporaria, candidato, comprimento, inicio, fim, posicao_caractere_atual
     del primo_anterior, primo_atual, sobreposicao_entre_vizinhos, numero_primo
