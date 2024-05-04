@@ -38,7 +38,8 @@ def main(args) -> None:
             arquivo_com_numero_pi, file_name)
 
     if nargs >= 2:
-        mensagem = f"Você informou um número excessivo de argumentos ({nargs}). "
+        mensagem = f"Você informou um número excessivo de argumentos ({
+            nargs}). "
         mensagem += "Apenas um argumento que aponte o caminho (relativo ou absoluto) "
         mensagem += "do arquivo contendo o número Pi com algumas casas decimais especificadas"
         mensagem += "e o número a ser convertido é necessário."
@@ -100,7 +101,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
     arquivo_primos_candidatos = join("saidas", arquivo_primos_candidatos)
     arquivo_primos_candidatos = join(diretorio_raiz, arquivo_primos_candidatos)
 
-    contagem_de_tamanho_de_listas = f"{file_name}-contagem_de_tamanho_de_listas_primos_3.txt"
+    contagem_de_tamanho_de_listas = f"{
+        file_name}-contagem_de_tamanho_de_listas_primos_3.txt"
     contagem_de_tamanho_de_listas = join(
         "saidas", contagem_de_tamanho_de_listas)
     contagem_de_tamanho_de_listas = join(
@@ -196,7 +198,7 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
         # TODO: Remover antes da submissão
         with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
             primo_candidato.write("\n")
-        
+
         if lista_temporaria.comprimento() > lista_primos.comprimento():
 
             for numero_primo in lista_temporaria:
