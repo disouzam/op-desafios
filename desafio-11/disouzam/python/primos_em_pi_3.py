@@ -121,8 +121,6 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
 
     # Levanta todos os primos existentes, não checando sobreposição
     for posicao_caractere_atual in range(0, len(digitos)):
-        print(
-            f"Hora atual: {datetime.datetime.now()}-Posição caractere atual: {posicao_caractere_atual}")
         for comprimento in range(1, 5):
             inicio = posicao_caractere_atual
             fim = posicao_caractere_atual + comprimento - 1
@@ -162,7 +160,6 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                 primo_anterior = primo_atual
 
                 if not sobreposicao_entre_vizinhos:
-                    print(f"\t\tTamanho da lista: {lista_temporaria.size()}")
                     ocorrencias_tamanho_de_listas.append(
                         lista_temporaria.size())
                     lista_temporaria.filtrar_primos()
