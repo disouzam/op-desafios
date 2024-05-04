@@ -11,10 +11,10 @@ from os.path import join
 from collections import Counter
 
 
-from .numeros_primos import primo, e_primo
-from .manipulacao_de_arquivos import ler_primos_do_arquivo, get_file_name_without_extension
-from .lista_numeros_primos import lista_num_primos
-from .peneira_de_eratosthenes import primos_ate_n
+from numeros_primos import primo, e_primo
+from manipulacao_de_arquivos import ler_primos_do_arquivo, get_file_name_without_extension
+from lista_numeros_primos import lista_num_primos
+from peneira_de_eratosthenes import primos_ate_n
 
 
 def main(args) -> None:
