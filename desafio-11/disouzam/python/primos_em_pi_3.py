@@ -167,24 +167,38 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                         lista_temporaria.size())
                     lista_temporaria.filtrar_primos()
 
+                    maior_lista_primos_encontrada = lista_primos.copy()
+
+                    for numero_primo in lista_temporaria:
+                        maior_lista_primos_encontrada.append(numero_primo)
+
                     contador = Counter(ocorrencias_tamanho_de_listas)
 
                     imprimir_contagem_de_listas(
                         contagem_de_tamanho_de_listas, contador)
 
-                    if lista_primos.size() > 0:
-                        # TODO: Remover antes da submissão
-                        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                            primo_candidato.write("\n")
+                    # TODO: Remover antes da submissão do PR
+                    if os.path.exists(arquivo_primos_candidatos):
+                        os.remove(arquivo_primos_candidatos)
 
-                    if lista_temporaria.comprimento() > lista_primos.comprimento():
-                        lista_primos.clear()
-                        for numero_primo in lista_temporaria:
-                            lista_primos.append(numero_primo)
-
+                    if maior_lista_primos_encontrada.contigua():
+                        if maior_lista_primos_encontrada.comprimento() > lista_primos.comprimento():
+                            lista_primos.clear()
                             # TODO: Remover antes da submissão
-                            with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                                primo_candidato.write(f"{numero_primo}\n")
+                            with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
+                                for numero_primo in maior_lista_primos_encontrada:
+                                    lista_primos.append(numero_primo)
+
+                                    primo_candidato.write(f"{numero_primo}\n")
+                    else:
+                        if lista_temporaria.comprimento() > lista_primos.comprimento():
+                            lista_primos.clear()
+                            # TODO: Remover antes da submissão
+                            with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
+                                for numero_primo in lista_temporaria:
+                                    lista_primos.append(numero_primo)
+
+                                    primo_candidato.write(f"{numero_primo}\n")
 
                     lista_temporaria.clear()
                     lista_temporaria.append(primo_atual)
@@ -193,20 +207,34 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                     lista_temporaria.append(primo_atual)
 
     if posicao_caractere_atual == len(digitos) - 1:
+        maior_lista_primos_encontrada = lista_primos.copy()
         lista_temporaria.filtrar_primos()
 
-        # TODO: Remover antes da submissão
-        with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-            primo_candidato.write("\n")
+        for numero_primo in lista_temporaria:
+            maior_lista_primos_encontrada.append(numero_primo)
 
-        if lista_temporaria.comprimento() > lista_primos.comprimento():
+        # TODO: Remover antes da submissão do PR
+        if os.path.exists(arquivo_primos_candidatos):
+            os.remove(arquivo_primos_candidatos)
 
-            for numero_primo in lista_temporaria:
-                lista_primos.append(numero_primo)
-
+        if maior_lista_primos_encontrada.contigua():
+            if maior_lista_primos_encontrada.comprimento() > lista_primos.comprimento():
+                lista_primos.clear()
                 # TODO: Remover antes da submissão
-                with open(arquivo_primos_candidatos, "a", encoding='utf-8') as primo_candidato:
-                    primo_candidato.write(f"{numero_primo}\n")
+                with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
+                    for numero_primo in maior_lista_primos_encontrada:
+                        lista_primos.append(numero_primo)
+
+                        primo_candidato.write(f"{numero_primo}\n")
+        else:
+            if lista_temporaria.comprimento() > lista_primos.comprimento():
+                lista_primos.clear()
+                # TODO: Remover antes da submissão
+                with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
+                    for numero_primo in lista_temporaria:
+                        lista_primos.append(numero_primo)
+
+                        primo_candidato.write(f"{numero_primo}\n")
 
     del lista_temporaria, candidato, comprimento, inicio, fim, posicao_caractere_atual
     del primo_anterior, primo_atual, sobreposicao_entre_vizinhos, numero_primo

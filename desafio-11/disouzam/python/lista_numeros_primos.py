@@ -172,6 +172,19 @@ class lista_num_primos(object):
 
         return True
 
+    def contigua(self) -> bool:
+        """contigua(self)-> bool:
+        Checa se a lista é feita de primos contíguos (sem espaço entre eles)
+        """
+        for indice in range(0, len(self.__lista) - 1):
+            primo_atual = self.__lista[indice]
+            primo_seguinte = self.__lista[indice + 1]
+
+            if primo_atual.fim + 1 != primo_seguinte.inicio:
+                return False
+
+        return True
+
     def comprimento(self) -> int:
         """comprimento(self) -> int:
         Retorna o comprimento de listas disjuntas de números primos (em Pi)
