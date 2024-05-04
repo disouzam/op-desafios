@@ -176,8 +176,8 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                             primo_candidato.write("\n")
 
                     if lista_temporaria.comprimento() > lista_primos.comprimento():
+                        lista_primos.clear()
                         for numero_primo in lista_temporaria:
-                            lista_primos.clear()
                             lista_primos.append(numero_primo)
 
                             # TODO: Remover antes da submissão
