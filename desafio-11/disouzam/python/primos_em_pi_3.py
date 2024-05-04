@@ -183,6 +183,11 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
 
                     if maior_lista_primos_encontrada.contigua():
                         if maior_lista_primos_encontrada.comprimento() > lista_primos.comprimento():
+                            print(f"Comprimento da lista atual: {
+                                  lista_primos.comprimento()}")
+                            print(f"Comprimento da lista candidata: {
+                                  maior_lista_primos_encontrada.comprimento()}\n")
+
                             lista_primos.clear()
                             # TODO: Remover antes da submissão
                             with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
@@ -192,6 +197,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                                     primo_candidato.write(f"{numero_primo}\n")
                     else:
                         if lista_temporaria.comprimento() > lista_primos.comprimento():
+                            print(f"Comprimento da lista atual: {
+                                  lista_primos.comprimento()}")
+                            print(f"Comprimento da lista candidata: {
+                                  lista_temporaria.comprimento()}\n")
                             lista_primos.clear()
                             # TODO: Remover antes da submissão
                             with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
@@ -219,6 +228,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
 
         if maior_lista_primos_encontrada.contigua():
             if maior_lista_primos_encontrada.comprimento() > lista_primos.comprimento():
+                print(f"Comprimento da lista atual: {
+                      lista_primos.comprimento()}")
+                print(f"Comprimento da lista candidata: {
+                      maior_lista_primos_encontrada.comprimento()}\n")
                 lista_primos.clear()
                 # TODO: Remover antes da submissão
                 with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
@@ -228,6 +241,10 @@ def obtem_primos_de_lista_de_inteiros(digitos: list[str], file_name) -> list[str
                         primo_candidato.write(f"{numero_primo}\n")
         else:
             if lista_temporaria.comprimento() > lista_primos.comprimento():
+                print(f"Comprimento da lista atual: {
+                      lista_primos.comprimento()}")
+                print(f"Comprimento da lista candidata: {
+                      lista_temporaria.comprimento()}\n")
                 lista_primos.clear()
                 # TODO: Remover antes da submissão
                 with open(arquivo_primos_candidatos, "w", encoding='utf-8') as primo_candidato:
