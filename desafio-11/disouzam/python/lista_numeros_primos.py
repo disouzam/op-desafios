@@ -17,8 +17,8 @@ class lista_num_primos(object):
         Construtor
         """
         self.__lista: list[primo] = []
-        self.__menor_posicao = -1
-        self.__maior_posicao = -1
+        self.menor_posicao = -1
+        self.maior_posicao = -1
 
     def __str__(self) -> str:
         """__str__(self) -> str:
@@ -56,14 +56,14 @@ class lista_num_primos(object):
         """
         if novo_primo not in self.__lista:
             if self.size() == 0:
-                self.__menor_posicao = novo_primo.inicio
-                self.__maior_posicao = novo_primo.fim
+                self.menor_posicao = novo_primo.inicio
+                self.maior_posicao = novo_primo.fim
             else:
-                if novo_primo.inicio < self.__menor_posicao:
-                    self.__menor_posicao = novo_primo.inicio
+                if novo_primo.inicio < self.menor_posicao:
+                    self.menor_posicao = novo_primo.inicio
 
-                if novo_primo.fim < self.__maior_posicao:
-                    self.__maior_posicao = novo_primo.fim
+                if novo_primo.fim > self.maior_posicao:
+                    self.maior_posicao = novo_primo.fim
 
             self.__lista.append(novo_primo)
 
@@ -73,26 +73,39 @@ class lista_num_primos(object):
 
     def __recalcular_posicoes(self):
 
-        self.__menor_posicao = -1
-        self.__maior_posicao = -1
+        self.menor_posicao = -1
+        self.maior_posicao = -1
 
         if self.size() > 0:
-            self.__menor_posicao = self[0].inicio
-            self.__maior_posicao = self[0].fim
+            self.menor_posicao = self[0].inicio
+            self.maior_posicao = self[0].fim
 
         for numero_primo in self.__lista:
-            if numero_primo.inicio < self.__menor_posicao:
-                self.__menor_posicao = numero_primo.inicio
+            if numero_primo.inicio < self.menor_posicao:
+                self.menor_posicao = numero_primo.inicio
 
-            if numero_primo.fim < self.__maior_posicao:
-                self.__maior_posicao = numero_primo.fim
+            if numero_primo.fim < self.maior_posicao:
+                self.maior_posicao = numero_primo.fim
+
+    def checar_se_combinacao_seria_contigua(self, outra_lista: lista_num_primos):
+        if self.maior_posicao + 1 == outra_lista.menor_posicao:
+            # Outra lista começa depois da lista atual
+            return True
+        elif outra_lista.maior_posicao + 1 == self.menor_posicao:
+            # Outra lista começa antes da lista atual
+            return True
+        else:
+            return False
 
     def maior_comprimento_possivel(self):
 
-        if self.__menor_posicao == -1 or self.__maior_posicao == -1:
+        if self.size() == 0:
+            return 0
+
+        if self.menor_posicao == -1 or self.maior_posicao == -1:
             self.__recalcular_posicoes()
 
-        resultado = self.__maior_posicao - self.__menor_posicao + 1
+        resultado = self.maior_posicao - self.menor_posicao + 1
         return resultado
 
     def remove(self, primo_a_ser_removido: primo) -> bool:
@@ -101,8 +114,8 @@ class lista_num_primos(object):
         """
         if primo_a_ser_removido in self.__lista:
             self.__lista.remove(primo_a_ser_removido)
-            self.__menor_posicao = -1
-            self.__maior_posicao = -1
+            self.menor_posicao = -1
+            self.maior_posicao = -1
 
             return True
         else:
@@ -157,6 +170,11 @@ class lista_num_primos(object):
         resultado: list[str] = []
         for item in self.__lista:
             resultado.append(f"{item.numero_primo}")
+        return resultado
+
+    def lista_de_primos_concatenada(self) -> str:
+        lista_de_strings = self.lista_de_primos_como_string()
+        resultado = ''.join(lista_de_strings)
         return resultado
 
     def disjunta(self) -> bool:

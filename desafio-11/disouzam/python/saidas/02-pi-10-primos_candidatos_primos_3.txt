@@ -1,8 +1,5 @@
 (primo: 41, inicio: 1, fim: 2)
 (primo: 59, inicio: 3, fim: 4)
-
 (primo: 2, inicio: 5, fim: 5)
-
 (primo: 653, inicio: 6, fim: 8)
-
 (primo: 5, inicio: 9, fim: 9)

@@ -1,57 +1,8 @@
 (primo: 41, inicio: 1, fim: 2)
 (primo: 59, inicio: 3, fim: 4)
-
 (primo: 2, inicio: 5, fim: 5)
-
 (primo: 653, inicio: 6, fim: 8)
-
 (primo: 5, inicio: 9, fim: 9)
 (primo: 89, inicio: 10, fim: 11)
 (primo: 7, inicio: 12, fim: 12)
 (primo: 9323, inicio: 13, fim: 16)
-
-(primo: 2, inicio: 20, fim: 20)
-
-(primo: 643, inicio: 21, fim: 23)
-(primo: 3, inicio: 24, fim: 24)
-(primo: 83, inicio: 25, fim: 26)
-
-(primo: 2, inicio: 27, fim: 27)
-
-(primo: 7, inicio: 28, fim: 28)
-
-(primo: 5, inicio: 30, fim: 30)
-
-(primo: 2, inicio: 32, fim: 32)
-
-(primo: 8419, inicio: 34, fim: 37)
-(primo: 7, inicio: 38, fim: 38)
-(primo: 1693, inicio: 39, fim: 42)
-
-(primo: 937, inicio: 44, fim: 46)
-(primo: 5, inicio: 47, fim: 47)
-
-(primo: 5, inicio: 50, fim: 50)
-
-(primo: 8209, inicio: 51, fim: 54)
-(primo: 7, inicio: 55, fim: 55)
-
-(primo: 59, inicio: 60, fim: 61)
-(primo: 2, inicio: 62, fim: 62)
-(primo: 307, inicio: 63, fim: 65)
-
-(primo: 2, inicio: 72, fim: 72)
-
-(primo: 2089, inicio: 75, fim: 78)
-
-(primo: 2803, inicio: 82, fim: 85)
-
-(primo: 2, inicio: 88, fim: 88)
-
-(primo: 5, inicio: 89, fim: 89)
-(primo: 3, inicio: 90, fim: 90)
-
-(primo: 421, inicio: 91, fim: 93)
-(primo: 17, inicio: 94, fim: 95)
-
-(primo: 67, inicio: 97, fim: 98)
